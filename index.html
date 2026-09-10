@@ -1644,85 +1644,238 @@
     }
 
     // Render Interpretation according to Selected Topic (งาน, เงิน, ความรัก, ดูทั้งหมด)
+    // Render Interpretation according to Selected Mode & Topic Filter (No Duplicate/Conflicting Readings!)
     function renderInterpretation() {
       const resSec = document.getElementById('resultSection');
       resSec.innerHTML = '';
       resSec.style.display = 'block';
 
-      const cfg = ModeConfig[AppState.currentMode];
+      const mode = AppState.currentMode;
       const topic = AppState.currentTopic;
+      const cfg = ModeConfig[mode];
 
-      let topicText = 'ทุกมิติ (ภาพรวม การงาน การเงิน ความรัก)';
-      if (topic === 'work') topicText = 'เน้นเจาะลึก: เรื่องการงาน 💼';
-      if (topic === 'finance') topicText = 'เน้นเจาะลึก: เรื่องการเงิน & โชคลาภ 💰';
-      if (topic === 'love') topicText = 'เน้นเจาะลึก: เรื่องความรัก & ความสัมพันธ์ 💖';
+      // Banner title showing clear reading context
+      let headerText = '';
+      if (mode === 'daily') {
+        if (topic === 'all') headerText = '🔮 คำทำนายรายวัน: ครบทุกด้าน (ภาพรวม งาน เงิน รัก)';
+        else if (topic === 'work') headerText = '💼 เจาะลึกดวงการงานประจำวัน';
+        else if (topic === 'finance') headerText = '💰 เจาะลึกดวงการเงิน & โชคลาภประจำวัน';
+        else if (topic === 'love') headerText = '💖 เจาะลึกดวงความรักประจำวัน';
+      } else if (mode === 'monthly') {
+        if (topic === 'all') headerText = '🌙 คำทำนายรายเดือน: แบ่งตาม 3 หน้าที่ของไพ่ (ภาพรวม / การงาน-การเงิน / ความรัก)';
+        else if (topic === 'work') headerText = '💼 เจาะลึกดวงการงานประจำเดือน (ไพ่ใบที่ 2 เป็นหลัก)';
+        else if (topic === 'finance') headerText = '💰 เจาะลึกดวงการเงินประจำเดือน (ไพ่ใบที่ 2 เป็นหลัก)';
+        else if (topic === 'love') headerText = '💖 เจาะลึกดวงความรักประจำเดือน (ไพ่ใบที่ 3 เป็นหลัก)';
+      } else if (mode === 'yearly') {
+        if (topic === 'all') headerText = '🪐 คำทำนายรายปี: 4 ไตรมาสแห่งชีวิต (ก้าวแรก / การงาน / การเงิน / ความรัก)';
+        else if (topic === 'work') headerText = '💼 เจาะลึกดวงการงานประจำปี (ไตรมาสที่ 2 เป็นหลัก)';
+        else if (topic === 'finance') headerText = '💰 เจาะลึกดวงการเงินประจำปี (ไตรมาสที่ 3 เป็นหลัก)';
+        else if (topic === 'love') headerText = '💖 เจาะลึกดวงความรักประจำปี (ไตรมาสที่ 4 เป็นหลัก)';
+      }
 
       const banner = document.createElement('div');
       banner.style.textAlign = 'center';
       banner.style.marginBottom = '20px';
       banner.innerHTML = `
         <div style="display: inline-flex; align-items: center; gap: 8px; background: #281447; border: 1.5px solid #7e22ce; padding: 8px 22px; border-radius: 999px; font-weight: 700; color: #fde047; font-size: 16px;">
-          🔮 คำทำนายจากแม่หมอเหมียว [${topicText}]
+          ${headerText}
         </div>
       `;
       resSec.appendChild(banner);
 
+      // Render cards cleanly without conflicting duplicate aspects
       AppState.selectedCards.forEach((card, idx) => {
         const cardBox = document.createElement('div');
         cardBox.className = 'result-card';
 
+        let slotTitle = cfg.slotTitles[idx];
         let bodyHTML = '';
 
-        if (topic === 'all') {
-          bodyHTML = `
-            <div class="aspect-box" style="border-left: 4px solid #a855f7;">
-              <div class="aspect-title" style="color: #c084fc;">🌟 ภาพรวมพลังงาน:</div>
-              <p>${card.overall}</p>
-            </div>
-            <div class="aspect-box" style="border-left: 4px solid #38bdf8;">
-              <div class="aspect-title" style="color: #38bdf8;">💼 การงาน & อนาคต:</div>
-              <p>${card.work}</p>
-            </div>
-            <div class="aspect-box" style="border-left: 4px solid #facc15;">
-              <div class="aspect-title" style="color: #facc15;">💰 การเงิน & โชคลาภ:</div>
-              <p>${card.finance}</p>
-            </div>
-            <div class="aspect-box" style="border-left: 4px solid #f472b6;">
-              <div class="aspect-title" style="color: #f472b6;">💖 ความรัก & ความสัมพันธ์:</div>
-              <p>${card.love}</p>
-            </div>
-          `;
-        } else if (topic === 'work') {
-          bodyHTML = `
-            <div class="aspect-box" style="border-left: 4px solid #38bdf8; background: rgba(14, 50, 92, 0.5);">
-              <div class="aspect-title" style="color: #38bdf8; font-size: 17px;">💼 คำทำนายด้านการงาน & การเรียน:</div>
-              <p style="font-size: 16px; margin-top: 6px;">${card.work}</p>
-            </div>
-            <div style="font-size: 14px; color: #cbd5e1; margin-top: 6px;">✨ ภาพรวมสั้น: ${card.overall}</div>
-          `;
-        } else if (topic === 'finance') {
-          bodyHTML = `
-            <div class="aspect-box" style="border-left: 4px solid #facc15; background: rgba(85, 60, 10, 0.5);">
-              <div class="aspect-title" style="color: #facc15; font-size: 17px;">💰 คำทำนายด้านการเงิน & โชคลาภ:</div>
-              <p style="font-size: 16px; margin-top: 6px;">${card.finance}</p>
-            </div>
-            <div style="font-size: 14px; color: #cbd5e1; margin-top: 6px;">✨ ภาพรวมสั้น: ${card.overall}</div>
-          `;
-        } else if (topic === 'love') {
-          bodyHTML = `
-            <div class="aspect-box" style="border-left: 4px solid #f472b6; background: rgba(90, 20, 60, 0.5);">
-              <div class="aspect-title" style="color: #f472b6; font-size: 17px;">💖 คำทำนายด้านความรัก & คนรู้ใจ:</div>
-              <p style="font-size: 16px; margin-top: 6px;">${card.love}</p>
-            </div>
-            <div style="font-size: 14px; color: #cbd5e1; margin-top: 6px;">✨ ภาพรวมสั้น: ${card.overall}</div>
-          `;
+        if (mode === 'daily') {
+          // Daily has only 1 card, so breaking down 1 card into aspects is logical and non-contradictory
+          if (topic === 'all') {
+            bodyHTML = `
+              <div class="aspect-box" style="border-left: 4px solid #a855f7;">
+                <div class="aspect-title" style="color: #c084fc;">🌟 ภาพรวมพลังงานวันนี้:</div>
+                <p>${card.overall}</p>
+              </div>
+              <div class="aspect-box" style="border-left: 4px solid #38bdf8;">
+                <div class="aspect-title" style="color: #38bdf8;">💼 การงาน & การเรียน:</div>
+                <p>${card.work}</p>
+              </div>
+              <div class="aspect-box" style="border-left: 4px solid #facc15;">
+                <div class="aspect-title" style="color: #facc15;">💰 การเงิน & โชคลาภ:</div>
+                <p>${card.finance}</p>
+              </div>
+              <div class="aspect-box" style="border-left: 4px solid #f472b6;">
+                <div class="aspect-title" style="color: #f472b6;">💖 ความรัก & ความสัมพันธ์:</div>
+                <p>${card.love}</p>
+              </div>
+            `;
+          } else if (topic === 'work') {
+            bodyHTML = `
+              <div class="aspect-box" style="border-left: 4px solid #38bdf8; background: rgba(14, 50, 92, 0.5);">
+                <div class="aspect-title" style="color: #38bdf8; font-size: 17px;">💼 คำทำนายด้านการงานวันนี้:</div>
+                <p style="font-size: 16px; margin-top: 6px;">${card.work}</p>
+              </div>
+            `;
+          } else if (topic === 'finance') {
+            bodyHTML = `
+              <div class="aspect-box" style="border-left: 4px solid #facc15; background: rgba(85, 60, 10, 0.5);">
+                <div class="aspect-title" style="color: #facc15; font-size: 17px;">💰 คำทำนายด้านการเงินวันนี้:</div>
+                <p style="font-size: 16px; margin-top: 6px;">${card.finance}</p>
+              </div>
+            `;
+          } else if (topic === 'love') {
+            bodyHTML = `
+              <div class="aspect-box" style="border-left: 4px solid #f472b6; background: rgba(90, 20, 60, 0.5);">
+                <div class="aspect-title" style="color: #f472b6; font-size: 17px;">💖 คำทำนายด้านความรักวันนี้:</div>
+                <p style="font-size: 16px; margin-top: 6px;">${card.love}</p>
+              </div>
+            `;
+          }
+        } else if (mode === 'monthly') {
+          // In Monthly, 3 cards each have ONE dedicated purpose! Never mix them up!
+          if (topic === 'all') {
+            if (idx === 0) {
+              // Card 1: Main overall influence of the month
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #a855f7; background: rgba(46, 16, 101, 0.4);">
+                  <div class="aspect-title" style="color: #c084fc; font-size: 17px;">🌟 อิทธิพลเด่น & ภาพรวมชีวิตประจำเดือนนี้:</div>
+                  <p style="font-size: 16px; margin-top: 6px;">${card.overall}</p>
+                </div>
+              `;
+            } else if (idx === 1) {
+              // Card 2: Work & Finance
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #38bdf8; background: rgba(14, 50, 92, 0.4);">
+                  <div class="aspect-title" style="color: #38bdf8; font-size: 17px;">💼 ทิศทางการงานประจำเดือน:</div>
+                  <p style="font-size: 16px; margin-top: 6px;">${card.work}</p>
+                </div>
+                <div class="aspect-box" style="border-left: 4px solid #facc15; background: rgba(85, 60, 10, 0.4); margin-top: 10px;">
+                  <div class="aspect-title" style="color: #facc15; font-size: 17px;">💰 ทิศทางการเงิน & โชคลาภประจำเดือน:</div>
+                  <p style="font-size: 16px; margin-top: 6px;">${card.finance}</p>
+                </div>
+              `;
+            } else if (idx === 2) {
+              // Card 3: Love & Relationship
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #f472b6; background: rgba(90, 20, 60, 0.4);">
+                  <div class="aspect-title" style="color: #f472b6; font-size: 17px;">💖 ทิศทางความรัก & ความสัมพันธ์ประจำเดือน:</div>
+                  <p style="font-size: 16px; margin-top: 6px;">${card.love}</p>
+                </div>
+              `;
+            }
+          } else if (topic === 'work') {
+            if (idx === 1) {
+              slotTitle = '⭐ ไพ่หลักด้านการงานประจำเดือน';
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #38bdf8; background: rgba(14, 50, 92, 0.6);">
+                  <div class="aspect-title" style="color: #38bdf8; font-size: 18px;">💼 คำทำนายการงานประจำเดือนของคุณโดยตรง:</div>
+                  <p style="font-size: 16px; margin-top: 6px;">${card.work}</p>
+                </div>
+              `;
+            } else if (idx === 0) {
+              slotTitle = 'ไพ่สนับสนุน: พลังงานเสริมด้านงาน';
+              bodyHTML = `<p style="font-size: 15px; color: #e2d9f3;">ภาพรวมพลังงานของเดือนนี้ (${card.name_th}) ส่งผลให้การทำงานมีแนวโน้ม: ${card.overall}</p>`;
+            } else {
+              slotTitle = 'ไพ่ประกอบ: บรรยากาศแวดล้อม';
+              bodyHTML = `<p style="font-size: 15px; color: #a89ec4;">คำแนะนำเสริมสำหรับการทำงาน: ${card.advice}</p>`;
+            }
+          } else if (topic === 'finance') {
+            if (idx === 1) {
+              slotTitle = '⭐ ไพ่หลักด้านการเงินประจำเดือน';
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #facc15; background: rgba(85, 60, 10, 0.6);">
+                  <div class="aspect-title" style="color: #facc15; font-size: 18px;">💰 คำทำนายการเงิน & โชคลาภประจำเดือนของคุณ:</div>
+                  <p style="font-size: 16px; margin-top: 6px;">${card.finance}</p>
+                </div>
+              `;
+            } else if (idx === 0) {
+              slotTitle = 'ไพ่สนับสนุน: จังหวะโชคชะตา';
+              bodyHTML = `<p style="font-size: 15px; color: #e2d9f3;">จังหวะโชคลาภประจำเดือนนี้: ${card.overall}</p>`;
+            } else {
+              slotTitle = 'ไพ่ประกอบ: คำแนะนำการใช้จ่าย';
+              bodyHTML = `<p style="font-size: 15px; color: #a89ec4;">แนวทางการบริหารเงิน: ${card.advice}</p>`;
+            }
+          } else if (topic === 'love') {
+            if (idx === 2) {
+              slotTitle = '⭐ ไพ่หลักด้านความรักประจำเดือน';
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #f472b6; background: rgba(90, 20, 60, 0.6);">
+                  <div class="aspect-title" style="color: #f472b6; font-size: 18px;">💖 คำทำนายความรักประจำเดือนของคุณโดยตรง:</div>
+                  <p style="font-size: 16px; margin-top: 6px;">${card.love}</p>
+                </div>
+              `;
+            } else if (idx === 0) {
+              slotTitle = 'ไพ่สนับสนุน: พลังงานและอารมณ์';
+              bodyHTML = `<p style="font-size: 15px; color: #e2d9f3;">อิทธิพลต่อจิตใจและความรัก: ${card.overall}</p>`;
+            } else {
+              slotTitle = 'ไพ่ประกอบ: คำเตือนข้อคิด';
+              bodyHTML = `<p style="font-size: 15px; color: #a89ec4;">คำแนะนำสำหรับความสัมพันธ์: ${card.advice}</p>`;
+            }
+          }
+        } else if (mode === 'yearly') {
+          // In Yearly, 4 cards represent 4 Quarters of the year
+          if (topic === 'all') {
+            if (idx === 0) {
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #a855f7;">
+                  <div class="aspect-title" style="color: #c084fc;">🌸 ไตรมาสที่ 1 (ตัวตน & การเริ่มต้นใหม่):</div>
+                  <p>${card.overall}</p>
+                </div>
+              `;
+            } else if (idx === 1) {
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #38bdf8;">
+                  <div class="aspect-title" style="color: #38bdf8;">💼 ไตรมาสที่ 2 (หน้าที่การงาน & ความก้าวหน้า):</div>
+                  <p>${card.work}</p>
+                </div>
+              `;
+            } else if (idx === 2) {
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #facc15;">
+                  <div class="aspect-title" style="color: #facc15;">💰 ไตรมาสที่ 3 (การเงิน ทรัพย์สิน & โชคลาภ):</div>
+                  <p>${card.finance}</p>
+                </div>
+              `;
+            } else if (idx === 3) {
+              bodyHTML = `
+                <div class="aspect-box" style="border-left: 4px solid #f472b6;">
+                  <div class="aspect-title" style="color: #f472b6;">💖 ไตรมาสที่ 4 (ความรัก ความสุขใจ & บทสรุปแห่งปี):</div>
+                  <p>${card.love}</p>
+                </div>
+              `;
+            }
+          } else if (topic === 'work') {
+            bodyHTML = `
+              <div class="aspect-box" style="border-left: 4px solid #38bdf8;">
+                <div class="aspect-title" style="color: #38bdf8;">💼 การงานในช่วง${slotTitle}:</div>
+                <p>${card.work}</p>
+              </div>
+            `;
+          } else if (topic === 'finance') {
+            bodyHTML = `
+              <div class="aspect-box" style="border-left: 4px solid #facc15;">
+                <div class="aspect-title" style="color: #facc15;">💰 การเงินในช่วง${slotTitle}:</div>
+                <p>${card.finance}</p>
+              </div>
+            `;
+          } else if (topic === 'love') {
+            bodyHTML = `
+              <div class="aspect-box" style="border-left: 4px solid #f472b6;">
+                <div class="aspect-title" style="color: #f472b6;">💖 ความรักในช่วง${slotTitle}:</div>
+                <p>${card.love}</p>
+              </div>
+            `;
+          }
         }
 
         cardBox.innerHTML = `
           <div class="result-header">
             <div class="result-name">
               <span>${card.symbol}</span>
-              <span>${cfg.slotTitles[idx]}: ${card.name_th}</span>
+              <span>${slotTitle}: ${card.name_th}</span>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
               <span class="result-tag">สีมงคล: ${card.lucky_color}</span>
