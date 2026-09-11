@@ -3,35 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeowMagic Tarot | แม่หมอเหมียวดูดวงไพ่ทาโรต์แมวน่ารักในสวนดอกไม้</title>
+  <title>AuraPastel Tarot | ดูดวงไพ่ทาโรต์ พาสเทลสีม่วงน่ารัก</title>
+  <!-- Google Fonts Prompt & Kanit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Itim&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --pastel-pink: #ffd1dc;
-      --pastel-pink-deep: #f472b6;
-      --pastel-yellow: #fef08a;
-      --pastel-yellow-deep: #eab308;
-      --pastel-blue: #bae6fd;
-      --pastel-blue-deep: #38bdf8;
-      --pastel-purple: #e9d5ff;
-      --pastel-purple-deep: #c084fc;
-      --pastel-green: #bbf7d0;
-      --pastel-green-deep: #4ade80;
-      
-      --bg-gradient: linear-gradient(135deg, #fff5f8 0%, #fefcf3 25%, #f0f7ff 50%, #fbf3ff 75%, #f2fff6 100%);
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --card-border: #fbcfe8;
-      --text-main: #4a355e;
-      --text-muted: #7c6a8f;
-      --text-highlight: #db2777;
-      
-      --radius-sm: 14px;
-      --radius-md: 22px;
-      --radius-lg: 30px;
-      --shadow-soft: 0 10px 28px rgba(244, 114, 182, 0.15);
-      --shadow-hover: 0 14px 36px rgba(244, 114, 182, 0.25);
+      --primary: #9d84e8;
+      --primary-hover: #8667e4;
+      --primary-light: #ece6ff;
+      --primary-dark: #6348b6;
+      --pastel-purple-50: #fbf9ff;
+      --pastel-purple-100: #f4effe;
+      --pastel-purple-200: #e9deff;
+      --pastel-purple-300: #d6c4fe;
+      --accent-pink: #fca5e1;
+      --accent-yellow: #fde68a;
+      --card-bg: #ffffff;
+      --text-main: #372d54;
+      --text-muted: #796e96;
+      --border-color: #e5dbfc;
+      --shadow-sm: 0 4px 12px rgba(157, 132, 232, 0.12);
+      --shadow-md: 0 8px 24px rgba(157, 132, 232, 0.18);
+      --shadow-lg: 0 16px 36px rgba(157, 132, 232, 0.22);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
     }
 
     * {
@@ -43,19 +41,17 @@
     }
 
     body {
-      background: radial-gradient(circle at 50% 10%, #2e1065 0%, #170c31 35%, #0c0817 100%);
-      color: #f3e8ff;
+      background: linear-gradient(135deg, #f7f2ff 0%, #f1e9ff 50%, #fdf5ff 100%);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       position: relative;
       overflow-x: hidden;
-      font-size: 17px;
-      line-height: 1.65;
     }
 
-    /* Floating Flowers & Petals Background */
-    .bg-petals {
+    /* Background floating magical sparkles */
+    .bg-sparkles {
       position: fixed;
       top: 0;
       left: 0;
@@ -65,20 +61,18 @@
       z-index: 0;
       overflow: hidden;
     }
-    .petal {
+    .sparkle {
       position: absolute;
-      font-size: 24px;
-      opacity: 0.35;
-      animation: floatPetal 14s infinite ease-in-out;
-      user-select: none;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(196, 181, 253, 0.4) 70%, transparent 100%);
+      border-radius: 50%;
+      animation: floatTwinkle 6s infinite ease-in-out;
     }
-    @keyframes floatPetal {
-      0% { transform: translateY(-40px) rotate(0deg) scale(0.8); opacity: 0; }
-      20% { opacity: 0.55; }
-      80% { opacity: 0.55; }
-      100% { transform: translateY(105vh) rotate(360deg) scale(1.1); opacity: 0; }
+    @keyframes floatTwinkle {
+      0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.3; }
+      50% { transform: translateY(-25px) scale(1.2); opacity: 0.9; }
     }
 
+    /* Container */
     .container {
       width: 100%;
       max-width: 1100px;
@@ -90,13 +84,13 @@
 
     /* Navbar */
     .navbar {
-      background: rgba(20, 13, 36, 0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 2px solid #581c87;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--pastel-purple-200);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-sm);
     }
     .nav-inner {
       display: flex;
@@ -107,32 +101,38 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      cursor: pointer;
+      gap: 10px;
       text-decoration: none;
+      cursor: pointer;
     }
     .brand-icon {
-      width: 52px;
-      height: 52px;
-      background: linear-gradient(135deg, #fbcfe8, #fef08a, #bae6fd);
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 30px;
-      box-shadow: 0 4px 14px rgba(244, 114, 182, 0.3);
-      border: 2px solid #f472b6;
+      font-size: 26px;
+      box-shadow: 0 4px 10px rgba(157, 132, 232, 0.35);
+      animation: pulseBrand 3s infinite alternate;
+    }
+    @keyframes pulseBrand {
+      0% { transform: rotate(0deg) scale(1); }
+      100% { transform: rotate(6deg) scale(1.06); }
     }
     .brand-title {
-      font-size: 23px;
+      font-size: 20px;
       font-weight: 700;
-      background: linear-gradient(135deg, #db2777, #9333ea, #2563eb);
+      background: linear-gradient(135deg, var(--primary-dark), #9a48b5);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
     }
     .brand-subtitle {
       font-size: 13px;
-      color: #d8b4fe;
+      color: var(--text-muted);
+      font-weight: 400;
       display: block;
     }
 
@@ -140,7 +140,6 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
     /* Coin Wallet Badge */
@@ -148,21 +147,31 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #ffffff;
-      border: 2px solid #fbcfe8;
+      background: var(--pastel-purple-100);
+      border: 1.5px solid var(--pastel-purple-300);
       padding: 6px 14px;
       border-radius: 999px;
       cursor: pointer;
-      font-size: 15px;
-      font-weight: 700;
-      color: #be185d;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
-      transition: all 0.25s;
+      transition: all 0.25s ease;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--primary-dark);
     }
     .wallet-badge:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(244, 114, 182, 0.3);
-      border-color: #f472b6;
+      background: var(--pastel-purple-200);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    .coin-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, #ffd700, #ffb300);
+      border-radius: 50%;
+      font-size: 15px;
+      box-shadow: 0 2px 5px rgba(255, 179, 0, 0.4);
     }
 
     /* Buttons */
@@ -171,10 +180,10 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 20px;
+      padding: 9px 18px;
       border-radius: 999px;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
       border: none;
       outline: none;
@@ -182,83 +191,90 @@
       text-decoration: none;
     }
     .btn-primary {
-      background: linear-gradient(135deg, #f472b6, #c084fc);
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
       color: white;
-      box-shadow: 0 4px 15px rgba(244, 114, 182, 0.35);
-      border: 1.5px solid #fbcfe8;
+      box-shadow: 0 4px 14px rgba(157, 132, 232, 0.4);
     }
     .btn-primary:hover {
-      background: linear-gradient(135deg, #ec4899, #a855f7);
+      background: linear-gradient(135deg, var(--primary-hover), var(--primary-dark));
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(244, 114, 182, 0.5);
+      box-shadow: 0 6px 18px rgba(157, 132, 232, 0.5);
     }
-    .btn-pink {
-      background: linear-gradient(135deg, #fb7185, #f43f5e);
+    .btn-accent {
+      background: linear-gradient(135deg, #ff9ad8, #f472b6);
       color: white;
-      box-shadow: 0 4px 15px rgba(251, 113, 133, 0.35);
+      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.35);
     }
-    .btn-pink:hover {
+    .btn-accent:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(251, 113, 133, 0.5);
+      box-shadow: 0 6px 16px rgba(244, 114, 182, 0.45);
     }
     .btn-outline {
-      background: #ffffff;
-      border: 2px solid #e9d5ff;
-      color: #6b21a8;
+      background: white;
+      border: 1.5px solid var(--pastel-purple-300);
+      color: var(--primary-dark);
     }
     .btn-outline:hover {
-      background: #faf5ff;
-      border-color: #c084fc;
+      background: var(--pastel-purple-100);
+      border-color: var(--primary);
     }
 
-    /* Hero */
+    /* Hero Banner */
     .hero {
       text-align: center;
-      padding: 36px 0 20px;
+      padding: 36px 0 24px;
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 2px solid #fbcfe8;
-      padding: 6px 22px;
+      gap: 6px;
+      background: #ffffff;
+      border: 1.5px solid var(--pastel-purple-300);
+      padding: 6px 16px;
       border-radius: 999px;
       font-size: 15px;
-      font-weight: 700;
-      color: #db2777;
-      margin-bottom: 16px;
-      box-shadow: 0 4px 14px rgba(244, 114, 182, 0.2);
+      color: var(--primary-dark);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-sm);
     }
     .hero-title {
       font-size: 38px;
       font-weight: 700;
-      color: #ffffff;
-      text-shadow: 0 0 25px rgba(244, 114, 182, 0.6);
-      margin-bottom: 12px;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
       letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(244, 114, 182, 0.15);
     }
     .hero-desc {
-      font-size: 16px;
-      color: #d8b4fe;
-      max-width: 660px;
-      margin: 0 auto 20px;
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
 
-    /* Free Quota Banner */
+    /* Daily Free Quota Banner */
     .free-quota-card {
-      background: linear-gradient(135deg, #1b1033 0%, #251347 100%);
-      border: 2px dashed #a855f7;
+      background: linear-gradient(135deg, #ffffff 0%, #fdf8ff 100%);
+      border: 2px dashed var(--pastel-purple-300);
       border-radius: var(--radius-md);
-      padding: 16px 24px;
-      margin: 0 auto 26px;
-      max-width: 720px;
+      padding: 16px 22px;
+      margin: 18px auto 26px;
+      max-width: 650px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 15px;
-      box-shadow: 0 0 20px rgba(107, 33, 168, 0.35);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .free-quota-card::before {
+      content: '✨';
+      position: absolute;
+      right: 15px;
+      top: -10px;
+      font-size: 40px;
+      opacity: 0.15;
     }
     .quota-info {
       display: flex;
@@ -266,55 +282,52 @@
       gap: 14px;
     }
     .quota-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #fbcfe8, #fef08a);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ede9fe, #ddd6fe);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      border: 1.5px solid #f472b6;
-      box-shadow: 0 4px 10px rgba(244, 114, 182, 0.25);
+      font-size: 26px;
     }
     .quota-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: #831843;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary-dark);
     }
     .quota-sub {
-      font-size: 14px;
-      color: #d8b4fe;
+      font-size: 15px;
+      color: var(--text-muted);
     }
     .badge-status {
-      padding: 6px 16px;
+      padding: 4px 10px;
       border-radius: 999px;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 600;
     }
     .badge-ready {
-      background: #dcfce7;
-      color: #15803d;
-      border: 1.5px solid #86efac;
-      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.2);
+      background: #e6fffa;
+      color: #047857;
+      border: 1px solid #a7f3d0;
     }
     .badge-used {
-      background: #ffe4e6;
+      background: #fff1f2;
       color: #be123c;
-      border: 1.5px solid #fecdd3;
+      border: 1px solid #fecdd3;
     }
 
-    /* Mode Tabs */
+    /* Reading Mode Selection Tabs */
     .mode-tabs {
       display: flex;
       justify-content: center;
-      gap: 14px;
-      margin-bottom: 24px;
+      gap: 12px;
+      margin-bottom: 28px;
       flex-wrap: wrap;
     }
     .mode-tab {
-      background: #140d24;
-      border: 2px solid #3b285f;
+      background: white;
+      border: 2px solid var(--border-color);
       border-radius: var(--radius-md);
       padding: 14px 22px;
       cursor: pointer;
@@ -322,118 +335,86 @@
       align-items: center;
       gap: 12px;
       transition: all 0.25s ease;
-      min-width: 210px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      box-shadow: var(--shadow-sm);
+      min-width: 190px;
+      position: relative;
     }
     .mode-tab:hover {
       transform: translateY(-3px);
-      border-color: #c084fc;
-      box-shadow: 0 0 18px rgba(168, 85, 247, 0.45);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
     }
     .mode-tab.active {
-      background: linear-gradient(135deg, #2b1354 0%, #3b1973 100%);
-      border-color: #c084fc;
-      box-shadow: 0 0 24px rgba(168, 85, 247, 0.45);
+      background: linear-gradient(135deg, #faf7ff 0%, #f2ebff 100%);
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(157, 132, 232, 0.25);
+    }
+    .mode-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 20%;
+      right: 20%;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 4px;
     }
     .tab-icon {
-      font-size: 32px;
+      font-size: 26px;
+    }
+    .tab-text {
+      text-align: left;
     }
     .tab-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: #4a355e;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary-dark);
     }
     .tab-cost {
-      font-size: 13px;
-      color: #d8b4fe;
+      font-size: 14px;
+      color: var(--text-muted);
       margin-top: 2px;
     }
-    .tab-tag {
-      background: #ec4899;
+    .tab-free-tag {
+      background: #10b981;
       color: white;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 6px;
       margin-left: 4px;
-      font-weight: 700;
     }
 
-    /* Reading Stage */
+    /* Interactive Divination Section */
     .reading-stage {
-      background: rgba(20, 13, 36, 0.9);
-      backdrop-filter: blur(16px);
-      border: 2px solid #7e22ce;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--pastel-purple-200);
       border-radius: var(--radius-lg);
-      padding: 34px 24px;
-      box-shadow: 0 0 35px rgba(168, 85, 247, 0.35);
+      padding: 30px 24px;
+      box-shadow: var(--shadow-md);
       margin-bottom: 40px;
       text-align: center;
+    }
+
+    .stage-header {
+      margin-bottom: 24px;
     }
     .stage-title {
       font-size: 26px;
       font-weight: 700;
-      color: #f3e8ff;
+      color: var(--primary-dark);
     }
     .stage-instruction {
-      font-size: 15px;
-      color: #d8b4fe;
+      font-size: 16px;
+      color: var(--text-muted);
       margin-top: 6px;
     }
 
-    /* Topic Filter Selector */
-    .topic-filter-box {
-      background: rgba(30, 17, 56, 0.85);
-      border: 2px solid #6b21a8;
-      border-radius: 18px;
-      padding: 14px 18px;
-      margin: 20px auto 10px;
-      max-width: 700px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .topic-label {
-      font-size: 15px;
-      font-weight: 700;
-      color: #be185d;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .topic-btns {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .topic-btn {
-      background: #140b26;
-      border: 1.5px solid #581c87;
-      color: #e9d5ff;
-      padding: 7px 18px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .topic-btn:hover {
-      border-color: #f472b6;
-      background: #fff1f2;
-    }
-    .topic-btn.active {
-      background: linear-gradient(135deg, #f472b6, #c084fc);
-      border-color: #f472b6;
-      color: white;
-      box-shadow: 0 4px 14px rgba(244, 114, 182, 0.35);
-    }
-
-    /* Card Spread Container */
+    /* Interactive Deck Spread */
     .deck-container {
       perspective: 1000px;
-      margin: 26px 0 32px;
-      min-height: 260px;
+      margin: 20px 0 30px;
+      min-height: 220px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -442,302 +423,322 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
+      transition: all 0.5s ease;
     }
 
-    /* 3D Tarot Card (Robust 3D Flip with High Contrast Card Back) */
+    /* Card Item (3D Flip) */
     .card-slot {
-      width: 170px;
-      height: 265px;
+      width: 140px;
+      height: 215px;
       perspective: 1000px;
-      -webkit-perspective: 1000px;
       cursor: pointer;
       position: relative;
-      display: inline-block;
-      margin: 10px;
     }
     .card-inner {
       position: relative;
       width: 100%;
       height: 100%;
       text-align: center;
-      transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
-      border-radius: 18px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
     }
     .card-slot:hover .card-inner:not(.flipped) {
-      transform: translateY(-10px) scale(1.04);
-      box-shadow: 0 0 25px rgba(244, 114, 182, 0.6);
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: var(--shadow-md);
     }
     .card-inner.flipped {
       transform: rotateY(180deg);
-      -webkit-transform: rotateY(180deg);
     }
 
-    .card-back {
+    /* Card Front & Back */
+    .card-front, .card-back {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 40%, #3b0764 0%, #1e0b36 70%, #0c0418 100%);
-      border: 2.5px solid #f472b6;
-      box-shadow: 0 0 20px rgba(244, 114, 182, 0.45);
-      border-radius: 18px;
-      backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      transform: rotateY(0deg);
-      -webkit-transform: rotateY(0deg);
-      z-index: 2;
+      backface-visibility: hidden;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       padding: 12px 10px;
+      border: 2px solid var(--pastel-purple-300);
+      overflow: hidden;
     }
-    .card-back-frame {
+
+    /* Card Back Design */
+    .card-back {
+      background: linear-gradient(135deg, #7e63d8 0%, #9a84e8 50%, #bca5f7 100%);
+      color: white;
+    }
+    .card-back-pattern {
       width: 100%;
       height: 100%;
-      border: 1.5px dashed rgba(244, 114, 182, 0.7);
-      border-radius: 14px;
+      border: 1.5px dashed rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 75%);
+      gap: 6px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 80%);
     }
-    .card-back-cat {
-      font-size: 42px;
-      filter: drop-shadow(0 0 10px #f472b6);
-      animation: catBounce 2.5s infinite alternate ease-in-out;
+    .card-back-emblem {
+      font-size: 32px;
+      animation: gentleRotate 8s infinite linear;
     }
-    @keyframes catBounce {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-6px) scale(1.08); }
+    @keyframes gentleRotate {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(15deg); }
+      100% { transform: rotate(0deg); }
     }
     .card-back-text {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: #fce7f3;
-    }
-    .card-back-sub {
       font-size: 13px;
-      font-weight: 700;
-      color: #fde047;
-      background: rgba(219, 39, 119, 0.35);
-      padding: 3px 10px;
-      border-radius: 999px;
-      border: 1px solid #f472b6;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 1px;
     }
 
+    /* Card Front Design */
     .card-front {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 18px;
-      border: 2.5px solid #facc15;
-      box-shadow: 0 0 25px rgba(250, 204, 21, 0.4);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+      background: #ffffff;
       transform: rotateY(180deg);
-      -webkit-transform: rotateY(180deg);
-      z-index: 1;
-      background: #180d2e;
-      padding: 6px;
+      border-color: var(--primary);
     }
-    .card-inner.flipped .card-front {
-      z-index: 5;
-    }
-    .card-inner.flipped .card-back {
-      z-index: 1;
-    }
-    .card-real-img {
+    .card-frame {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
-    }
-    .card-front-content {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
+      border: 1px solid var(--pastel-purple-200);
+      border-radius: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 6px;
-      position: relative;
-      overflow: hidden;
-      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      padding: 8px 6px;
+      background: linear-gradient(180deg, #fbfaff 0%, #ffffff 100%);
     }
-    .card-front-title-en {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #831843;
-      text-transform: uppercase;
-    }
-    .card-front-art {
-      font-size: 48px;
-      margin: 6px 0;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-    }
-    .card-front-title-th {
+    .card-roman {
       font-size: 13px;
       font-weight: 700;
-      color: #4a355e;
-      line-height: 1.3;
+      color: var(--primary-dark);
+      letter-spacing: 1px;
     }
-    .slot-tag {
+    .card-art {
+      font-size: 40px;
+      margin: 8px 0;
+      filter: drop-shadow(0 4px 6px rgba(157, 132, 232, 0.25));
+    }
+    .card-label-th {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+    .card-slot-name {
       position: absolute;
-      top: -28px;
+      top: -24px;
       left: 0;
       right: 0;
-      font-size: 12px;
-      font-weight: 700;
-      color: #be185d;
-      background: #ffffff;
-      border: 1.5px solid #fbcfe8;
-      padding: 3px 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: var(--pastel-purple-100);
+      padding: 2px 8px;
       border-radius: 999px;
-      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
+      border: 1px solid var(--pastel-purple-300);
     }
 
-    /* Results Box */
+    /* Action Buttons Area */
+    .stage-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* Result Interpretation Area */
     .result-section {
       display: none;
       margin-top: 36px;
       text-align: left;
-      animation: fadeIn 0.6s ease-out;
+      animation: fadeInResult 0.6s ease-out;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(16px); }
+    @keyframes fadeInResult {
+      from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .result-card {
-      background: linear-gradient(135deg, #180e2e 0%, #221240 100%);
-      border: 2px solid #a855f7;
+      background: #ffffff;
+      border: 2px solid var(--pastel-purple-200);
       border-radius: var(--radius-md);
       padding: 24px;
-      margin-bottom: 22px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
     }
-    .result-header {
+    .result-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1.5px solid #fce7f3;
-      padding-bottom: 12px;
-      margin-bottom: 14px;
+      border-bottom: 1.5px solid var(--pastel-purple-100);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
       flex-wrap: wrap;
       gap: 10px;
     }
-    .result-name {
-      font-size: 21px;
+    .result-title {
+      font-size: 19px;
       font-weight: 700;
-      color: #fde047;
+      color: var(--primary-dark);
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .result-tag {
-      background: #fdf2f8;
-      color: #be185d;
-      border: 1.5px solid #fbcfe8;
-      padding: 4px 12px;
+    .result-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .lucky-tag {
+      background: var(--pastel-purple-100);
+      color: var(--primary-dark);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
+      border: 1px solid var(--pastel-purple-200);
     }
     .result-body {
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.7;
-      color: #4a355e;
+      color: var(--text-main);
     }
-    .aspect-box {
-      background: rgba(30, 16, 56, 0.75);
-      border: 1px solid #6b21a8;
-      border-radius: 14px;
-      padding: 14px 18px;
-      margin: 12px 0;
-    }
-    .aspect-title {
-      font-weight: 700;
-      margin-bottom: 6px;
+    .result-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 12px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    .result-advice {
-      background: #fdf2f8;
-      border-left: 4px solid #f472b6;
-      border-radius: 10px;
-      padding: 14px 18px;
+    .advice-box {
+      background: linear-gradient(135deg, #fbf9ff, #f5effe);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 12px 16px;
       margin-top: 14px;
-      font-size: 15px;
-      color: #831843;
-      font-weight: 600;
+      font-size: 16px;
+      color: var(--primary-dark);
+      font-weight: 500;
     }
 
-    /* Donation / Support Section */
+    /* Share & Print Section */
+    .result-footer-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    /* Support & Donation Section */
     .support-section {
-      background: linear-gradient(135deg, #160c2b 0%, #20113d 100%);
-      border: 2px solid #7e22ce;
+      background: linear-gradient(135deg, #ffffff 0%, #fbf8ff 100%);
+      border: 2px solid var(--pastel-purple-200);
       border-radius: var(--radius-lg);
-      padding: 36px 24px;
+      padding: 32px 24px;
       margin-bottom: 40px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: var(--shadow-sm);
+    }
+    .support-header {
+      max-width: 550px;
+      margin: 0 auto 24px;
     }
     .support-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
-      color: #f3e8ff;
+      color: var(--primary-dark);
       margin-bottom: 8px;
     }
-    .donate-grid {
+    .support-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .donate-options {
       display: flex;
       justify-content: center;
       gap: 14px;
       flex-wrap: wrap;
-      margin: 22px 0;
+      margin-bottom: 22px;
     }
-    .donate-card {
-      background: #1c0f36;
-      border: 2px solid #581c87;
+    .donate-box {
+      background: white;
+      border: 2px solid var(--pastel-purple-200);
       border-radius: var(--radius-md);
-      padding: 16px 14px;
+      padding: 16px 18px;
       cursor: pointer;
       min-width: 140px;
-      transition: all 0.25s;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-sm);
     }
-    .donate-card:hover {
+    .donate-box:hover {
       transform: translateY(-4px);
-      border-color: #ec4899;
-      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-pink);
+      box-shadow: var(--shadow-md);
     }
     .donate-icon {
-      font-size: 34px;
+      font-size: 30px;
       margin-bottom: 6px;
     }
-    .donate-label {
-      font-size: 14px;
-      color: #4a355e;
-      font-weight: 700;
+    .donate-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
     }
     .donate-price {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
-      color: #db2777;
+      color: #d946ef;
       margin-top: 2px;
+    }
+
+    /* Top Donators Wall */
+    .donators-wall {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1.5px dashed var(--pastel-purple-200);
+    }
+    .donators-wall-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .donator-chips {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .donator-chip {
+      background: var(--pastel-purple-100);
+      border: 1px solid var(--pastel-purple-300);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* Modals */
@@ -748,134 +749,171 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(74, 53, 94, 0.45);
+      background: rgba(43, 33, 73, 0.5);
       backdrop-filter: blur(8px);
       z-index: 1000;
       align-items: center;
       justify-content: center;
       padding: 16px;
+      animation: fadeInModal 0.25s ease-out;
+    }
+    @keyframes fadeInModal {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     .modal-content {
-      background: #ffffff;
-      border: 2px solid #fbcfe8;
+      background: white;
       border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 500px;
+      max-width: 480px;
       padding: 28px 24px;
-      box-shadow: 0 16px 40px rgba(244, 114, 182, 0.35);
+      box-shadow: var(--shadow-lg);
+      border: 2px solid var(--pastel-purple-200);
       position: relative;
       max-height: 90vh;
       overflow-y: auto;
-      color: #4a355e;
     }
     .modal-close {
       position: absolute;
       top: 16px;
       right: 18px;
-      background: #fce7f3;
+      background: var(--pastel-purple-100);
       border: none;
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       font-size: 18px;
       cursor: pointer;
-      color: #db2777;
+      color: var(--text-muted);
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .modal-close:hover {
-      background: #fbcfe8;
-      color: #831843;
+      background: var(--pastel-purple-200);
+      color: var(--text-main);
     }
     .modal-title {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
-      color: #831843;
-      text-align: center;
+      color: var(--primary-dark);
       margin-bottom: 6px;
+      text-align: center;
     }
-
-    /* Rate Notice Banner */
-    .rate-banner {
-      background: linear-gradient(135deg, #fdf2f8, #fef9c3);
-      border: 1.5px solid #fbcfe8;
-      border-radius: 12px;
-      padding: 10px 16px;
-      margin-bottom: 18px;
+    .modal-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
       text-align: center;
     }
 
-    /* QR Code Display Frame */
-    .qr-container {
-      background: #fff7ed;
-      border: 2px dashed #f472b6;
-      border-radius: var(--radius-md);
-      padding: 18px;
-      text-align: center;
-      margin-bottom: 18px;
-    }
-    .qr-box {
-      width: 210px;
-      height: 210px;
-      background: white;
-      margin: 0 auto 12px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      padding: 8px;
-      overflow: hidden;
-      border: 1px solid #fed7e2;
-    }
-    .qr-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    /* Top-up Package Grid */
+    /* Top-up Package Cards */
     .topup-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-bottom: 20px;
     }
-    .package-card {
-      background: #ffffff;
-      border: 2px solid #e9d5ff;
+    .package-item {
+      border: 2px solid var(--pastel-purple-200);
       border-radius: var(--radius-md);
-      padding: 14px 10px;
+      padding: 14px 12px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s;
+      background: #faf8ff;
+      transition: all 0.2s ease;
+      position: relative;
     }
-    .package-card:hover, .package-card.selected {
-      border-color: #ec4899;
-      background: #fff1f2;
-      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.2);
+    .package-item:hover, .package-item.selected {
+      border-color: var(--primary);
+      background: #f4effe;
+      transform: scale(1.02);
+      box-shadow: var(--shadow-sm);
+    }
+    .pkg-popular {
+      position: absolute;
+      top: -10px;
+      right: 8px;
+      background: #ec4899;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
     }
     .pkg-coins {
       font-size: 18px;
       font-weight: 700;
-      color: #be185d;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
     .pkg-thb {
-      font-size: 14px;
-      color: #4a355e;
+      font-size: 15px;
+      color: var(--text-muted);
       margin-top: 4px;
     }
 
-    /* Form Inputs */
+    /* QR Code Display Card */
+    .qr-container {
+      background: #faf8ff;
+      border: 2px dashed var(--pastel-purple-300);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .qr-box {
+      width: 190px;
+      height: 190px;
+      background: white;
+      margin: 0 auto 12px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--pastel-purple-200);
+      padding: 8px;
+    }
+    .qr-box svg, .qr-box img {
+      max-width: 100%;
+      height: auto;
+    }
+    .promptpay-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #003b71;
+    }
+    .promptpay-logo-badge {
+      background: #003b71;
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .qr-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Form Fields */
     .form-group {
       margin-bottom: 14px;
       text-align: left;
     }
     .form-label {
-      font-size: 14px;
-      font-weight: 700;
-      color: #4a355e;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
       margin-bottom: 6px;
       display: block;
     }
@@ -883,34 +921,31 @@
       width: 100%;
       padding: 10px 14px;
       border-radius: var(--radius-sm);
-      border: 1.5px solid #fed7e2;
-      background: #ffffff;
-      color: #4a355e;
-      font-size: 15px;
+      border: 1.5px solid var(--pastel-purple-200);
+      font-size: 16px;
       outline: none;
+      transition: border-color 0.2s;
     }
     .form-input:focus {
-      border-color: #ec4899;
-      box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
+      border-color: var(--primary);
     }
 
-    /* Toast */
+    /* Toast Notification */
     .toast {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: rgba(74, 53, 94, 0.95);
-      border: 1.5px solid #f472b6;
+      background: rgba(55, 45, 84, 0.92);
+      backdrop-filter: blur(8px);
       color: white;
-      padding: 14px 24px;
+      padding: 12px 20px;
       border-radius: 999px;
-      font-size: 15px;
-      font-weight: 700;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+      box-shadow: var(--shadow-lg);
       z-index: 2000;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       transform: translateY(100px);
       opacity: 0;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -920,22 +955,42 @@
       opacity: 1;
     }
 
+    /* Footer */
     .footer {
       margin-top: auto;
-      background: rgba(255, 255, 255, 0.85);
-      border-top: 2px solid #fed7e2;
+      background: rgba(255, 255, 255, 0.8);
+      border-top: 1.5px solid var(--pastel-purple-200);
       padding: 24px 0;
       text-align: center;
-      font-size: 14px;
-      color: #d8b4fe;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .footer-link:hover {
+      text-decoration: underline;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
-      .hero-title { font-size: 28px; }
-      .card-slot { width: 120px; height: 190px; }
-      .card-front-art { font-size: 34px; }
-      .card-front-title-th { font-size: 11px; }
-      .card-front-title-en { font-size: 9px; }
+      .hero-title { font-size: 26px; }
+      .card-slot { width: 105px; height: 165px; }
+      .card-art { font-size: 30px; }
+      .card-label-th { font-size: 10px; }
+      .card-roman { font-size: 9px; }
+      .card-back-emblem { font-size: 24px; }
+      .card-back-text { font-size: 9px; }
       .free-quota-card { flex-direction: column; text-align: center; }
       .quota-info { flex-direction: column; }
       .mode-tab { width: 100%; min-width: auto; }
@@ -944,61 +999,61 @@
 </head>
 <body>
 
-  <!-- Floating Stars & Cosmic Cat Paws Background -->
-  <div class="bg-space" id="bgSpace"></div>
+  <!-- Background Animated Twinkles -->
+  <div class="bg-sparkles" id="sparkles"></div>
 
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-inner">
       <div class="brand" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-        <div class="brand-icon">🐱🌸</div>
+        <div class="brand-icon">🔮</div>
         <div>
-          <span class="brand-title">MeowMagic Tarot</span>
-          <span class="brand-subtitle">ตำหนักแม่หมอเหมียวพยากรณ์ 🐾</span>
+          <span class="brand-title">AuraPastel Tarot</span>
+          <span class="brand-subtitle">ไพ่ยิปซีพาสเทล ดูดวงแม่นๆ</span>
         </div>
       </div>
 
       <div class="nav-actions">
-        <!-- Coin Wallet Badge: Shows Coins & Value in Baht -->
-        <div class="wallet-badge" onclick="openTopupModal()" title="1 บาท = 1 เหรียญ (คลิกเพื่อเติมเหรียญ)">
-          <span>🪙🐟</span>
-          <span id="userCoins">0</span> เหรียญ (<span id="userBaht">0</span> บาท)
-          <span style="background: #a855f7; color: white; border-radius: 999px; padding: 2px 8px; font-size: 13px; font-weight: 700;">+ เติมเหรียญ</span>
+        <!-- Coin Wallet -->
+        <div class="wallet-badge" id="walletBadge" onclick="openTopupModal()">
+          <span class="coin-icon">🪙</span>
+          <span id="userCoins">0</span> เหรียญ (0 บาท)
+          <span style="font-size: 13px; background: var(--primary); color: white; border-radius: 999px; padding: 2px 6px;">+</span>
         </div>
 
-        <!-- Donate Button -->
-        <button class="btn btn-pink" onclick="openDonateModal()">
-          <span>🍗</span> โดเนตเลี้ยงขนม
+        <!-- Quick Donate button -->
+        <button class="btn btn-accent" onclick="openDonateModal()">
+          <span>☕</span> เลี้ยงกาแฟ
         </button>
 
-        <!-- Settings (Bank Account & Custom QR) -->
-        <button class="btn btn-outline" style="padding: 8px 12px;" onclick="openSettingsModal()" title="ตั้งค่าบัญชี & เปลี่ยนรูป QR Code">
+        <!-- Config / Settings -->
+        <button class="btn btn-outline" style="padding: 8px 12px;" onclick="openSettingsModal()" title="ตั้งค่าระบบ">
           ⚙️
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
+  <!-- Main Content Container -->
   <main class="container">
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <header class="hero">
       <div class="hero-badge">
-        <span>🌸🐾</span> ไพ่ทาโรต์แมวเหมียวสุดน่ารัก
+        <span>✨</span> ศาสตร์พยากรณ์ไพ่ทาโรต์สไตล์มินิมอลสีม่วงพาสเทล
       </div>
-      <h1 class="hero-title">🔮 พยากรณ์ชะตาชีวิตกับแม่หมอเหมียว</h1>
+      <h1 class="hero-title">ค้นพบคำทำนายและพลังงานบวกของคุณ</h1>
       <p class="hero-desc">
-        ตั้งจิตให้นิ่ง เลือกเรื่องที่อยากรู้ (งาน เงิน ความรัก หรือดูทั้งหมด) แล้วเปิดไพ่รับพลังงานบวกและคำทำนายจากสัตว์พิทักษ์
+        ตั้งจิตอธิษฐานนึกถึงเรื่องที่อยากรู้ แล้วเลือกโหมดดูดวง สุ่มเปิดไพ่เพื่อรับคำทำนายและคำแนะนำจากจักรวาล
       </p>
 
-      <!-- Free Daily Quota Banner -->
+      <!-- Daily Free Quota Card -->
       <div class="free-quota-card">
         <div class="quota-info">
           <div class="quota-icon">🎁</div>
           <div style="text-align: left;">
-            <div class="quota-title">สิทธิ์กรงเล็บวิเศษเปิดไพ่ฟรีประจำวัน 🐾</div>
-            <div class="quota-sub" id="freeQuotaNotice">ตรวจสอบสิทธิ์ประจำวันนี้...</div>
+            <div class="quota-title">สิทธิ์ดูดวงฟรีรายวัน (Free Daily Draw)</div>
+            <div class="quota-sub" id="freeQuotaNotice">ตรวจสอบสิทธิ์ของวันนี้...</div>
           </div>
         </div>
         <div id="freeStatusBadge">
@@ -1007,27 +1062,27 @@
       </div>
     </header>
 
-    <!-- Reading Mode Selection Tabs -->
+    <!-- Divination Mode Selection Tabs -->
     <div class="mode-tabs">
       <div class="mode-tab active" data-mode="daily" onclick="switchMode('daily')">
-        <span class="tab-icon">🐱</span>
-        <div>
-          <div class="tab-title">ดูดวงรายวัน <span class="tab-tag" id="tabFreeBadge">ฟรีวันนี้</span></div>
+        <span class="tab-icon">🌟</span>
+        <div class="tab-text">
+          <div class="tab-title">ดูดวงรายวัน <span class="tab-free-tag" id="tabFreeBadge">ฟรีวันนี้</span></div>
           <div class="tab-cost" id="dailyCostText">สิทธิ์ฟรีวันละ 1 ครั้ง (ครั้งต่อไป 10 บาท / 10 เหรียญ)</div>
         </div>
       </div>
 
       <div class="mode-tab" data-mode="monthly" onclick="switchMode('monthly')">
         <span class="tab-icon">🌙</span>
-        <div>
+        <div class="tab-text">
           <div class="tab-title">ดูดวงรายเดือน</div>
           <div class="tab-cost">เปิด 3 ใบ (19 บาท / 19 เหรียญ)</div>
         </div>
       </div>
 
       <div class="mode-tab" data-mode="yearly" onclick="switchMode('yearly')">
-        <span class="tab-icon">🪐</span>
-        <div>
+        <span class="tab-icon">☀️</span>
+        <div class="tab-text">
           <div class="tab-title">ดูดวงรายปี</div>
           <div class="tab-cost">เปิด 4 ใบ (29 บาท / 29 เหรียญ)</div>
         </div>
@@ -1036,103 +1091,90 @@
 
     <!-- Divination Stage -->
     <section class="reading-stage">
-      <div>
+      <div class="stage-header">
         <h2 class="stage-title" id="stageTitle">ดูดวงรายวัน: รับพลังงานประจำวัน</h2>
         <p class="stage-instruction" id="stageInstruction">
-          เลือกเรื่องที่ต้องการเน้น แล้วคลิกที่สำรับไพ่เพื่อเปิดทำนาย
+          หายใจเข้าลึกๆ ผ่อนคลาย แล้วคลิกที่ไพ่เพื่อเปิดทำนาย หรือกดปุ่มสุ่มอัตโนมัติ
         </p>
-      </div>
-
-      <!-- Topic Filter Selector (งาน, เงิน, ความรัก, หรือดูทั้งหมด) -->
-      <div class="topic-filter-box">
-        <span class="topic-label">🔮 เรื่องที่ต้องการดู:</span>
-        <div class="topic-btns">
-          <button class="topic-btn active" data-topic="all" onclick="selectTopic('all')">🌟 ดูทั้งหมด</button>
-          <button class="topic-btn" data-topic="work" onclick="selectTopic('work')">💼 การงาน</button>
-          <button class="topic-btn" data-topic="finance" onclick="selectTopic('finance')">💰 การเงิน</button>
-          <button class="topic-btn" data-topic="love" onclick="selectTopic('love')">💖 ความรัก</button>
-        </div>
       </div>
 
       <!-- Card Spread Area -->
       <div class="deck-container">
         <div class="card-spread" id="cardSpread">
-          <!-- Dynamic cards injected here -->
+          <!-- Cards dynamically injected here -->
         </div>
       </div>
 
       <!-- Action Buttons -->
-      <div style="display: flex; justify-content: center; gap: 14px; margin-top: 15px;">
+      <div class="stage-actions">
         <button class="btn btn-primary" id="btnDraw" onclick="startDivination()">
-          <span>🔮🐾</span> สุ่มเปิดไพ่ทำนาย
+          <span>🔮</span> สุ่มเปิดไพ่ทำนาย
         </button>
         <button class="btn btn-outline" id="btnReset" onclick="resetSpread()" style="display: none;">
-          <span>🔄</span> ทำนายใหม่อีกครั้ง
+          <span>🔄</span> ทำนายใหม่
         </button>
       </div>
 
-      <!-- Result Interpretations -->
+      <!-- Result Interpretation Section -->
       <div class="result-section" id="resultSection">
-        <!-- Results dynamically rendered here -->
+        <!-- Result cards dynamically injected here -->
       </div>
     </section>
 
-    <!-- Support / Donation Section (Starting at 9 Baht) -->
+    <!-- Support & Donation Section -->
     <section class="support-section">
-      <div style="font-size: 38px; margin-bottom: 8px;">🐟💕</div>
-      <h2 class="support-title">ส่งโดเนตเลี้ยงขนมแมวเลียแม่หมอเหมียว</h2>
-      <p style="font-size: 15px; color: #d8b4fe; max-width: 580px; margin: 0 auto;">
-        หากคำทำนายช่วยให้ใจฟูและมีพลังบวก สามารถร่วมส่งกำลังใจเป็นค่าปลาทูและค่าเซิร์ฟเวอร์ให้แม่หมอได้นะคะ (เริ่มต้นเพียง 9 บาท)
-      </p>
+      <div class="support-header">
+        <div style="font-size: 32px; margin-bottom: 6px;">💖</div>
+        <h2 class="support-title">ส่งโดเนตค่าขนม & เลี้ยงชานมแม่หมอ</h2>
+        <p class="support-desc">
+          ชอบคำทำนาย อยากส่งกำลังใจเล็กๆ น้อยๆ เพื่อสนับสนุนค่าเซิร์ฟเวอร์และพัฒนาฟีเจอร์ใหม่ๆ สามารถร่วมโดเนตผ่านพร้อมเพย์ได้เลยนะคะ
+        </p>
+      </div>
 
-      <div class="donate-grid">
-        <div class="donate-card" onclick="selectDonationPreset(9, 'ลูกอมดาวนำโชค 🍬')">
+      <!-- Donation Options (Starting at 9 Baht) -->
+      <div class="donate-options">
+        <div class="donate-box" onclick="selectDonationPreset(9, 'ลูกอมดาวนำโชค 🍬')">
           <div class="donate-icon">🍬</div>
-          <div class="donate-label">ลูกอมดาวนำโชค</div>
+          <div class="donate-name">ลูกอมดาวนำโชค</div>
           <div class="donate-price">9 ฿</div>
         </div>
 
-        <div class="donate-card" onclick="selectDonationPreset(19, 'ขนมแมวเลียรสปลาทู 🐟')">
-          <div class="donate-icon">🐟</div>
-          <div class="donate-label">ขนมแมวเลีย</div>
+        <div class="donate-box" onclick="selectDonationPreset(19, 'ชานมไข่มุกหวานน้อย 🧋')">
+          <div class="donate-icon">🧋</div>
+          <div class="donate-name">ชานมไข่มุก</div>
           <div class="donate-price">19 ฿</div>
         </div>
 
-        <div class="donate-card" onclick="selectDonationPreset(29, 'ปลาทูทอดกรอบ 🐠')">
-          <div class="donate-icon">🐠</div>
-          <div class="donate-label">ปลาทูทอดกรอบ</div>
+        <div class="donate-box" onclick="selectDonationPreset(29, 'เค้กเสริมเสน่ห์ 🍰')">
+          <div class="donate-icon">🍰</div>
+          <div class="donate-name">เค้กเสริมเสน่ห์</div>
           <div class="donate-price">29 ฿</div>
         </div>
 
-        <div class="donate-card" onclick="selectDonationPreset(59, 'กัญชาแมวอารมณ์ดี 🌿')">
-          <div class="donate-icon">🌿</div>
-          <div class="donate-label">กัญชาแมวเสริมดวง</div>
+        <div class="donate-box" onclick="selectDonationPreset(59, 'ช่อดอกไม้เสริมดวง 💐')">
+          <div class="donate-icon">💐</div>
+          <div class="donate-name">ช่อดอกไม้เสริมดวง</div>
           <div class="donate-price">59 ฿</div>
         </div>
 
-        <div class="donate-card" onclick="selectDonationPreset(99, 'บุฟเฟต์แซลมอน 🍣')">
-          <div class="donate-icon">🍣</div>
-          <div class="donate-label">บุฟเฟต์แซลมอน</div>
+        <div class="donate-box" onclick="selectDonationPreset(99, 'เซ็ตของขวัญจักรวาล ⭐')">
+          <div class="donate-icon">⭐</div>
+          <div class="donate-name">เซ็ตของขวัญจักรวาล</div>
           <div class="donate-price">99 ฿</div>
         </div>
       </div>
 
-      <button class="btn btn-pink" onclick="openDonateModal()">
-        <span>💌</span> ส่งกำลังใจและสแกนโดเนต
+      <button class="btn btn-accent" onclick="openDonateModal()">
+        <span>💌</span> ส่งข้อความให้กำลังใจพร้อมโดเนต
       </button>
 
       <!-- Donators Wall -->
-      <div style="margin-top: 26px; padding-top: 18px; border-top: 1px dashed #3a225c;">
-        <div style="font-size: 14px; font-weight: 700; color: #f3e8ff; margin-bottom: 10px;">
-          ✨ ผู้สนับสนุนใจดีแห่งตำหนักแม่หมอ (Donation Wall)
-        </div>
-        <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;" id="donatorsWall">
-          <span style="background: #271445; border: 1px solid #581c87; padding: 5px 14px; border-radius: 999px; font-size: 13px; color: #e9d5ff;">
-            🍬 คุณนัท โดเนต 9฿ "ขอให้แม่หมอรวยๆ เฮงๆ นะคะ"
-          </span>
-          <span style="background: #271445; border: 1px solid #581c87; padding: 5px 14px; border-radius: 999px; font-size: 13px; color: #e9d5ff;">
-            🐱 คุณพลอย โดเนต 19฿ "แม่หมอแม่นมากค่ะ น้อนน่ารักสุดๆ"
-          </span>
+      <div class="donators-wall">
+        <div class="donators-wall-title">✨ ผู้สนับสนุนใจดีล่าสุด (Donation Wall)</div>
+        <div class="donator-chips" id="donatorsWall">
+          <span class="donator-chip">🧁 คุณแพรว โดเนต 39฿ "คำทำนายแม่นมากค่ะ"</span>
+          <span class="donator-chip">🌸 คุณนัท โดเนต 79฿ "ขอให้แม่หมอรวยๆ นะคะ"</span>
+          <span class="donator-chip">🧋 คุณบีม โดเนต 19฿ "พลังบวกเต็มเปี่ยมเลย"</span>
         </div>
       </div>
     </section>
@@ -1142,174 +1184,166 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div style="display: flex; justify-content: center; gap: 18px; margin-bottom: 10px; flex-wrap: wrap;">
-        <span style="cursor: pointer;" onclick="openTopupModal()">ระบบเติมเหรียญ (1 บาท = 1 เหรียญ)</span>
+      <div class="footer-links">
+        <span class="footer-link" onclick="openTermsModal()">ข้อกำหนดการใช้งาน</span>
         <span>•</span>
-        <span style="cursor: pointer;" onclick="openDonateModal()">ส่งโดเนต</span>
+        <span class="footer-link" onclick="openTopupModal()">ระบบเติมเหรียญ</span>
         <span>•</span>
-        <span style="cursor: pointer;" onclick="openSettingsModal()">⚙️ ตั้งค่าบัญชีธนาคาร & QR Code</span>
+        <span class="footer-link" onclick="openDonateModal()">สนับสนุนผู้พัฒนา</span>
+        <span>•</span>
+        <span class="footer-link" onclick="openSettingsModal()">ตั้งค่าระบบ & เจ้าของเว็บ</span>
       </div>
-      <p>© 2026 MeowMagic Tarot. สัตว์พิทักษ์แห่งจักรวาลสีดำม่วง 🐾💜</p>
+      <p>© 2026 AuraPastel Tarot. พัฒนาด้วยความรักและพลังงานบวกสีม่วงพาสเทล 💜</p>
+      <p style="font-size: 13px; margin-top: 4px; color: #a49bbb;">*การดูดวงเป็นความเชื่อส่วนบุคคลและคำแนะนำเพื่อเป็นแนวทางในการดำเนินชีวิต</p>
     </div>
   </footer>
 
-  <!-- Modal: Top-up Coins (Explicitly states Baht to Coins) -->
+  <!-- Modal: Top-up Coins -->
   <div class="modal-overlay" id="topupModal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('topupModal')">✕</button>
-      <h3 class="modal-title">🪙 เติมเหรียญปลาทูทองคำ</h3>
-      
-      <!-- Clear Rate Notice -->
-      <div class="rate-banner">
-        <div style="font-size: 16px; color: #fde047; font-weight: 700;">💡 อัตราเติมเหรียญ: เติม 1 บาท = ได้รับ 1 เหรียญ</div>
-        <div style="font-size: 13px; color: #e9d5ff; margin-top: 2px;">(เหรียญไม่มีวันหมดอายุ ใช้ดูดวงรายวัน รายเดือน รายปีได้ตลอด)</div>
-      </div>
+      <h3 class="modal-title">🪙 เติมเหรียญดูดวง</h3>
+      <p class="modal-subtitle">เลือกแพ็กเกจเหรียญเพื่อดูดวงรายเดือน รายปี หรือดูดวงเพิ่มเติม</p>
 
       <div class="topup-grid">
-        <div class="package-card selected" onclick="selectTopupPkg(this, 10, 10)">
+        <div class="package-item selected" onclick="selectPackage(this, 10, 10)">
           <div class="pkg-coins">🪙 10 เหรียญ</div>
-          <div class="pkg-thb">เติม 10 บาท</div>
-          <div style="font-size: 12px; color: #34d399; margin-top: 3px;">• ดูดวงรายวันได้ 1 ครั้ง</div>
+          <div class="pkg-thb">เติม 10 บาท (ดูรายวัน 1 ครั้ง)</div>
         </div>
-        <div class="package-card" onclick="selectTopupPkg(this, 19, 19)">
+
+        <div class="package-item" onclick="selectPackage(this, 19, 19)">
           <div class="pkg-coins">🪙 19 เหรียญ 🌙</div>
-          <div class="pkg-thb">เติม 19 บาท</div>
-          <div style="font-size: 12px; color: #34d399; margin-top: 3px;">• ดูดวงรายเดือนได้ 1 ครั้ง</div>
+          <div class="pkg-thb">เติม 19 บาท (ดูรายเดือน 1 ครั้ง)</div>
         </div>
-        <div class="package-card" onclick="selectTopupPkg(this, 29, 29)">
+
+        <div class="package-item" onclick="selectPackage(this, 29, 29)">
           <div class="pkg-coins">🪙 29 เหรียญ 🪐</div>
-          <div class="pkg-thb">เติม 29 บาท</div>
-          <div style="font-size: 12px; color: #34d399; margin-top: 3px;">• ดูดวงรายปีได้ 1 ครั้ง</div>
+          <div class="pkg-thb">เติม 29 บาท (ดูรายปี 1 ครั้ง)</div>
         </div>
-        <div class="package-card" onclick="selectTopupPkg(this, 60, 50)">
-          <div class="pkg-coins">🪙 60 เหรียญ 🔥</div>
-          <div class="pkg-thb">เติม 50 บาท (คุ้มสุด!)</div>
-          <div style="font-size: 12px; color: #fde047; margin-top: 3px;">• ได้เพิ่มฟรี +10 เหรียญ</div>
+
+        <div class="package-item" onclick="selectPackage(this, 60, 50)">
+          <span class="pkg-popular">คุ้มสุด 🔥</span>
+          <div class="pkg-coins">🪙 60 เหรียญ</div>
+          <div class="pkg-thb">เติม 50 บาท (แถมฟรี 10 เหรียญ)</div>
         </div>
       </div>
 
-      <!-- Bank Account & QR Display Frame -->
+      <!-- Bangkok Bank & QR Code -->
       <div class="qr-container">
-        <!-- Bangkok Bank Account Box -->
-        <div style="background: #172554; border: 1.5px solid #3b82f6; border-radius: 12px; padding: 14px; margin-bottom: 12px; text-align: left;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-            <span style="background: #1e40af; color: white; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700;">
+        <div style="background: #ffffff; border: 2px solid #3b82f6; border-radius: 12px; padding: 12px; margin-bottom: 12px; text-align: left;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+            <span style="background: #1e40af; color: white; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">
               🏦 ธนาคารกรุงเทพ (BBL)
             </span>
-            <span style="font-size: 13px; color: #93c5fd;">โอนผ่านเลขบัญชี</span>
+            <span style="font-size: 12px; color: #2563eb; font-weight: 700;">โอนผ่านเลขบัญชี</span>
           </div>
-          <div style="font-size: 18px; font-weight: 700; color: #fde047; letter-spacing: 1px;" id="topupAccNumDisplay">
+          <div style="font-size: 18px; font-weight: 700; color: #1e3a8a; letter-spacing: 1px;" id="topupAccNum">
             123-4-56789-0
           </div>
-          <div style="font-size: 13px; color: #bfdbfe; margin-top: 2px;" id="topupAccOwnerDisplay">
-            ชื่อบัญชี: แม่หมอเหมียว
+          <div style="font-size: 13px; color: #475569;" id="topupAccOwner">
+            ชื่อบัญชี: แม่หมอออร่า
           </div>
-          <button type="button" class="btn btn-outline" style="font-size: 12px; padding: 6px 12px; margin-top: 8px; width: 100%;" onclick="copyBankAcc()">
+          <button type="button" class="btn btn-outline" style="font-size: 12px; padding: 5px 12px; margin-top: 6px; width: 100%;" onclick="copyBankAcc()">
             📋 กดที่นี่เพื่อคัดลอกเลขบัญชี
           </button>
         </div>
 
-        <div style="font-size: 13px; font-weight: 700; color: #c084fc; margin: 10px 0 6px;">
+        <div style="font-size: 13px; font-weight: 700; color: var(--primary-dark); margin: 8px 0 4px;">
           หรือ สแกนผ่าน QR Code บัญชี:
         </div>
         <div class="qr-box" id="topupQrBox">
-          <!-- Dynamic QR image or SVG -->
+          <!-- Dynamic QR SVG -->
         </div>
-        <div style="font-size: 18px; font-weight: 700; color: #a855f7;" id="topupPriceDisplay">
-          ยอดชำระ: เติม 10 บาท (ได้รับ 10 เหรียญ)
+        <div style="font-size: 16px; font-weight: 700; color: var(--primary-dark);" id="topupPriceDisplay">
+          ยอดชำระ: 10 บาท (ได้รับ 10 เหรียญ)
         </div>
       </div>
 
+      <!-- Upload Slip / Mock Verification -->
       <div class="form-group">
-        <label class="form-label">แนบสลิปโอนเงิน (จำลอง/ตรวจจริง)</label>
-        <input type="file" id="slipInput" accept="image/*" class="form-input" style="padding: 6px;">
+        <label class="form-label">อัปโหลดสลิป หรือ ยืนยันการโอนเงิน</label>
+        <input type="file" id="slipFileInput" accept="image/*" class="form-input" style="padding: 6px;">
       </div>
 
       <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="confirmTopup()">
-        <span>✨</span> ยืนยันการโอน / รับเหรียญทันที
+        <span>✨</span> แจ้งโอนเงิน / เติมเหรียญทันที
       </button>
+      <p style="font-size: 13px; text-align: center; color: var(--text-muted); margin-top: 10px;">
+        *รองรับการเชื่อมต่อ API SlipOK หรือ GB Prime Pay / Omise สำหรับระบบอัตโนมัติ
+      </p>
     </div>
   </div>
 
-  <!-- Modal: Donation (Starting at 9 Baht) -->
+  <!-- Modal: Donation -->
   <div class="modal-overlay" id="donateModal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('donateModal')">✕</button>
-      <h3 class="modal-title">🍗 เลี้ยงขนมแมวเลียแม่หมอ</h3>
-      <p style="font-size: 14px; color: #d8b4fe; text-align: center; margin-bottom: 18px;">
-        ส่งต่อพลังใจและความรักให้แม่หมอเหมียว (เริ่มต้น 9 บาท)
-      </p>
+      <h3 class="modal-title">☕ ร่วมส่งโดเนตให้แม่หมอ</h3>
+      <p class="modal-subtitle">ส่งต่อกำลังใจและพลังงานบวกเพื่อสนับสนุนเรา</p>
 
       <div class="form-group">
-        <label class="form-label">ชื่อผู้สนับสนุน (ที่จะโชว์บนบอร์ด)</label>
-        <input type="text" id="donatorName" class="form-input" placeholder="เช่น พี่ทาสแมวใจดี">
+        <label class="form-label">ชื่อผู้สนับสนุน (ที่จะปรากฏบนหน้าบอร์ด)</label>
+        <input type="text" id="donatorName" class="form-input" placeholder="เช่น คุณเมย์ หรือ ผู้ไม่ประสงค์ออกนาม">
       </div>
 
       <div class="form-group">
-        <label class="form-label">ยอดเงินสนับสนุน (บาท)</label>
-        <input type="number" id="donatorAmount" class="form-input" value="9" min="1" oninput="updateDonateDisplay(this.value)">
+        <label class="form-label">จำนวนเงินโดเนต (บาท)</label>
+        <input type="number" id="donatorAmount" class="form-input" value="39" oninput="updateDonateQr(this.value)">
       </div>
 
       <div class="form-group">
-        <label class="form-label">ข้อความถึงแม่หมอ</label>
-        <input type="text" id="donatorMsg" class="form-input" placeholder="คำทำนายแม่นมากค่ะ น้อนน่ารักสุดๆ">
+        <label class="form-label">ข้อความให้กำลังใจ</label>
+        <input type="text" id="donatorMessage" class="form-input" placeholder="คำทำนายแม่นมากค่ะ เป็นกำลังใจให้นะคะ">
       </div>
 
       <div class="qr-container">
-        <!-- Bangkok Bank Account Box -->
-        <div style="background: #172554; border: 1.5px solid #3b82f6; border-radius: 12px; padding: 14px; margin-bottom: 12px; text-align: left;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-            <span style="background: #1e40af; color: white; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700;">
+        <div style="background: #ffffff; border: 2px solid #3b82f6; border-radius: 12px; padding: 12px; margin-bottom: 12px; text-align: left;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+            <span style="background: #1e40af; color: white; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">
               🏦 ธนาคารกรุงเทพ (BBL)
             </span>
-            <span style="font-size: 13px; color: #93c5fd;">โอนผ่านเลขบัญชี</span>
+            <span style="font-size: 12px; color: #2563eb; font-weight: 700;">โอนผ่านเลขบัญชี</span>
           </div>
-          <div style="font-size: 18px; font-weight: 700; color: #fde047; letter-spacing: 1px;" id="donateAccNumDisplay">
+          <div style="font-size: 18px; font-weight: 700; color: #1e3a8a; letter-spacing: 1px;" id="donateAccNum">
             123-4-56789-0
           </div>
-          <div style="font-size: 13px; color: #bfdbfe; margin-top: 2px;" id="donateAccOwnerDisplay">
-            ชื่อบัญชี: แม่หมอเหมียว
+          <div style="font-size: 13px; color: #475569;" id="donateAccOwner">
+            ชื่อบัญชี: แม่หมอออร่า
           </div>
-          <button type="button" class="btn btn-outline" style="font-size: 12px; padding: 6px 12px; margin-top: 8px; width: 100%;" onclick="copyBankAcc()">
+          <button type="button" class="btn btn-outline" style="font-size: 12px; padding: 5px 12px; margin-top: 6px; width: 100%;" onclick="copyBankAcc()">
             📋 กดที่นี่เพื่อคัดลอกเลขบัญชี
           </button>
         </div>
 
-        <div style="font-size: 13px; font-weight: 700; color: #f472b6; margin: 10px 0 6px;">
+        <div style="font-size: 13px; font-weight: 700; color: #d946ef; margin: 8px 0 4px;">
           หรือ สแกนผ่าน QR Code บัญชี:
         </div>
         <div class="qr-box" id="donateQrBox">
-          <!-- Dynamic QR image or SVG -->
+          <!-- Dynamic QR SVG -->
         </div>
-        <div style="font-size: 18px; font-weight: 700; color: #f472b6;" id="donatePriceDisplay">
+        <div style="font-size: 16px; font-weight: 700; color: #d946ef;" id="donateAmountDisplay">
           ยอดโดเนต: 9 บาท
         </div>
       </div>
 
-      <button class="btn btn-pink" style="width: 100%; padding: 12px;" onclick="confirmDonation()">
+      <button class="btn btn-accent" style="width: 100%; padding: 12px;" onclick="confirmDonation()">
         <span>💖</span> ยืนยันการส่งโดเนต
       </button>
     </div>
   </div>
 
-  <!-- Modal: Settings & Custom QR Upload -->
+  <!-- Modal: Settings & Config (For Site Owner & Testing) -->
   <div class="modal-overlay" id="settingsModal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('settingsModal')">✕</button>
-      <h3 class="modal-title">⚙️ ตั้งค่าบัญชี & คิวอาร์โค้ด</h3>
-      <p style="font-size: 14px; color: #d8b4fe; text-align: center; margin-bottom: 18px;">
-        ใส่เลขบัญชีธนาคารกรุงเทพ หรืออัปโหลดภาพ QR Code ของคุณเอง
-      </p>
+      <h3 class="modal-title">⚙️ ตั้งค่าระบบ & บัญชีเจ้าของเว็บ</h3>
+      <p class="modal-subtitle">กำหนดเบอร์พร้อมเพย์ ราคา และทดสอบระบบ</p>
 
-      <div style="background: #1e113a; border: 2px dashed #a855f7; border-radius: 14px; padding: 16px; margin-bottom: 18px; text-align: center;">
-        <label class="form-label" style="font-size: 15px; color: #fde047;">📸 อัปโหลดรูป QR Code ธนาคารของคุณ:</label>
-        <p style="font-size: 13px; color: #d8b4fe; margin-bottom: 10px;">
-          เลือกรูป QR ที่บันทึกมาจากแอป Bangkok Bank Mobile Banking
-        </p>
-        <input type="file" id="customQrFileInput" accept="image/*" class="form-input" onchange="handleQrUpload(event)">
-        <div id="qrPreviewWrapper" style="margin-top: 12px; display: none;">
-          <p style="font-size: 13px; color: #34d399;">✅ รูปภาพที่เลือกพร้อมใช้งาน:</p>
-          <img id="qrPreviewImg" src="" style="max-width: 150px; max-height: 150px; border-radius: 8px; margin-top: 6px; border: 1px solid #a855f7;">
+      <div style="background: #fdf4ff; border: 2px dashed var(--primary); border-radius: 12px; padding: 14px; margin-bottom: 14px; text-align: center;">
+        <label class="form-label" style="font-size: 14px; color: var(--primary-dark);">📸 อัปโหลดรูป QR Code ธนาคารของคุณ (ถ้ามี):</label>
+        <input type="file" id="customQrInput" accept="image/*" class="form-input" onchange="handleQrUpload(event)">
+        <div id="qrPreviewWrap" style="margin-top: 8px; display: none;">
+          <img id="qrPreview" src="" style="max-width: 140px; border-radius: 8px; border: 1px solid var(--primary);">
         </div>
       </div>
 
@@ -1328,83 +1362,104 @@
         <input type="text" id="settingBankOwner" class="form-input" placeholder="เช่น น.ส. นัทธยา ...">
       </div>
 
-      <div style="border-top: 1px dashed #40236a; padding-top: 14px; margin-top: 16px;">
-        <label class="form-label" style="color: #c084fc;">🛠️ เครื่องมือทดสอบระบบ (Admin):</label>
+      <div style="margin: 18px 0; border-top: 1px dashed var(--pastel-purple-200); padding-top: 14px;">
+        <label class="form-label" style="color: var(--primary-dark);">🛠️ โซนทดสอบระบบ (Admin Tools):</label>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button class="btn btn-outline" style="font-size: 13px; padding: 6px 12px;" onclick="addTestCoins(50)">
-            + เพิ่ม 50 เหรียญ
+          <button class="btn btn-outline" style="font-size: 14px; padding: 6px 12px;" onclick="addTestCoins(50)">
+            + เพิ่ม 50 เหรียญฟรี
           </button>
-          <button class="btn btn-outline" style="font-size: 13px; padding: 6px 12px;" onclick="resetDailyDraw()">
+          <button class="btn btn-outline" style="font-size: 14px; padding: 6px 12px;" onclick="resetFreeDailyDraw()">
             🔄 รีเซ็ตสิทธิ์ฟรีวันนี้
           </button>
-          <button class="btn btn-outline" style="font-size: 13px; padding: 6px 12px; color: #f43f5e;" onclick="clearAllData()">
-            🗑️ ล้างข้อมูลคืนค่าเริ่มต้น
+          <button class="btn btn-outline" style="font-size: 14px; padding: 6px 12px; color: #e11d48;" onclick="clearAllUserData()">
+            🗑️ ล้างข้อมูลจำลองทั้งหมด
           </button>
         </div>
       </div>
 
-      <button class="btn btn-primary" style="width: 100%; margin-top: 18px;" onclick="saveSettings()">
-        💾 บันทึกการตั้งค่าทั้งหมด
+      <button class="btn btn-primary" style="width: 100%;" onclick="saveSettings()">
+        💾 บันทึกการตั้งค่า
       </button>
     </div>
   </div>
 
-  <!-- Toast -->
-  <div class="toast" id="toast">
-    <span id="toastIcon">✨</span>
-    <span id="toastMsg">ข้อความ</span>
+  <!-- Modal: Terms & Guidelines -->
+  <div class="modal-overlay" id="termsModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('termsModal')">✕</button>
+      <h3 class="modal-title">📜 ข้อกำหนดและการใช้งาน</h3>
+      <div style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-top: 14px;">
+        <p>1. <strong>สิทธิ์ดูดวงฟรี:</strong> ผู้ใช้งานทุกคนจะได้รับสิทธิ์ดูดวงรายวันฟรี 1 ครั้งต่อวัน โดยระบบจะรีเซ็ตอัตโนมัติทุกเที่ยงคืน (00:00 น.)</p>
+        <p style="margin-top: 8px;">2. <strong>ระบบเหรียญ:</strong> เหรียญในระบบใช้สำหรับการเปิดไพ่ดูดวงรายเดือน รายปี หรือเปิดไพ่รายวันเพิ่มเติม เหรียญไม่มีวันหมดอายุ</p>
+        <p style="margin-top: 8px;">3. <strong>การโดเนต:</strong> ยอดเงินสนับสนุนจะถูกนำไปใช้เป็นค่าบำรุงรักษาเซิร์ฟเวอร์ พัฒนาระบบ และเป็นกำลังใจแก่ผู้ดูแลระบบ</p>
+        <p style="margin-top: 8px;">4. <strong>คำชี้แจง:</strong> การทำนายไพ่ทาโรต์เป็นศาสตร์พยากรณ์เพื่อสร้างแรงบันดาลใจและพลังงานบวก ผลทำนายขึ้นอยู่กับวิจารณญาณส่วนบุคคล</p>
+      </div>
+      <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="closeModal('termsModal')">
+        เข้าใจแล้ว
+      </button>
+    </div>
   </div>
 
-  <script>
-    const tarotDeck = [{"id": 0, "name_th": "The Fool (กระต่ายน้อยสะพายย่าม)", "name_en": "The Fool", "animal": "กระต่ายน้อยร่าเริงสะพายย่ามเดินท่องทุ่งดอกไม้ 🐰🎒🌸", "symbol": "🐰", "bg_gradient": "linear-gradient(135deg, #fce7f3, #fed7aa, #fef08a)", "art_icon": "🐰🎒🌸", "keywords": "การเริ่มต้นใหม่, อิสระ, ก้าวสู่โลกกว้าง, ความสดใสไร้เดียงสา", "overall": "พลังงานแห่งความสดชื่นเหมือนกระต่ายน้อยกระโดดโลดเต้นสู่โลกกว้างอย่างไร้กังวล จักรวาลพร้อมมอบการเริ่มต้นใหม่และโอกาสดีๆ ให้คุณ อย่ากลัวที่จะออกเดินทาง", "work_employed": "เหมาะกับการริเริ่มโปรเจกต์ใหม่ ความคิดสร้างสรรค์นอกกรอบจะได้รับการตอบรับดี บรรยากาศในการทำงานผ่อนคลายและมีอิสระมากขึ้น", "work_unemployed": "มีเกณฑ์ได้งานใหม่แบบไม่คาดฝัน โดยเฉพาะงานสายครีเอทีฟ สื่อออนไลน์ งานอิสระ หรือองค์กรรุ่นใหม่ อย่าลังเลที่จะลองยื่นใบสมัครในสายงานที่ไม่เคยทำ", "finance": "การเงินคล่องตัว มีช่องทางรายรับใหม่ๆ เข้ามา แต่ควรระวังการใช้จ่ายตามอารมณ์หรือช้อปปิ้งของกุ๊กกิ๊กเพลินมือ", "love_single": "มีเกณฑ์พบรักแรกพบกับคนมีเสน่ห์ ขี้เล่น อารมณ์ดี เข้ามาทำให้หัวใจเต้นแรงและยิ้มได้ทั้งวัน", "love_crush": "มีโอกาสดีมากในการทักไปคุยก่อน อย่ากลัวที่จะเริ่มทัก เขาเปิดรับความน่ารักสดใสและรอยยิ้มของคุณ ลุยเลย!", "love_couple": "ชวนกันไปเที่ยวเปิดหูเปิดตา เติมความสดชื่นให้ความสัมพันธ์เหมือนตอนรักกันใหม่ๆ", "advice": "ก้าวไปข้างหน้าด้วยความกล้าหาญและความสดใส แต่ตาต้องมองทางใต้ฝ่าเท้าให้ดีด้วยนะ", "lucky_color": "ชมพูพาสเทล & เหลืองอ่อน", "lucky_number": "0, 9"}, {"id": 1, "name_th": "The Magician (แพนด้าแดงพ่อมดมนตรา)", "name_en": "The Magician", "animal": "แพนด้าแดงพ่อมดถือไม้กายสิทธิ์ดวงดาว 🐼🪄🔮", "symbol": "🐼", "bg_gradient": "linear-gradient(135deg, #e9d5ff, #c7d2fe, #bae6fd)", "art_icon": "🐼🪄🔮", "keywords": "เสกความสำเร็จ, ไหวพริบยอดเยี่ยม, วาจาศักดิ์สิทธิ์, พรสวรรค์", "overall": "คุณมีพลังเวทมนตร์ในตัวเองเหมือนแพนด้าแดงที่พร้อมเสกทุกเป้าหมายให้เป็นจริง ด้วยไหวพริบ พรสวรรค์ และเครื่องมือครบครันในมือคุณ", "work_employed": "การเจรจา การพรีเซนต์ และการปิดดีลราบรื่นมาก วาจาเป็นทรัพย์ ปัญหาเฉพาะหน้าถูกคลี่คลายด้วยความเฉลียวฉลาดของคุณเอง", "work_unemployed": "โดดเด่นมากในการสัมภาษณ์งาน พรสวรรค์และไหวพริบของคุณจะเตะตากรรมการ มีเกณฑ์ได้งานที่ตรงกับความสามารถอย่างรวดเร็ว", "finance": "หาเงินเก่ง มีช่องทางเพิ่มรายได้จากทักษะพิเศษหรืออาชีพเสริม เงินทองไหลเข้ากระเป๋าคล่องตัว", "love_single": "เสน่ห์แพรวพราว มีคนเข้ามาทักทายคุยเก่งคารมดี เคมีเข้ากันได้ง่าย", "love_crush": "เขารู้สึกว่าคุณมีเสน่ห์และคุยสนุก ใช้ไหวพริบหยอดทีละนิด แกล้งถามเรื่องที่เขาชอบ จะได้ผลตอบรับดีเกินคาด", "love_couple": "สื่อสารเข้าใจกันดี คุยกันเรื่องอนาคตได้อย่างราบรื่นและพร้อมส่งเสริมซึ่งกันและกัน", "advice": "เชื่อมั่นในพลังเวทมนตร์และศักยภาพของตัวเอง ลงมือทำทันทีโดยไม่ต้องลังเล", "lucky_color": "ม่วงลาเวนเดอร์ & ฟ้าใส", "lucky_number": "1, 8"}, {"id": 2, "name_th": "The High Priestess (นกฮูกขาวบนดอกบัว)", "name_en": "The High Priestess", "animal": "นกฮูกขาวบริสุทธิ์เกาะบนดอกบัวใต้จันทร์เพ็ญ 🦉🪷🌙", "symbol": "🦉", "bg_gradient": "linear-gradient(135deg, #e0f2fe, #d1fae5, #f5d0fe)", "art_icon": "🦉🪷🌙", "keywords": "สัญชาตญาณแม่นยำ, เซ้นส์แรง, ความสงบ, ปัญญาหยั่งรู้", "overall": "ความสงบนิ่งดั่งนกฮูกขาวนั่งสมาธิบนดอกบัวกลางสระน้ำสะท้อนเงาจันทร์ สัญชาตญาณของคุณแม่นยำเป็นพิเศษ ให้เชื่อมั่นในเซ้นส์และความรู้สึกแรกของตัวเอง", "work_employed": "เหมาะกับงานวางแผนเบื้องหลัง งานวิจัย งานข้อมูล ไม่ควรเปิดเผยแผนการให้คนอื่นรู้เร็วเกินไป ระวังคลื่นใต้น้ำแต่คุณจะเอาตัวรอดได้สบาย", "work_unemployed": "ช่วงนี้เหมาะกับการพัฒนาทักษะเพิ่มเติม ศึกษาหาความรู้เฉพาะทาง จะมีงานสายวิเคราะห์ วิจัย หรือการศึกษาติดต่อเข้ามา", "finance": "การเงินเน้นการเก็บออมเงียบๆ มีลาภลอยจากเซ้นส์สัมผัสหรือความฝันแม่นยำ อย่าเพิ่งให้ใครหยิบยืมเงิน", "love_single": "มีคนแอบชอบ แอบมอง หรือมีความสัมพันธ์ที่ยังไม่พร้อมเปิดเผยต่อสาธารณะ", "love_crush": "เขากำลังจับตามองหรือแอบมีใจให้คุณเงียบๆ เหมือนกัน แต่ฟอร์มจัด ให้หยั่งเชิงดูไปก่อนอย่าเพิ่งรุกแรงเกินไป", "love_couple": "ใช้ความรู้สึกและเซ้นส์ในการดูแลกัน ควรคุยกันตรงไปตรงมาเพื่อลดความระแวง", "advice": "นิ่งสงบดุจผิวน้ำสะท้อนเงาจันทร์ ฟังเสียงกระซิบจากหัวใจของคุณเอง", "lucky_color": "ฟ้าพาสเทล & เขียวมินต์", "lucky_number": "2, 7"}, {"id": 3, "name_th": "The Empress (ลูกกวางน้อยในดงกุหลาบ)", "name_en": "The Empress", "animal": "ลูกกวางน้อยสวมมงกุฎดอกไม้นอนหลับในดงกุหลาบ 🦌👑🌹", "symbol": "🦌", "bg_gradient": "linear-gradient(135deg, #ffe4e6, #fed7aa, #fce7f3)", "art_icon": "🦌👑🌹", "keywords": "ความอุดมสมบูรณ์, มั่งคั่ง, ความสุข, ความอบอุ่นในใจ", "overall": "ช่วงเวลาแห่งความสุขสบาย ความอบอุ่น และการได้รับการดูแลเอาใจใส่ ดั่งลูกกวางน้อยที่นอนหลับอย่างปลอดภัยท่ามกลางกลิ่นหอมของดอกกุหลาบ", "work_employed": "ผู้ใหญ่และเพื่อนร่วมงานเมตตาให้ความช่วยเหลือ งานสายครีเอทีฟ ศิลปะ ความงาม อาหาร และบริการเติบโตรุ่งเรืองอย่างงดงาม", "work_unemployed": "มีเกณฑ์ได้งานเร็วๆ นี้ โดยเฉพาะงานในองค์กรที่มีความมั่นคง บรรยากาศอบอุ่น หรือได้รับการฝากฝังแนะนำจากผู้ใหญ่ใจดี", "finance": "การเงินมั่งคั่งอุดมสมบูรณ์ มีเงินหมุนเวียนเข้ามาไม่ขาดมือ ได้รับของขวัญหรือรางวัลชิ้นใหญ่", "love_single": "มีคนเข้ามาเอาอกเอาใจ ดูแลทะนุถนอมเหมือนเจ้าหญิง/เจ้าชาย", "love_crush": "เขารู้สึกอบอุ่นและสบายใจเวลาอยู่ใกล้คุณ มีเกณฑ์พัฒนาจากคนแอบชอบไปเป็นคนพิเศษได้อย่างงดงาม", "love_couple": "ความรักหวานชื่น มีเกณฑ์วางแผนแต่งงาน หรือมีสมาชิกตัวน้อยเข้ามาเติมเต็มครอบครัว", "advice": "ดูแลตัวเองและแบ่งปันความรักให้คนรอบข้าง ความอ่อนโยนจะชนะใจทุกคน", "lucky_color": "ชมพูกุหลาบ & พีชพาสเทล", "lucky_number": "3, 6"}, {"id": 4, "name_th": "The Emperor (ลูกหมีบนบัลลังก์ศิลา)", "name_en": "The Emperor", "animal": "ลูกหมีสวมมงกุฎถือคทาแสงบนบัลลังก์หิน 🐻👑🛡️", "symbol": "🐻", "bg_gradient": "linear-gradient(135deg, #fef08a, #fed7aa, #fde047)", "art_icon": "🐻👑🛡️", "keywords": "ผู้นำ, อำนาจบารมี, ความมั่นคง, ความเด็ดขาด", "overall": "ความหนักแน่น มั่นคง และการควบคุมสถานการณ์ได้อย่างอยู่หมัด ดั่งลูกหมีผู้สง่างามบนบัลลังก์ศิลาที่ทุกคนเคารพรักและพึ่งพาได้เสมอ", "work_employed": "มีเกณฑ์ได้เลื่อนขั้น เลื่อนตำแหน่ง หรือได้รับมอบหมายให้คุมทีมและโปรเจกต์สำคัญ ผู้ใหญ่ให้ความไว้วางใจและมีอำนาจตัดสินใจเต็มที่", "work_unemployed": "มีโอกาสได้งานในองค์กรขนาดใหญ่ ราชการ รัฐวิสาหกิจ หรือบริษัทข้ามชาติที่มั่นคง การสัมภาษณ์ควรแสดงความมั่นใจและภาวะผู้นำ", "finance": "ฐานะการเงินแข็งแกร่ง มีโครงสร้างรายได้ที่มั่นคง เหมาะกับการวางแผนซื้ออสังหาริมทรัพย์หรือลงทุนระยะยาว", "love_single": "มีเกณฑ์พบคนมีฐานะมั่นคง บุคลิกดี เป็นผู้ใหญ่ที่พึ่งพาได้", "love_crush": "เขาอาจจะดูนิ่งๆ วางท่า หรือฟอร์มเยอะ แต่จริงๆ เขาก็แอบมองคุณอยู่ แสดงความจริงใจให้เขาเห็นแล้วเขาจะเปิดใจ", "love_couple": "ความรักมั่นคง หนักแน่น แต่อย่าใช้อารมณ์บงการหรือเผด็จการกับคนรักมากเกินไป", "advice": "วางแผนให้รอบคอบและลงมือทำอย่างมีระเบียบวินัย ความสม่ำเสมอจะนำพาความสำเร็จที่ยิ่งใหญ่", "lucky_color": "เหลืองทอง & น้ำตาลอบอุ่น", "lucky_number": "4, 10"}, {"id": 5, "name_th": "The Hierophant (ลูกช้างน้อยในวิหารกุญแจทอง)", "name_en": "The Hierophant", "animal": "ลูกช้างน้อยในชุดคลุมถือกุญแจทองคำในวิหาร 🐘📜🗝️", "symbol": "🐘", "bg_gradient": "linear-gradient(135deg, #ede9fe, #fef9c3, #ddd6fe)", "art_icon": "🐘📜🗝️", "keywords": "ปัญญา, กัลยาณมิตร, กุญแจไขปัญหา, ผู้ใหญ่เมตตาอุปถัมภ์", "overall": "กุญแจทองคำแห่งปัญญาจะช่วยเปิดประตูทางออกให้กับทุกเรื่อง จะมีผู้ใหญ่ ครูอาจารย์ หรือผู้ทรงศีลธรรมคอยชี้แนะและเมตตาช่วยเหลือ", "work_employed": "การทำงานยึดตามระเบียบแบบแผนจะปลอดภัยที่สุด การสอบเลื่อนขั้น อบรม หรือขออนุมัติเอกสารจะผ่านการรับรองอย่างราบรื่น", "work_unemployed": "มีโอกาสได้งานด้านการศึกษา วิชาการ สถาบันการเงิน หรือองค์กรที่มีระบบแบบแผนชัดเจน มีผู้ใหญ่ช่วยแนะนำงานให้", "finance": "การเงินปลอดภัย ไม่แนะนำให้เสี่ยงโชคเก็งกำไร เน้นการออมและผลตอบแทนที่สม่ำเสมอ", "love_single": "มีผู้ใหญ่หรือเพื่อนสนิทเป็นแม่สื่อชักนำคนดี มีศีลธรรมเข้ามาให้ทำความรู้จัก", "love_crush": "ความสัมพันธ์เริ่มจากการเป็นเพื่อน พี่น้อง หรือที่ปรึกษา ค่อยๆ สะสมความไว้ใจและความผูกพัน ไม่ควรรีบร้อน", "love_couple": "ความรักเป็นไปตามขนบธรรมเนียม มีเกณฑ์เข้าหาผู้ใหญ่เพื่อสู่ขอหรือตกลงเรื่องหมั้นหมาย", "advice": "ยึดมั่นในความซื่อสัตย์สุจริต และพร้อมเปิดใจรับฟังคำแนะนำจากผู้หวังดี", "lucky_color": "ม่วงลาเวนเดอร์ & ครีมทอง", "lucky_number": "5, 14"}, {"id": 6, "name_th": "The Lovers (คู่รักจิ้งจอกใต้ซุ้มซากุระ)", "name_en": "The Lovers", "animal": "คู่รักจิ้งจอกเคียงคู่ใต้ซุ้มดอกซากุระ 🦊💕🦊🌸", "symbol": "🦊", "bg_gradient": "linear-gradient(135deg, #fbcfe8, #fce7f3, #fed7e2)", "art_icon": "🦊💕🦊🌸", "keywords": "พรหมลิขิต, ความรัก, ทางเลือกที่ตรงใจ, ความลงตัว", "overall": "พลังงานแห่งความผูกพัน ความสุข และการได้พบสิ่งที่สอดคล้องกับหัวใจอย่างแท้จริง ดั่งคู่รักจิ้งจอกที่อิงแอบแนบชิดใต้ซุ้มซากุระบานสะพรั่ง", "work_employed": "การทำงานร่วมกับพาร์ทเนอร์หรือเพื่อนร่วมงานราบรื่นมาก เข้าขากันเป็นปี่เป็นขลุ่ย มีงานที่ทำแล้วมีความสุขและอินกับมันเต็มที่", "work_unemployed": "อาจมีตัวเลือกงานเข้ามามากกว่า 1 ที่ ให้เลือกงานที่ตรงกับความชอบและใจรัก จะทำให้เติบโตและมีความสุขในระยะยาว", "finance": "การเงินคล่องตัว ได้เงินจากการร่วมหุ้น ร่วมทุน หรือการค้าขายกับคู่ค้าที่ไว้ใจกัน", "love_single": "พรหมลิขิตทำงานเต็มที่ มีเกณฑ์เจอคนรู้ใจที่คุยแล้วรู้สึกเหมือนรู้จักกันมานาน", "love_crush": "กรี๊ดดด! เขาก็แอบมีใจให้คุณเหมือนกัน เคมีตรงกันสุดๆ โอกาสสารภาพรักแล้วได้พัฒนาเป็นแฟนสูงมาก เมี้ยว!", "love_couple": "หวานชื่น โรแมนติก เข้าใจกันอย่างลึกซึ้ง มีความสุขกับทุกช่วงเวลาที่ได้อยู่ด้วยกัน", "advice": "เลือกทางที่หัวใจคุณรู้สึกสงบและเปี่ยมสุข ความจริงใจจะนำพาสิ่งดีๆ เข้ามา", "lucky_color": "ชมพูซากุระ & ขาวมุก", "lucky_number": "6, 15"}, {"id": 7, "name_th": "The Chariot (เต่าน้อยบนเกวียนผีเสื้อ)", "name_en": "The Chariot", "animal": "เต่าน้อยมุ่งมั่นบนเกวียนเทียมผีเสื้อแสนสวย 🐢🦋🎠", "symbol": "🐢", "bg_gradient": "linear-gradient(135deg, #bae6fd, #a7f3d0, #c7d2fe)", "art_icon": "🐢🦋🎠", "keywords": "ช้าแต่มั่นคง, พลังใจ, มุ่งมั่นสู่เส้นชัย, ผีเสื้อนำทาง", "overall": "ความมุ่งมั่นที่ไม่ยอมแพ้ดั่งเต่าน้อยติดปีกผีเสื้อ แม้จะเริ่มต้นอย่างค่อยเป็นค่อยไป แต่ด้วยความพยายามและมีทิศทางที่ชัดเจน ชัยชนะรอคุณอยู่แน่นอน", "work_employed": "งานท้าทาย มีความกดดันและการแข่งขันสูง แต่ด้วยความมุ่งมั่น คุณจะฟันฝ่าจนสำเร็จและได้รับการยกย่อง มีเกณฑ์เดินทางไกลเรื่องงาน", "work_unemployed": "อย่าเพิ่งถอดใจ ให้ลุยส่งใบสมัครต่อไป ชัยชนะเป็นของคนที่อดทน มีเกณฑ์ได้งานเกี่ยวกับการขนส่ง โลจิสติกส์ งานลุย หรือต่างถิ่น", "finance": "รายได้เกิดจากความขยันและน้ำพักน้ำแรง ยิ่งลุยยิ่งรวย ระวังค่าใช้จ่ายเกี่ยวกับรถหรือการเดินทาง", "love_single": "ความรักต้องใช้ความกล้าในการเข้าหา หรืออาจพบรักกับคนต่างถิ่นแดนไกล", "love_crush": "ต้องรุกอย่างต่อเนื่องและสม่ำเสมอ อย่าเพิ่งถอดใจ แม้คู่แข่งจะเยอะแต่ความเสมอต้นเสมอปลายจะชนะใจเขาได้", "love_couple": "ร่วมมือกันฟันฝ่าอุปสรรคชีวิตคู่ เป็นกำลังใจให้กันและกันเสมอ", "advice": "ช้าแต่ชัวร์ ควบคุมสติและมุ่งตรงสู่เป้าหมาย อย่าให้ความเร็วของคนอื่นทำให้คุณกดดัน", "lucky_color": "ฟ้าพาสเทล & เขียวมินต์", "lucky_number": "7, 16"}, {"id": 8, "name_th": "Strength (คอร์กี้กอดดอกเดซี่)", "name_en": "Strength", "animal": "เจ้าคอร์กี้ใจดีกอดก้านดอกเดซี่สีขาว 🐶🌼🌿", "symbol": "🐶", "bg_gradient": "linear-gradient(135deg, #d1fae5, #fef08a, #bbf7d0)", "art_icon": "🐶🌼🌿", "keywords": "อ่อนโยนสยบแข็งกร้าว, พลังใจ, ความอดทน, เมตตาธรรม", "overall": "พลังความอ่อนโยนที่ชนะใจทุกคน ดั่งเจ้าคอร์กี้ตัวน้อยที่ใช้รอยยิ้มและความนุ่มฟูกอดดอกเดซี่ไว้ สยบทุกความตึงเครียดด้วยความเมตตา", "work_employed": "ต้องรับมือกับหัวหน้า ลูกค้า หรือเพื่อนร่วมงานที่อารมณ์ร้อน แต่ความนิ่งและวาทศิลป์อันนุ่มนวลของคุณจะสยบปัญหาได้หมดจด", "work_unemployed": "ความอดทนไม่ยอมแพ้จะผลิดอกออกผล มีโอกาสได้งานที่ท้าทายความสามารถด้านการประสานงาน จัดการคน หรือการบริการ", "finance": "บริหารเงินได้เก่งขึ้น มีวินัยในการควบคุมรายจ่าย สามารถปลดเปลื้องภาระหนี้สินได้อย่างน่าประทับใจ", "love_single": "เสน่ห์อยู่ที่ความใจเย็น เป็นผู้ฟังที่ดี มีคนเข้ามาอยากให้คุณเป็นที่พักพิงทางใจ", "love_crush": "ใช้ความอ่อนโยนและรอยยิ้มเข้าหา อย่าทำให้อึดอัด ค่อยๆ เข้าไปอยู่ในชีวิตประจำวันของเขาจะชนะใจได้ชัวร์", "love_couple": "ใช้ความเข้าใจและความประนีประนอม ความอ่อนโยนจะละลายความขัดแย้งทุกอย่าง", "advice": "ความอ่อนโยนคือพลังที่แท้จริง สติและความอดทนจะนำพาชัยชนะมาให้", "lucky_color": "เขียวมินต์ & เหลืองเดซี่", "lucky_number": "8, 11"}, {"id": 9, "name_th": "The Hermit (เม่นแคระถือตะเกียงในป่าหิมะ)", "name_en": "The Hermit", "animal": "เม่นแคระตัวน้อยพันผ้าพันคอถือตะเกียงในป่าหิมะ 🦔🏮❄️", "symbol": "🦔", "bg_gradient": "linear-gradient(135deg, #e9d5ff, #c7d2fe, #e0e7ff)", "art_icon": "🦔🏮❄️", "keywords": "ค้นหาตนเอง, แสงสว่างนำทาง, ความสงบ, สมาธิ", "overall": "ช่วงเวลาแห่งการพักผ่อน ทบทวนชีวิต และค้นหาความหมายที่แท้จริง ตะเกียงในมือเม่นแคระจะส่องสว่างนำทางคุณฝ่าลมหนาวไปสู่ความอบอุ่น", "work_employed": "เด่นมากสำหรับงานวิชาการ วิจัย วางแผนระยะยาว คอนเทนต์ หรืองานที่ต้องใช้สมาธิคนเดียว หลีกเลี่ยงความวุ่นวายในที่ทำงาน", "work_unemployed": "เป็นช่วงเวลาดีในการอัปสกิล อ่านหนังสือ หรือเตรียมตัวให้พร้อม งานที่ได้จะเป็นงานที่ใช้ความชำนาญเฉพาะทาง", "finance": "การเงินสมถะ ใช้จ่ายเท่าที่จำเป็น ไม่ควรใจร้อนลงทุนตามกระแส เน้นความมั่นคง", "love_single": "ยังหวงแหนชีวิตโสด ชอบความสบายใจในการอยู่คนเดียวมากกว่าความสัมพันธ์ที่วุ่นวาย", "love_crush": "เขาอาจเป็นคนเข้าถึงยาก โลกส่วนตัวสูง หรือยังไม่พร้อมมีใคร ให้พื้นที่เขาและเป็นเพื่อนที่เข้าใจจะดีที่สุด", "love_couple": "ควรเว้นสเปซให้กันและกันบ้าง การมีพื้นที่ส่วนตัวจะทำให้รักยืนยาวขึ้น", "advice": "มองเข้าไปในจิตใจตัวเอง คำตอบที่คุณตามหาอยู่ภายในใจคุณเอง", "lucky_color": "ม่วงลาเวนเดอร์ & ขาวหิมะ", "lucky_number": "9, 18"}, {"id": 10, "name_th": "Wheel of Fortune (กระรอกน้อยหมุนกงล้อโอ๊ก)", "name_en": "Wheel of Fortune", "animal": "กระรอกน้อยสะพายเป้หมุนกงล้อไม้ผลโอ๊ก 🐿️🎡🌰", "symbol": "🐿️", "bg_gradient": "linear-gradient(135deg, #fef08a, #fce7f3, #fed7aa)", "art_icon": "🐿️🎡🌰", "keywords": "โชคลาภหมุนมา, จังหวะทอง, จุดเปลี่ยนดวงชะตา, ความอุดมสมบูรณ์", "overall": "กงล้อแห่งโชคชะตากำลังหมุนพาผลโอ๊กทองคำและสิ่งดีๆ มาเสิร์ฟถึงที่ ปัญหาที่เคยติดขัดกำลังจะหมดไปและถูกแทนที่ด้วยความเฮง", "work_employed": "จังหวะชีวิตกำลังเปลี่ยนไปในทางที่ดี มีเกณฑ์ได้ปรับตำแหน่ง เปลี่ยนงานใหม่ที่รายได้ดีกว่าเดิม หรือมีโปรเจกต์ใหญ่ที่สร้างชื่อเสียง", "work_unemployed": "ข่าวดีกำลังมาถึง! กำลังจะมีสายเรียกสัมภาษณ์งานหรือการตอบรับเข้าทำงานแบบสายฟ้าแลบ ฟ้าเปิดทางให้คุณแล้ว", "finance": "โชคลาภก้อนโตหมุนเข้ามา มีเกณฑ์ได้ลาภลอย ปลดล็อกหนี้สิน การเงินหมุนเวียนคล่องตัวแบบก้าวกระโดด", "love_single": "พรหมลิขิตจะพัดพาคนที่ใช่เข้ามาแบบบังเอิญ เจอในจังหวะที่ไม่คาดคิด", "love_crush": "จังหวะฟ้าเปิด! จะมีเหตุการณ์บังเอิญที่ทำให้ได้ใกล้ชิดหรือได้คุยกันมากขึ้น รีบคว้าโอกาสทองนี้ไว้เลย", "love_couple": "ความสัมพันธ์ยกระดับไปในทางที่ดี ปัญหาที่ค้างคาใจจะคลี่คลายอย่างน่าอัศจรรย์", "advice": "เมื่อจังหวะทองมาถึง จงกล้าที่จะกระโดดคว้าโอกาสไว้ทันที", "lucky_color": "เหลืองทอง & ส้มพีช", "lucky_number": "10, 21"}, {"id": 11, "name_th": "Justice (ชิบะอินุตาชั่งแห่งความจริง)", "name_en": "Justice", "animal": "ชิบะอินุสวมผ้าคลุมแดงถือตาชั่งทองคำ 🐕⚖️🌸", "symbol": "🐕", "bg_gradient": "linear-gradient(135deg, #e0f2fe, #fce7f3, #f1f5f9)", "art_icon": "🐕⚖️🌸", "keywords": "ความยุติธรรม, ความถูกต้อง, สัญญาเอกสาร, ผลลัพธ์เที่ยงตรง", "overall": "ช่วงเวลาแห่งความจริงและความเป็นธรรม สิ่งที่คุณเคยทำด้วยความซื่อสัตย์จะส่งผลตอบแทนอันคุ้มค่าและเที่ยงตรงดั่งตาชั่งทองคำ", "work_employed": "การเจรจาต่อรองสัญญา ข้อตกลงทางธุรกิจ หรือการประเมินผลงานจะเป็นไปอย่างยุติธรรมและราบรื่นหากรอบคอบในข้อกฎหมาย", "work_unemployed": "มีโอกาสได้งานที่เกี่ยวข้องกับกฎหมาย เอกสาร การตรวจสอบ หรือองค์กรที่มีมาตรฐานชัดเจน เตรียมเอกสารสมัครงานให้เป๊ะ", "finance": "ได้รับเงินตกเบิก เงินคืนภาษี หรือผลตอบแทนที่สมน้ำสมเนื้อกับความเหน็ดเหนื่อย", "love_single": "ใช้เหตุผลนำทาง มองหาความสัมพันธ์ที่ชัดเจน ตรงไปตรงมา และให้เกียรติซึ่งกันและกัน", "love_crush": "เขาเป็นคนดูความจริงใจและความชัดเจน ไม่ชอบความคลุมเครือ แสดงออกให้ตรงไปตรงมาจะทำให้เขาประทับใจ", "love_couple": "พูดคุยและตกลงกติกาชีวิตคู่ด้วยความเข้าอกเข้าใจและเป็นธรรมทั้งสองฝ่าย", "advice": "ทำในสิ่งที่ถูกต้องเสมอ ชั่งน้ำหนักอย่างเป็นกลางก่อนตัดสินใจเรื่องสำคัญ", "lucky_color": "ฟ้าพาสเทล & ขาวมุก", "lucky_number": "11, 22"}, {"id": 12, "name_th": "The Hanged Man (สลอธน้อยห้อยหัวมีรัศมี)", "name_en": "The Hanged Man", "animal": "สลอธน้อยห้อยหัวยิ้มหวานมีรัศมีเทวดาบนกิ่งไม้ 🦥💡🌿", "symbol": "🦥", "bg_gradient": "linear-gradient(135deg, #f3e8ff, #dcfce7, #e0f2fe)", "art_icon": "🦥💡🌿", "keywords": "มุมมองใหม่, ชะลอเพื่อเติบโต, ปล่อยวาง, สติปัญญา", "overall": "การหยุดนิ่งเพื่อปรับมุมมองดั่งสลอธน้อยห้อยหัวยิ้มรับแสงแดด บางสถานการณ์ต้องใช้ความอดทนรอคอย แล้วจะพบคำตอบอันลึกซึ้ง", "work_employed": "งานอาจชะลอตัวชั่วคราวเพื่อรอการอนุมัติ อย่าเพิ่งอึดอัด ใช้เวลานี้ตรวจสอบความเรียบร้อย การยอมปรับแผนจะช่วยให้งานรอด", "work_unemployed": "อาจต้องรอคอยผลการสัมภาษณ์สักระยะ อย่าเพิ่งท้อแท้ ลองปรับรูปแบบเรซูเม่ใหม่ให้โดดเด่น แล้วโอกาสจะเปิดกว้างขึ้น", "finance": "การเงินต้องใช้จ่ายอย่างรัดกุม การเสียสละเงินบางส่วนเพื่อการเรียนรู้หรือลงทุนระยะยาวจะส่งผลดีในอนาคต", "love_single": "ยังไม่ใช่จังหวะเร่งรีบ ให้เวลาตัวเองได้ทบทวนและตกตะกอนหัวใจ", "love_crush": "อาจต้องอดทนรอจังหวะอีกสักนิด ช่วงนี้ทำได้แค่ส่งความห่วงใยอยู่ห่างๆ อย่าเพิ่งกดดันให้เขาเลือกหรือตอบ", "love_couple": "บางเรื่องต้องยอมถอยคนละก้าว การยอมเสียสละทิฐิจะช่วยรักษาความสัมพันธ์ไว้ได้", "advice": "การหยุดนิ่งเพื่อสังเกตไม่ใช่ความพ่ายแพ้ แต่เป็นการตั้งหลักอย่างชาญฉลาด", "lucky_color": "เขียวมินต์ & ม่วงพาสเทล", "lucky_number": "12, 3"}, {"id": 13, "name_th": "Death (ผีเสื้อราตรีขาวบนดอกกุหลาบ)", "name_en": "Death", "animal": "ผีเสื้อราตรีสีขาวบริสุทธิ์เกาะบนกุหลาบขาว 🦋🌹🌅", "symbol": "🦋", "bg_gradient": "linear-gradient(135deg, #f5d0fe, #fce7f3, #e9d5ff)", "art_icon": "🦋🌹🌅", "keywords": "การเกิดใหม่, ผลัดใบ, ปล่อยวางอดีต, รุ่งอรุณใหม่", "overall": "การสิ้นสุดของสิ่งเดิมเพื่อการเกิดใหม่ที่บริสุทธิ์งดงาม ดั่งผีเสื้อขาวที่เกาะบนดอกกุหลาบยามรุ่งอรุณ สิ่งที่ไม่ใช่อีกต่อไปจะสลายไปเพื่อให้สิ่งที่ดีกว่าเข้ามา", "work_employed": "การปิดโปรเจกต์เดิม การปรับเปลี่ยนโครงสร้าง หรือการตัดสินใจลาออกจากงานที่หมดไฟเพื่อไปสู่งานใหม่ที่ตอบโจทย์ชีวิตมากกว่า", "work_unemployed": "หลุดพ้นจากช่วงเวลาว่างงานอันน่าอึดอัด กำลังจะได้เริ่มต้นงานใหม่ที่เป็นจุดเปลี่ยนสำคัญในชีวิตแบบหน้ามือเป็นหลังมือ", "finance": "เคลียร์หนี้สินเก่า จัดระเบียบการเงินใหม่ ปลดภาระค่าใช้จ่ายที่ไม่จำเป็นออกไปเพื่อเริ่มต้นความมั่งคั่งใหม่", "love_single": "ตัดใจจากคนเก่าในอดีตได้สำเร็จ หัวใจพร้อมโบยบินเปิดรับความรักครั้งใหม่ที่สดใส", "love_crush": "ถึงเวลาเลือกระหว่าง 'สารภาพรักให้รู้แล้วรู้รอด' หรือ 'ตัดใจเพื่อเปิดรับคนใหม่ที่ดีกว่า' จบความอึดอัดในใจซะ", "love_couple": "ทิ้งพฤติกรรมเดิมๆ ที่เป็นพิษต่อกัน แล้วเริ่มต้นปรับนิสัยเพื่อสร้างความสัมพันธ์ใหม่ที่ดีกว่าเดิม", "advice": "อย่ากลัวการจากลา เพราะไม่มีเช้าวันใหม่หากราตรีไม่ผ่านพ้น", "lucky_color": "ขาวบริสุทธิ์ & ชมพูอ่อน", "lucky_number": "13, 4"}, {"id": 14, "name_th": "Temperance (ลูกเป็ดน้อยเทน้ำผสมผสาน)", "name_en": "Temperance", "animal": "ลูกเป็ดน้อยยืนบนโขดหินเทน้ำทิพย์ผสมผสาน 🐥🌊🪷", "symbol": "🐥", "bg_gradient": "linear-gradient(135deg, #bae6fd, #d1fae5, #e0f2fe)", "art_icon": "🐥🌊🪷", "keywords": "ความสมดุล, ปรับตัวกลมกลืน, การเยียวยา, สายน้ำหล่อเลี้ยง", "overall": "ความสมดุลและความกลมกลืนในชีวิต สุขภาพกายและใจได้รับการฟื้นฟู ดั่งสายน้ำทิพย์ที่ลูกเป็ดน้อยเทผสมผสานให้ชีวิตกลับมาชุ่มชื่นอีกครั้ง", "work_employed": "การประสานงานติดต่อระหว่างฝ่ายราบรื่น สามารถเป็นตัวกลางไกล่เกลี่ยปัญหาและปรับตัวเข้ากับสภาพแวดล้อมใหม่ได้อย่างยอดเยี่ยม", "work_unemployed": "มีเกณฑ์ได้งานที่ต้องใช้ความสามารถรอบด้าน หรือมีงานฟรีแลนซ์/งานสัญญาจ้างระยะสั้นเข้ามาช่วยเสริมรายได้ระหว่างรองานประจำ", "finance": "การเงินหมุนเวียนสมดุล รายรับรายจ่ายลงตัว มีเงินเหลือเก็บออมอย่างต่อเนื่อง", "love_single": "มีความสุขกับความสัมพันธ์ที่ค่อยเป็นค่อยไป ศึกษานิสัยใจคออย่างไม่รีบร้อน", "love_crush": "ความสัมพันธ์ค่อยๆ เป็น ค่อยๆ ไป ปรับตัวเข้าหากันทีละนิด ทักไปคุยเรื่อยๆ สบายๆ ไม่ต้องเร่งรัดจะดีที่สุด", "love_couple": "ช่วยเหลือและประคับประคองชีวิตคู่ได้อย่างกลมกลืน ถ้อยทีถ้อยอาศัยกันดีมาก", "advice": "เดินทางสายกลาง ปรับตัวให้ยืดหยุ่นดั่งสายน้ำที่ไหลผ่านทุกอุปสรรค", "lucky_color": "ฟ้าใส & เขียวมินต์", "lucky_number": "14, 5"}, {"id": 15, "name_th": "The Devil (แรคคูนน้อยบนกองเหรียญทอง)", "name_en": "The Devil", "animal": "แรคคูนน้อยมีเขาถือตรีศูลนั่งบนกองเหรียญทอง 🦝😈🪙", "symbol": "🦝", "bg_gradient": "linear-gradient(135deg, #fbcfe8, #fed7aa, #e9d5ff)", "art_icon": "🦝😈🪙", "keywords": "กิเลสเย้ายวน, ความทะเยอทะยาน, เสน่ห์อันตราย, รู้ทันใจตนเอง", "overall": "พลังเสน่ห์และความต้องการที่ล้นเหลือ แต่ให้ระวังเรื่องการตกเป็นทาสของกิเลส หรือความอยากได้อยากมีจนลืมสิ่งที่สำคัญในชีวิต", "work_employed": "มีความทะเยอทะยานสูงและมุ่งมั่นจะกอบโกยผลงาน แต่อย่าหักโหมจนเสียสุขภาพ ระวังการเมืองและผลประโยชน์ทับซ้อนในที่ทำงาน", "work_unemployed": "ระวังงานที่ดูได้เงินง่ายผิดปกติหรือมีเงื่อนไขสัญญาที่ไม่เป็นธรรม ตรวจสอบรายละเอียดบริษัทให้รอบคอบก่อนตกลงเซ็นสัญญา", "finance": "ระวังการช้อปปิ้งตามอารมณ์ หรือการลงทุนที่มีความเสี่ยงสูง อย่าไว้ใจใครเรื่องการเงินง่ายๆ", "love_single": "เสน่ห์แรงมาก มีคนเข้ามาพัวพันหลายคน ระวังความสัมพันธ์ที่ฉาบฉวยหรือรักซ้อน", "love_crush": "เขารู้สึกดึงดูดในเสน่ห์ของคุณมาก แต่อาจเป็นความหลงใหลชั่วคราว เช็กให้ดีว่าเขามีใครคุยซ้อนอยู่ไหม", "love_couple": "ระวังความหึงหวง อารมณ์ฉุนเฉียว หรือความต้องการครอบงำคนรักมากเกินไป", "advice": "รู้ทันกิเลสในใจ โซ่แห่งความอยากสามารถปลดออกได้ด้วยสติของคุณเอง", "lucky_color": "ม่วงเข้ม & ส้มทอง", "lucky_number": "15, 6"}, {"id": 16, "name_th": "The Tower (โคอาล่าน้อยบนต้นไม้สายฟ้า)", "name_en": "The Tower", "animal": "โคอาล่าน้อยเกาะกิ่งไม้ตอนสายฟ้าฟาด 🐨⚡🌩️", "symbol": "🐨", "bg_gradient": "linear-gradient(135deg, #fed7aa, #fbcfe8, #ddd6fe)", "art_icon": "🐨⚡🌩️", "keywords": "การเปลี่ยนแปลงฉับพลัน, สายฟ้าตื่นรู้, ก้าวข้ามพายุ, ฟ้าหลังฝน", "overall": "การเปลี่ยนแปลงที่เกิดขึ้นอย่างกะทันหันเหมือนสายฟ้าฟาดเพื่อทลายสิ่งลวงตา แม้จะตกใจในตอนแรกแต่จะช่วยให้คุณหลุดพ้นจากปัญหาเดิมๆ อย่างรวดเร็ว", "work_employed": "อาจมีการปรับเปลี่ยนโครงสร้างกะทันหัน หรือมีงานด่วนเข้ามาทดสอบสติ แต่จะช่วยให้สะสางปัญหาเดิมและมองเห็นทางออกที่เร็วกว่าเดิม", "work_unemployed": "อาจมีข่าวเรียกสัมภาษณ์ด่วน หรือมีโอกาสงานที่ไม่เคยคาดคิดมาก่อนติดต่อเข้ามาแบบกะทันหัน เตรียมตัวให้พร้อมตลอดเวลา", "finance": "ควรมีเงินสำรองฉุกเฉินไว้ ระวังรายจ่ายซ่อมแซมยานพาหนะ โทรศัพท์ หรืออุปกรณ์ทำงานที่ชำรุด", "love_single": "ฟ้าผ่าเปิดตาเปิดใจ ได้พบคนที่ทำให้ความคิดและทัศนคติเรื่องความรักเปลี่ยนไปโดยสิ้นเชิง", "love_crush": "อาจมีเรื่องเซอร์ไพรส์กะทันหัน เช่น รู้ความลับของเขา หรือจู่ๆ เขาก็ทักข้อความมาแบบไม่คาดฝัน ตั้งสติให้ดี", "love_couple": "หากมีเรื่องขัดแย้งสะสม ให้เปิดอกคุยความจริงกันตรงๆ การเคลียร์ใจจะช่วยให้ฟ้าหลังฝนสดใส", "advice": "ตั้งสติให้มั่นคง ยอมรับความจริงอย่างกล้าหาญ ฟ้าหลังฝนย่อมสดใสเสมอ", "lucky_color": "ส้มพีชพาสเทล & ม่วงอ่อน", "lucky_number": "16, 7"}, {"id": 17, "name_th": "The Star (เฟนเนกฟ็อกซ์มองดาวตก)", "name_en": "The Star", "animal": "เฟนเนกฟ็อกซ์ตัวน้อยนั่งมองดาวตกริมสระน้ำ 🦊⭐✨", "symbol": "🦊", "bg_gradient": "linear-gradient(135deg, #c7d2fe, #e9d5ff, #bae6fd)", "art_icon": "🦊⭐✨", "keywords": "ความหวัง, แสงสว่างนำทาง, ความฝันเป็นจริง, หัวใจอบอุ่น", "overall": "ช่วงเวลาแห่งความสุขใจ ความหวัง และพลังบวกอันบริสุทธิ์ ดั่งดาวตกส่องประกายสะท้อนผิวน้ำ จักรวาลกำลังจัดสรรสิ่งดีๆ ให้ความฝันของคุณเป็นจริง", "work_employed": "ผลงานสร้างชื่อเสียง ได้รับคำชมเชยและแรงสนับสนุนอย่างอบอุ่น มีแรงบันดาลใจในการทำงานล้นหลาม สภาพแวดล้อมในที่ทำงานน่าอยู่", "work_unemployed": "ความหวังเป็นจริงแล้ว! กำลังจะได้งานที่ตรงใจ บรรยากาศเป็นกันเอง และตอบโจทย์ชีวิตที่เคยวาดฝันไว้", "finance": "การเงินเริ่มฟื้นตัวอย่างสดใส มีโชคลาภจากความดีงามและมีผู้ใหญ่คอยเกื้อหนุนช่วยเหลือ", "love_single": "มีเกณฑ์พบคนที่ทำให้ใจฟู มีความอ่อนโยน เข้ามาเยียวยาหัวใจได้อย่างงดงาม", "love_crush": "มีความหวังเต็มเปี่ยม! เขาเริ่มมองคุณเป็นพลังบวกและความสดใสในใจ มีเกณฑ์ได้เลื่อนสถานะเป็นคนคุยคนพิเศษ", "love_couple": "ความรักเต็มไปด้วยความเข้าใจ ความหวัง และความสุขสงบในจิตใจร่วมกัน", "advice": "มองไปยังดวงดาวด้วยความศรัทธา ความคิดบวกของคุณจะดึงดูดปาฏิหาริย์เข้ามา", "lucky_color": "ฟ้าพาสเทล & ม่วงประกายดาว", "lucky_number": "17, 8"}, {"id": 18, "name_th": "The Moon (ลูกหมาฮัสกี้หอนรับจันทร์)", "name_en": "The Moon", "animal": "ลูกหมาฮัสกี้ขนปุยนั่งหอนรับพระจันทร์เต็มดวง 🐺🌕🌌", "symbol": "🐺", "bg_gradient": "linear-gradient(135deg, #ddd6fe, #e0e7ff, #f5d0fe)", "art_icon": "🐺🌕🌌", "keywords": "จินตนาการ, ความรู้สึกลึกซึ้ง, เซ้นส์สัมผัส, ความคิดมาก", "overall": "พลังงานจินตนาการและอารมณ์ความรู้สึกที่ลึกซึ้งยามราตรี ระวังความคิดมากเกินจริงหรือความวิตกกังวลในสิ่งที่ยังมาไม่ถึง ให้ดึงสติอยู่กับปัจจุบัน", "work_employed": "เด่นมากสำหรับงานสร้างสรรค์ ศิลปะ การออกแบบ หรือวงการบันเทิง แต่อย่าเพิ่งหวั่นไหวกับข่าวลือหรือความไม่แน่นอนในออฟฟิศ", "work_unemployed": "อาจรู้สึกเคว้งคว้างและกังวลใจ อย่าเพิ่งกดดันตัวเองจนเกินไป ให้อดทนรอจังหวะที่เหมาะสม อีกไม่นานเมฆหมอกจะจางหาย", "finance": "ตรวจสอบเอกสารสัญญาการเงินให้รอบคอบ อย่าเพิ่งตัดสินใจลงทุนด้วยความไม่แน่ใจหรือตามคำชวนของคนอื่น", "love_single": "อารมณ์อ่อนไหว ระวังคนเข้ามาพูดจาหวานล้อมแต่ยังไม่ชัดเจนในเจตนา", "love_crush": "ระวังคิดไปเองหรือมโนไปไกล อย่าเพิ่งตีความการกระทำของเขาเกินจริง ดูการกระทำที่ชัดเจนมากกว่าคำพูดหวานๆ", "love_couple": "อย่าปล่อยให้ความระแวงทำร้ายความสัมพันธ์ มีอะไรให้เปิดใจคุยกันด้วยเหตุผล", "advice": "แยกแยะระหว่างความจริงกับภาพลวงตา ดึงสติอยู่กับปัจจุบันและรักตัวเองให้มาก", "lucky_color": "ม่วงอ่อน & ฟ้าเงิน", "lucky_number": "18, 9"}, {"id": 19, "name_th": "The Sun (ลูกหมาโกลเด้นในทุ่งทานตะวัน)", "name_en": "The Sun", "animal": "ลูกหมาโกลเด้นวิ่งเล่นเริงร่าในทุ่งทานตะวัน 🐶☀️🌻", "symbol": "🐶", "bg_gradient": "linear-gradient(135deg, #fef08a, #fed7aa, #fda4af)", "art_icon": "🐶☀️🌻", "keywords": "ความสุขสูงสุด, พลังชีวิต, ชัยชนะ, ความสำเร็จแจ่มจรัส", "overall": "ไพ่ที่ดีที่สุดในสำรับ! แสงแดดอบอุ่นส่องประกาย รอยยิ้มสดใสและความสำเร็จรุ่งโรจน์รอคุณอยู่ ดั่งลูกหมาโกลเด้นวิ่งเล่นในทุ่งทานตะวันบานสะพรั่ง", "work_employed": "ประสบความสำเร็จอย่างงดงาม ได้รับการโปรโมทผลงาน ผู้ใหญ่ชื่นชม โปรเจกต์ผ่านฉลุย บรรยากาศการทำงานเต็มไปด้วยพลังบวก", "work_unemployed": "ยินดีด้วยค่ะ! โอกาสได้งานใหม่สูงมาก ได้งานที่ดี มีความก้าวหน้า มีผู้คนต้อนรับอย่างอบอุ่นและให้ผลตอบแทนดีเยี่ยม", "finance": "การเงินมั่งคั่ง มีกำไรจากการค้าขาย ได้รับโชคลาภเงินก้อน มีสภาพคล่องทางการเงินสูงมาก", "love_single": "มีคนดี นิสัยอบอุ่น สดใส เข้ามามอบความรักที่ชัดเจนและเปิดเผยให้", "love_crush": "ปังมากกก! เขารู้สึกสดใสและมีความสุขทุกครั้งที่ได้คุยกับคุณ โอกาสสารภาพรักแล้วสมหวังสูงถึง 99%!", "love_couple": "ความรักเบิกบาน หวานชื่น ได้รับการยอมรับจากครอบครัวและคนรอบข้างอย่างเต็มที่", "advice": "ส่งต่อรอยยิ้มและความอบอุ่นให้โลกรอบตัว ความสุขของคุณจะส่องสว่างอย่างไม่มีที่สิ้นสุด", "lucky_color": "เหลืองทอง & ส้มสดใส", "lucky_number": "19, 1"}, {"id": 20, "name_th": "Judgement (นกสีฟ้าเป่าแตรทองคำ)", "name_en": "Judgement", "animal": "นกสีฟ้าสวมผ้าคลุมเป่าแตรทองคำบนกิ่งซากุระ 🐦🎺🌸", "symbol": "🐦", "bg_gradient": "linear-gradient(135deg, #e9d5ff, #fef9c3, #fbcfe8)", "art_icon": "🐦🎺🌸", "keywords": "ตื่นรู้, โอกาสครั้งที่สอง, เสียงเรียกจากใจ, การเกิดใหม่", "overall": "เสียงแตรทองคำดังขึ้นเตือนว่าถึงเวลาเริ่มต้นชีวิตใหม่ในเวอร์ชันที่ดีกว่าเดิม การได้รับข่าวดีและการปลดปล่อยสู่ความสุขแท้จริง", "work_employed": "ได้รับการประเมินผลงานที่ดีเยี่ยม มีเกณฑ์ได้เลื่อนตำแหน่ง หรือได้รับโอกาสครั้งสำคัญในการโชว์ศักยภาพและทำได้สำเร็จงดงาม", "work_unemployed": "จะได้รับข่าวดีเรื่องงานที่เคยไปสัมภาษณ์ไว้ หรือมีบริษัทเก่า/คนรู้จักติดต่อเสนองานใหม่ที่น่าสนใจเข้ามา", "finance": "ปัญหาการเงินที่เคยติดขัดจะได้รับการปลดล็อก ได้รับเงินตกเบิกหรือเงินชดเชยที่ยุติธรรม", "love_single": "คนที่ใช่ในเวลาที่ถูกต้องกำลังจะปรากฏตัว หรือคนคุยเก่าวนกลับมาในเวอร์ชันที่ดีขึ้น", "love_crush": "ถึงเวลาที่จักรวาลจะให้คำตอบ ความรู้สึกที่เก็บไว้ถึงเวลาต้องเผยออกไป หรือเขาจะเป็นฝ่ายเอ่ยปากเองเร็วๆ นี้", "love_couple": "ให้อภัยซึ่งกันและกัน ความสัมพันธ์ก้าวข้ามปัญหาเดิมและมั่นคงขึ้นกว่าเดิม", "advice": "ให้อภัยอดีต ฟังเสียงเรียกที่แท้จริงของจิตวิญญาณ แล้วก้าวไปข้างหน้าอย่างภาคภูมิใจ", "lucky_color": "ฟ้าพาสเทล & ม่วงอ่อน", "lucky_number": "20, 2"}, {"id": 21, "name_th": "The World (นากทะเลในพวงมาลัยดอกไม้)", "name_en": "The World", "animal": "นากทะเลน้อยลอยคอในพวงมาลัยดอกไม้นานาพรรณ 🦦👑🌸", "symbol": "🦦", "bg_gradient": "linear-gradient(135deg, #fbcfe8 0%, #fef08a 25%, #bae6fd 50%, #e9d5ff 75%, #bbf7d0 100%)", "art_icon": "🦦👑🌸", "keywords": "สมบูรณ์แบบ, เดินทางรอบโลก, อิสรภาพ, บรรลุเป้าหมาย", "overall": "ความสุขสมบูรณ์แบบในทุกมิติของชีวิต ดั่งนากทะเลน้อยลอยคออย่างสบายใจในพวงมาลัยดอกไม้แห่งความสำเร็จรอบโลก", "work_employed": "โครงการใหญ่ปิดจบลุล่วงตามเป้าหมาย ประสบความสำเร็จในระดับสากล มีเกณฑ์ได้ทำงานกับต่างชาติหรือได้เดินทางไปทำงานต่างประเทศ", "work_unemployed": "ได้งานที่ตรงกับความใฝ่ฝันอย่างสมบูรณ์แบบ ได้เริ่มต้นชีวิตการทำงานในที่ที่ทำให้คุณมีความสุขและภาคภูมิใจ", "finance": "การเงินสมบูรณ์พูนสุข มั่งคั่ง มีความมั่นคงสูง ไร้ความกังวลเรื่องเงินทอง", "love_single": "พบคนที่พร้อมร่วมเดินทางชีวิตไปด้วยกันอย่างสมบูรณ์แบบและลงตัวทุกอย่าง", "love_crush": "ความรู้สึกตรงกันอย่างสมบูรณ์แบบ ทั้งสองฝ่ายต่างรู้สึกดีต่อกัน มีเกณฑ์ข้ามขั้นจากคนแอบรักไปสู่คนรู้ใจ", "love_couple": "ความรักลงตัว อบอุ่น มีความสุขร่วมกันอย่างแท้จริง มีความสุขกับความมั่นคงของชีวิตคู่", "advice": "ร่วมยินดีกับทุกก้าวที่คุณฟันฝ่ามา จักรวาลทั้งใบพร้อมโอบกอดคุณด้วยความรัก", "lucky_color": "สายรุ้งพาสเทล (ชมพู-เหลือง-ฟ้า-ม่วง-เขียว)", "lucky_number": "21, 3"}];
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span id="toastIcon">✨</span>
+    <span id="toastMsg">ข้อความแจ้งเตือน</span>
+  </div>
 
+  <!-- Embedded Tarot Cards Data & Core JavaScript Application -->
+  <script>
+    // 22 Major Arcana Cards Database
+    const tarotDeck = [{"id": 0, "name_th": "The Fool (คนเจ้าสำราญ)", "name_en": "The Fool", "symbol": "🎒✨", "color": "#E9D5FF", "keywords": "การเริ่มต้นใหม่, อิสระ, ความกล้าหาญ, โอกาสที่คาดไม่ถึง", "daily": "วันนี้เป็นวันแห่งการเริ่มต้นอะไรใหม่ๆ ทำใจให้สบาย ปล่อยวางความกังวลแล้วก้าวไปข้างหน้าอย่างมั่นใจ มีโอกาสดีๆ เข้ามาแบบไม่คาดฝัน", "monthly": "เดือนนี้คุณจะได้รับพลังงานบวก ได้ลองทำสิ่งที่ไม่เคยทำมาก่อน การงานมีความคิดสร้างสรรค์ ความรักจะได้พบคนมีเสน่ห์ขี้เล่น การเงินระวังการใช้จ่ายตามอารมณ์", "yearly": "ปีแห่งการผจญภัยและค้นพบตัวตนใหม่ เป็นปีที่คุณจะได้เดินทาง เปลี่ยนแปลงชีวิตไปสู่ทิศทางที่สดใส อย่ากลัวที่จะเปิดประตูบานใหม่", "advice": "เปิดใจรับสิ่งใหม่ แต่อย่าลืมมองพื้นใต้ฝ่าเท้าให้รอบคอบก่อนกระโดด", "lucky_color": "ม่วงพาสเทล & ขาวมุก", "lucky_number": "0, 9"}, {"id": 1, "name_th": "The Magician (ผู้มีเวทมนตร์)", "name_en": "The Magician", "symbol": "🪄🔮", "color": "#DDD6FE", "keywords": "ความสามารถ, พรสวรรค์, การสื่อสาร, เสกความสำเร็จ", "daily": "วันนี้คุณมีไหวพริบยอดเยี่ยม หยิบจับอะไรก็สำเร็จดั่งใจนึก การเจรจาติดต่อราบรื่น ปัญหาเฉพาะหน้าแก้ไขได้สบายมาก", "monthly": "เดือนแห่งการแสดงศักยภาพ! คุณมีเครื่องมือและไอเดียครบครันในการผลักดันเป้าหมาย การเงินมีช่องทางหารายได้ใหม่ๆ ความรักมีเสน่ห์ดึงดูดใจเป็นพิเศษ", "yearly": "ปีแห่งความสำเร็จที่คุณสร้างได้ด้วยสองมือ โครงการต่างๆ ที่ตั้งใจไว้จะผลิดอกออกผล มีโอกาสสร้างชื่อเสียงหรือเปิดธุรกิจส่วนตัว", "advice": "เชื่อมั่นในความสามารถของตัวเอง คุณมีพลังที่จะเปลี่ยนแปลงทุกสิ่ง", "lucky_color": "ม่วงไลแลค & ทองอ่อน", "lucky_number": "1, 8"}, {"id": 2, "name_th": "The High Priestess (ราชินีพระจันทร์)", "name_en": "The High Priestess", "symbol": "🌙📖", "color": "#C4B5FD", "keywords": "สัญชาตญาณ, ความลับ, เซ้นส์แรง, ความสงบนิ่ง", "daily": "วันนี้ควรฟังเสียงกระซิบจากหัวใจและสัญชาตญาณ มีลางสังหรณ์ที่แม่นยำ เหมาะกับการทำงานที่ใช้สมาธิ ความคิดลึกซึ้ง และการค้นคว้า", "monthly": "เดือนนี้เรื่องเซ้นส์และความรู้สึกจะเด่นมาก ระวังความสัมพันธ์ที่ยังไม่ชัดเจนหรือความรู้สึกซับซ้อน การงานควรเก็บข้อมูลเงียบๆ อย่าเพิ่งเปิดเผยไพ่ในมือทั้งหมด", "yearly": "ปีแห่งการเติบโตทางจิตวิญญาณและการเรียนรู้ขั้นสูง การศึกษาต่อหรือการพัฒนาทักษะเฉพาะทางจะประสบความสำเร็จอย่างงดงาม", "advice": "นิ่งสงบสยบความเคลื่อนไหว บางครั้งความเงียบคือคำตอบที่ดีที่สุด", "lucky_color": "ม่วงคราม & เงินมิลกี้", "lucky_number": "2, 7"}, {"id": 3, "name_th": "The Empress (จักรพรรดินีผู้อ่อนโยน)", "name_en": "The Empress", "symbol": "🌸👑", "color": "#F3E8FF", "keywords": "ความอุดมสมบูรณ์, ความรัก, ความสุข, การดูแลเอาใจใส่", "daily": "วันนี้เต็มไปด้วยความสุข ความอบอุ่น และความสะดวกสบาย ผู้ใหญ่ให้ความเมตตา การเงินมีเกณฑ์ได้ของขวัญหรือเงินพิเศษ", "monthly": "เดือนนี้มีความอุดมสมบูรณ์รอบด้าน การเงินหมุนเวียนคล่องตัว งานศิลปะ/ครีเอทีฟรุ่งเรือง ความรักหวานชื่น มีเกณฑ์ตั้งครรภ์หรือมีสมาชิกใหม่", "yearly": "ปีแห่งความมั่งคั่งและความสุขสงบ การเงินเติบโตอย่างมั่นคง ธุรกิจเกี่ยวกับความงาม อาหาร หรือดูแลผู้อื่นจะทำกำไรได้ดีเลิศ", "advice": "ดูแลทะนุถนอมตัวเองและคนรอบข้างด้วยความรัก ความอ่อนโยนจะชนะทุกสิ่ง", "lucky_color": "ม่วงกลีบบัว & ชมพูพาสเทล", "lucky_number": "3, 6"}, {"id": 4, "name_th": "The Emperor (จักรพรรดิผู้มั่นคง)", "name_en": "The Emperor", "symbol": "🏰🛡️", "color": "#D8B4FE", "keywords": "ความเป็นผู้นำ, อำนาจ, ระเบียบวินัย, ความมั่นคง", "daily": "วันนี้ต้องใช้ความหนักแน่นและเหตุผลในการตัดสินใจ มีโอกาสได้คุมงานสำคัญหรือได้รับความไว้วางใจจากหัวหน้า", "monthly": "เดือนนี้การงานก้าวหน้าชัดเจน ได้เลื่อนขั้นปรับตำแหน่ง มีโครงสร้างทางการเงินที่มั่นคงขึ้น ต้องมีวินัยในการบริหารเวลาและคน", "yearly": "ปีแห่งการสร้างรากฐานที่มั่นคงแข็งแกร่ง ทั้งหน้าที่การงาน ธุรกิจ หรือทรัพย์สินชิ้นใหญ่ เช่น บ้านหรือที่ดิน", "advice": "วางแผนให้รอบคอบและลงมือทำอย่างมีวินัย ความสม่ำเสมอคือกุญแจสู่ความสำเร็จ", "lucky_color": "ม่วงเข้ม & แดงเบอร์กันดี", "lucky_number": "4, 10"}, {"id": 5, "name_th": "The Hierophant (ผู้ทรงปัญญา)", "name_en": "The Hierophant", "symbol": "🗝️🕊️", "color": "#EDE9FE", "keywords": "คุณธรรม, ที่ปรึกษา, การเรียนรู้, ความช่วยเหลือจากผู้ใหญ่", "daily": "วันนี้หากมีปัญหาจะได้ผู้ใหญ่หรือกัลยาณมิตรคอยชี้แนะทางออก เหมาะกับการทำบุญ ไหว้พระ หรือศึกษาหาความรู้เพิ่มเติม", "monthly": "เดือนนี้จะได้รับการสนับสนุนจากองค์กรหรือผู้มีบารมี ความรักเน้นความถูกต้องตามขนบธรรมเนียม การเงินปลอดภัยไม่เสี่ยง", "yearly": "ปีแห่งความก้าวหน้าทางวิชาการ การสอบแข่งขัน หรือการได้รับใบรับรอง/เลื่อนวิทยฐานะ มีเกณฑ์แต่งงานตามประเพณี", "advice": "ยึดมั่นในความซื่อสัตย์สุจริต และพร้อมเปิดรับคำแนะนำจากผู้มีประสบการณ์", "lucky_color": "ม่วงดอกลาเวนเดอร์ & ครีม", "lucky_number": "5, 14"}, {"id": 6, "name_th": "The Lovers (คู่รักแห่งพรหมลิขิต)", "name_en": "The Lovers", "symbol": "💖🏹", "color": "#FCE7F3", "keywords": "ความรัก, ทางเลือก, ความผูกพัน, ความลงตัว", "daily": "วันนี้หัวใจเบิกบาน มีเสน่ห์แรง คนโสดอาจมีคนทักมาคุย คนมีคู่หวานเป็นพิเศษ อาจมีเรื่องต้องเลือกซึ่งให้เลือกสิ่งที่ตรงใจที่สุด", "monthly": "เดือนแห่งความสัมพันธ์ที่ดีเลิศ หุ้นส่วนธุรกิจทำงานเข้าขากันดี การเงินได้มาจากงานร่วมมือ ความรักมีเกณฑ์พัฒนาไปอีกขั้น", "yearly": "ปีแห่งการตัดสินใจครั้งสำคัญในชีวิต ความรักมีเกณฑ์เจอเนื้อคู่หรือสละโสด การร่วมทุนธุรกิจจะนำพาความเจริญก้าวหน้า", "advice": "เลือกทางที่หัวใจและมโนธรรมสอดคล้องกัน ความจริงใจจะนำพาความสุข", "lucky_color": "ม่วงพาสเทล & ชมพูกุหลาบ", "lucky_number": "6, 15"}, {"id": 7, "name_th": "The Chariot (อัศวินผู้มุ่งมั่น)", "name_en": "The Chariot", "symbol": "🎠⚔️", "color": "#C084FC", "keywords": "ชัยชนะ, การต่อสู้, ความมุ่งมั่น, การเดินทาง", "daily": "วันนี้ต้องลุยและใช้ความอดทนสูง มีอุปสรรคเข้ามาทดสอบแต่คุณจะผ่านมันไปได้ด้วยความมุ่งมั่น มีเกณฑ์เดินทางไกลหรือติดต่อต่างถิ่น", "monthly": "เดือนแห่งการฝ่าฟันเพื่อคว้าชัยชนะ การงานมีการแข่งขันสูงแต่คุณจะยืนหนึ่ง การเงินได้มาจากน้ำพักน้ำแรง ความรักอาจต้องปรับความเข้าใจเรื่องระยะทาง", "yearly": "ปีแห่งการก้าวกระโดดผ่านความพยายาม มีโอกาสได้เดินทางต่างประเทศ ซื้อยานพาหนะใหม่ หรือประสบความสำเร็จในเป้าหมายใหญ่", "advice": "ควบคุมอารมณ์และโฟกัสที่เป้าหมาย อย่าปล่อยให้สิ่งรบกวนทำให้ไขว้เขว", "lucky_color": "ม่วงเข้ม & เทาควันบุหรี่", "lucky_number": "7, 16"}, {"id": 8, "name_th": "Strength (หญิงแกร่งผู้เปี่ยมเมตตา)", "name_en": "Strength", "symbol": "🦁💐", "color": "#E9D5FF", "keywords": "ความอดทน, เมตตาธรรม, การควบคุมตนเอง, พลังภายใน", "daily": "วันนี้ความนุ่มนวลและสติจะช่วยแก้ไขสถานการณ์ตึงเครียดได้ดีที่สุด งานยากๆ จะคลี่คลายเพราะความอดทนของคุณ", "monthly": "เดือนนี้คุณจะสามารถจัดการกับปัญหาหรือบุคคลที่รับมือยากได้สำเร็จ การเงินบริหารจัดการได้ดี สุขภาพร่างกายและจิตใจแข็งแกร่งขึ้น", "yearly": "ปีแห่งชัยชนะเหนือความยากลำบาก คุณจะค้นพบพลังที่ซ่อนอยู่ในตัวเองและได้รับการยอมรับนับถือจากคนในวงกว้าง", "advice": "ใช้ความอ่อนโยนสยบความแข็งกร้าว เมตตาและความอดทนคืออาวุธที่ทรงพลังที่สุด", "lucky_color": "ม่วงไลแลค & ส้มพาสเทล", "lucky_number": "8, 11"}, {"id": 9, "name_th": "The Hermit (นักแสวงหาความจริง)", "name_en": "The Hermit", "symbol": "🏮🏔️", "color": "#DDD6FE", "keywords": "การใคร่ครวญ, การค้นหาตนเอง, ความสันโดษ, สติปัญญา", "daily": "วันนี้อยากอยู่เงียบๆ คนเดียวเพื่อทบทวนสิ่งต่างๆ เหมาะกับการทำงานวิจัย การวางแผน หรืออ่านหนังสือ", "monthly": "เดือนแห่งการพักผ่อนเพื่อเติมพลังใจและการหาความรู้เพิ่มเติม ไม่ควรใจร้อนในเรื่องการลงทุน ความรักอาจห่างกันสักนิดเพื่อคิดทบทวน", "yearly": "ปีแห่งการตกผลึกทางความคิดและการเป็นผู้เชี่ยวชาญในสายงาน การศึกษาหาความรู้ระดับสูงจะสำเร็จราบรื่น", "advice": "ให้เวลากับตัวเอง ค้นหาคำตอบจากภายในมากกว่าแสวงหาการยอมรับจากภายนอก", "lucky_color": "ม่วงหม่น & เขียวเซจ", "lucky_number": "9, 18"}, {"id": 10, "name_th": "Wheel of Fortune (กงล้อแห่งโชคชะตา)", "name_en": "Wheel of Fortune", "symbol": "🎡⭐", "color": "#F3E8FF", "keywords": "โชคลาภ, จุดเปลี่ยนของชีวิต, จังหวะเวลา, สิ่งดีๆ กำลังหมุนมา", "daily": "วันนี้มีโชคลาภลอยหรือข่าวดีไม่คาดฝัน จังหวะชีวิตกำลังเปลี่ยนไปในทางที่ดี มีเรื่องบังเอิญที่น่าประทับใจเกิดขึ้น", "monthly": "เดือนแห่งจุดเปลี่ยนบวก! ปัญหาที่คาราคาซังจะเริ่มคลี่คลาย การเงินหมุนเวียนดีขึ้นอย่างเห็นได้ชัด มีโอกาสด้านการงานใหม่ๆ เข้ามา", "yearly": "ปีแห่งโชคใหญ่และจังหวะทอง ชีวิตพลิกฟื้นสู่ความเจริญรุ่งเรือง เหมาะกับการลงทุนและริเริ่มโครงการใหม่ๆ", "advice": "เมื่อโอกาสมาถึงจงรีบคว้าไว้ และปรับตัวให้เข้ากับการเปลี่ยนแปลงอย่างรวดเร็ว", "lucky_color": "ม่วงพาสเทล & ทองประกาย", "lucky_number": "10, 21"}, {"id": 11, "name_th": "Justice (ตาชั่งแห่งความยุติธรรม)", "name_en": "Justice", "symbol": "⚖️📜", "color": "#EDE9FE", "keywords": "ความยุติธรรม, ความจริง, การตัดสินใจอย่างเที่ยงธรรม, เอกสารสัญญา", "daily": "วันนี้ต้องพิจารณาทุกอย่างตามความจริงและหลักฐาน การเซ็นเอกสารหรือสัญญาจะผ่านไปด้วยดีหากรอบคอบ", "monthly": "เดือนนี้เรื่องเอกสาร กฎหมาย หรือการตกลงสัญญาจะมีความคืบหน้า สิ่งที่เคยทำไว้ในอดีตจะส่งผลตอบแทนที่ยุติธรรม", "yearly": "ปีแห่งความโปร่งใสและการได้รับความชอบธรรม คดีความหรือข้อพิพาทจะจบลงด้วยดี การงานได้รับผลตอบแทนคุ้มค่าความเหนื่อย", "advice": "ทำสิ่งที่ถูกต้องเสมอ ชั่งน้ำหนักข้อดีข้อเสียอย่างมีสติก่อนตัดสินใจ", "lucky_color": "ม่วงลาเวนเดอร์ & น้ำเงินฟ้า", "lucky_number": "11, 22"}, {"id": 12, "name_th": "The Hanged Man (การมองต่างมุม)", "name_en": "The Hanged Man", "symbol": "🤸💡", "color": "#E9D5FF", "keywords": "การยอมสละ, การรอคอย, มุมมองใหม่, การปล่อยวาง", "daily": "วันนี้อาจมีเรื่องที่ต้องรอคอย หรือแผนการอาจหยุดชะงักชั่วคราว ลองมองปัญหาในมุมกลับ จะพบทางออกที่คาดไม่ถึง", "monthly": "เดือนนี้การงานอาจชะลอตัว เป็นช่วงเวลาที่ดีในการทบทวนแผนและปรับปรุงตัวเอง อย่าเพิ่งเร่งรีบกับการตัดสินใจใหญ่ๆ", "yearly": "ปีแห่งการปรับเปลี่ยนกระบวนทัศน์ การเสียสละบางสิ่งจะนำมาซึ่งปัญญาและความสำเร็จที่ยิ่งใหญ่กว่าในอนาคต", "advice": "บางครั้งการหยุดนิ่งและยอมปล่อยวาง คือการเดินหน้าที่ฉลาดที่สุด", "lucky_color": "ม่วงพาสเทล & ฟ้าเทอร์ควอยซ์", "lucky_number": "12, 3"}, {"id": 13, "name_th": "Death (การสิ้นสุดเพื่อเริ่มต้นใหม่)", "name_en": "Death", "symbol": "🦋🌅", "color": "#D8B4FE", "keywords": "การเปลี่ยนแปลงครั้งใหญ่, การผลัดใบ, จบสิ้นสิ่งเก่า, รุ่งอรุณใหม่", "daily": "วันนี้เหมาะกับการเคลียร์ของเก่า ทิ้งสิ่งที่ไม่จำเป็น หรือตัดความกังวลทิ้งไป เพื่อเปิดรับโอกาสใหม่ที่สดใสกว่า", "monthly": "เดือนแห่งการปฏิรูป! สิ่งที่หมดอายุขัยในชีวิตจะจบลง (เช่น งานที่ไม่ใช่ หรือความสัมพันธ์ที่เป็นพิษ) เพื่อให้ชีวิตได้เกิดใหม่ในเวอร์ชันที่ดีกว่า", "yearly": "ปีแห่งการเปลี่ยนผ่านครั้งสำคัญในชีวิต การย้ายบ้าน ย้ายงาน หรือปรับไลฟ์สไตล์ใหม่หมดจด จะนำพาชีวิตไปสู่ความสุขที่แท้จริง", "advice": "อย่ากลัวการจากลา เพราะไม่มีสิ่งใหม่ใดเกิดขึ้นได้หากไม่สละสิ่งเก่า", "lucky_color": "ม่วงม่วงกล้วยไม้ & ขาวบริสุทธิ์", "lucky_number": "13, 4"}, {"id": 14, "name_th": "Temperance (ความสมดุลและการผสมผสาน)", "name_en": "Temperance", "symbol": "🕊️🌊", "color": "#C4B5FD", "keywords": "ความพอดี, การประนีประนอม, การปรับตัว, การเยียวยา", "daily": "วันนี้บรรยากาศกลมกลืนดี การติดต่อสื่อสารและการประสานงานระหว่างฝ่ายต่างๆ ราบรื่น สุขภาพฟื้นตัวดีขึ้น", "monthly": "เดือนแห่งการเยียวยาและสร้างความสมดุล การเงินเริ่มลงตัวขึ้นจากการบริหารที่ดี ความสัมพันธ์ราบรื่นและเข้าใจกันมากขึ้น", "yearly": "ปีแห่งความสงบสุขและความพอดี การงานสามารถผสมผสานทักษะหลากหลายได้อย่างลงตัว มีสุขภาพจิตและกายที่สมบูรณ์", "advice": "เดินทางสายกลาง ปรับตัวให้ยืดหยุ่นเหมือนสายน้ำที่ไหลผ่านทุกอุปสรรค", "lucky_color": "ม่วงพาสเทล & เขียวมิ้นต์", "lucky_number": "14, 5"}, {"id": 15, "name_th": "The Devil (เสน่ห์และกิเลสเย้ายวน)", "name_en": "The Devil", "symbol": "🎭⛓️", "color": "#A855F7", "keywords": "ความลุ่มหลง, กิเลส, พันธนาการ, เสน่ห์อันน่าหลงใหล", "daily": "วันนี้ระวังการช้อปปิ้งตามใจตัวเอง หรือการติดกับดักความขี้เกียจ มีเสน่ห์ต่อเพศตรงข้ามอย่างรุนแรงแต่อาจมาพร้อมความวุ่นวาย", "monthly": "เดือนนี้ระวังเรื่องการเงินและการลงทุนที่มีความเสี่ยงสูง อย่าไว้ใจใครง่ายเกินไปเรื่องผลประโยชน์ ความรักระวังรักสามเส้าหรือความหึงหวง", "yearly": "ปีที่ต้องมีสติกำกับใจอย่างเคร่งครัด รู้จักปลดล็อกตัวเองจากพันธนาการทางใจหรือหนี้สินที่ไม่จำเป็น", "advice": "ตระหนักรู้ในกิเลสของตนเอง โซ่ตรวนที่ผูกมัดเราไว้ แท้จริงแล้วเราสามารถปลดมันออกได้ด้วยตนเอง", "lucky_color": "ม่วงเบอร์รี่ & ดำชาโคล", "lucky_number": "15, 6"}, {"id": 16, "name_th": "The Tower (สายฟ้าทลายกำแพง)", "name_en": "The Tower", "symbol": "⚡🏰", "color": "#9333EA", "keywords": "เหตุการณ์ฉับพลัน, การตื่นรู้, ปลดล็อกสิ่งลวงตา, ฟ้าหลังฝน", "daily": "วันนี้อาจมีเรื่องด่วนหรือแผนงานเปลี่ยนกะทันหัน อย่าเพิ่งตระหนก มีสติรับมือ แล้วจะพบว่ามันช่วยขจัดปัญหาหมักหมมได้เร็วขึ้น", "monthly": "เดือนแห่งการล้างไพ่ สิ่งที่สร้างไว้บนรากฐานที่ไม่แข็งแรงจะพังลงเพื่อให้คุณได้สร้างสิ่งใหม่ที่มั่นคงกว่าเดิม การเงินควรมีเงินสำรอง", "yearly": "ปีที่ฟ้าผ่าเปิดทางให้ชีวิตใหม่ การเปลี่ยนแปลงที่เกิดขึ้นแม้อาจทำให้ตกใจในตอนแรก แต่จะนำพาอิสรภาพที่แท้จริงมาให้ในที่สุด", "advice": "ตั้งสติให้มั่นคง ยอมรับความจริงอย่างกล้าหาญ ฟ้าหลังฝนย่อมสดใสเสมอ", "lucky_color": "ม่วงเข้ม & ส้มแสด", "lucky_number": "16, 7"}, {"id": 17, "name_th": "The Star (ดวงดาวแห่งความหวัง)", "name_en": "The Star", "symbol": "⭐✨", "color": "#E9D5FF", "keywords": "ความหวัง, แรงบันดาลใจ, การฟื้นฟู, อนาคตที่สดใส", "daily": "วันนี้ใจฟู รู้สึกมีความหวังและแรงบันดาลใจเต็มเปี่ยม สิ่งดีๆ กำลังเรียงรายเข้ามาหาคุณ เป็นวันที่เหมาะกับการขอพรหรือตั้งเป้าหมาย", "monthly": "เดือนแห่งความสุขและความสงบใจ สุขภาพได้รับการฟื้นฟู มีชื่อเสียงและผลงานเป็นที่ประจักษ์ ความรักมีความเข้าใจอันลึกซึ้ง", "yearly": "ปีแห่งแสงสว่างและการบรรลุความฝัน โครงการใหญ่ๆ ที่รอคอยจะประสบความสำเร็จงดงาม เป็นปีที่มีความสุขทางใจอย่างยิ่ง", "advice": "มองไปยังดวงดาวด้วยความศรัทธา ความหวังและความคิดบวกจะดึงดูดสิ่งดีๆ เข้ามาในชีวิต", "lucky_color": "ม่วงมิลกี้ & ฟ้าพาสเทล", "lucky_number": "17, 8"}, {"id": 18, "name_th": "The Moon (จันทร์เสี้ยวแห่งจินตนาการ)", "name_en": "The Moon", "symbol": "🌙🐺", "color": "#C084FC", "keywords": "ความกังวล, จินตนาการ, ความไม่แน่นอน, ภาพลวงตา", "daily": "วันนี้จิตใจอาจฟุ้งซ่านหรือคิดมากเกินจริง อย่าเพิ่งตัดสินใจเรื่องสำคัญโดยอาศัยเพียงข่าวลือหรือความรู้สึกไม่มั่นคง", "monthly": "เดือนนี้เหมาะกับงานสร้างสรรค์ งานศิลปะ หรือจิตวิทยา แต่อย่าปล่อยให้อารมณ์ครอบงำในการตัดสินใจเรื่องการเงินและความรัก", "yearly": "ปีแห่งการเผชิญหน้ากับความกลัวในจิตใจ เมื่อก้าวข้ามความไม่มั่นใจในตนเองได้ คุณจะเติบโตอย่างน่าทึ่ง", "advice": "แยกแยะระหว่างความจริงกับจินตนาการ อย่ากลัวสิ่งที่ยังมาไม่ถึง ดึงสติอยู่กับปัจจุบัน", "lucky_color": "ม่วงลาเวนเดอร์ & เงินสว่าง", "lucky_number": "18, 9"}, {"id": 19, "name_th": "The Sun (พระอาทิตย์แห่งความเบิกบาน)", "name_en": "The Sun", "symbol": "☀️🌻", "color": "#F3E8FF", "keywords": "ความสุข, ความสำเร็จ, พลังชีวิต, ชัยชนะอันรุ่งโรจน์", "daily": "วันนี้เป็นวันที่ยอดเยี่ยมที่สุด! เต็มไปด้วยรอยยิ้ม ความอบอุ่น และความสำเร็จ ไม่ว่าจะทำอะไรก็มีคนชื่นชมยินดี", "monthly": "เดือนแห่งความรุ่งโรจน์สูงสุด! การงานสำเร็จทะลุเป้า การเงินมั่งคั่งมีกำไร ความรักสดใสเปิดเผย สุขภาพแข็งแรงเปี่ยมพลัง", "yearly": "ปีทองของคุณ! ประสบความสำเร็จในระดับที่น่าภาคภูมิใจ ความมืดมนทุกอย่างจะสลายไปด้วยแสงสว่างแห่งความสุข", "advice": "ส่งต่อรอยยิ้มและความอบอุ่นให้โลกรอบตัว ความสุขของคุณจะเปล่งประกายไร้ขีดจำกัด", "lucky_color": "ม่วงพาสเทล & เหลืองดอกทานตะวัน", "lucky_number": "19, 1"}, {"id": 20, "name_th": "Judgement (วันพิพากษาและการฟื้นคืน)", "name_en": "Judgement", "symbol": "🎺🕊️", "color": "#DDD6FE", "keywords": "การตื่นรู้, เสียงเรียกร้องจากหัวใจ, การเริ่มต้นใหม่ที่ดีกว่าเดิม, การปลดปล่อย", "daily": "วันนี้จะได้รับข่าวดีหรือการตอบรับที่รอคอยมานาน ถึงเวลาตัดสินใจครั้งสำคัญเพื่อปลดล็อกชีวิตสู่ก้าวต่อไป", "monthly": "เดือนแห่งการประเมินผลและการเลื่อนระดับ คุณจะได้รับการยอมรับในความดีและความสามารถ สิ่งที่ค้างคาใจจะถูกสะสางอย่างงดงาม", "yearly": "ปีแห่งการตื่นรู้และการตอบรับพันธกิจชีวิตครั้งใหม่ เป็นช่วงเวลาที่คุณจะได้เริ่มต้นชีวิตในเวอร์ชันที่ดีที่สุดของตัวเอง", "advice": "ฟังเสียงเรียกร้องที่แท้จริงของจิตวิญญาณ ให้อภัยอดีตแล้วก้าวไปข้างหน้าอย่างภาคภูมิ", "lucky_color": "ม่วงอ่อน & ขาวนวล", "lucky_number": "20, 2"}, {"id": 21, "name_th": "The World (โลกแห่งความสมบูรณ์แบบ)", "name_en": "The World", "symbol": "🌍👑", "color": "#EDE9FE", "keywords": "ความสำเร็จสมบูรณ์, อิสรภาพ, การบรรลุเป้าหมาย, การเดินทางรอบโลก", "daily": "วันนี้งานต่างๆ ปิดจบได้อย่างงดงาม ไร้กังวล รู้สึกพึงพอใจและมีความสุขกับสิ่งที่เป็นอยู่", "monthly": "เดือนแห่งการฉลองความสำเร็จ! โครงการระยะยาวเสร็จสิ้นตามเป้าหมาย มีเกณฑ์เดินทางไกลต่างประเทศหรือติดต่อกับชาวต่างชาติอย่างราบรื่น", "yearly": "ปีแห่งการบรรลุเป้าหมายสูงสุดในชีวิต คุณจะรู้สึกเติมเต็ม ครบถ้วน ทั้งการงาน การเงิน ความรัก และความสุขสงบในจิตใจ", "advice": "ร่วมยินดีและภูมิใจในทุกย่างก้าวที่คุณฟันฝ่ามา โลกทั้งใบพร้อมต้อนรับคุณด้วยความรัก", "lucky_color": "ม่วงพาสเทล & เขียวมรกตอ่อน", "lucky_number": "21, 3"}];
+
+    // Application State
     const AppState = {
       currentMode: 'daily',
-      currentTopic: 'all', // 'all', 'work', 'finance', 'love'
       cardsCount: 1,
       selectedCards: [],
       revealedCount: 0,
-      coins: 0, // Default 0 Coins (Must top up for Monthly/Yearly)
+      coins: 0,
       lastFreeDrawDate: null,
       bankName: 'ธนาคารกรุงเทพ (BBL)',
-      bankAccNumber: '123-4-56789-0',
-      bankAccOwner: 'ตำหนักแม่หมอเหมียว',
+      bankAcc: '123-4-56789-0',
+      bankOwner: 'แม่หมอออร่า',
       customQrImage: null,
-      selectedTopupPkg: { coins: 10, thb: 10 }
+      selectedTopupPackage: { coins: 10, thb: 10 }
     };
 
+    // Costs configuration
     const ModeConfig = {
       daily: {
-        title: 'ดูดวงรายวัน: รับพลังงานประจำวันจากสัตว์พิทักษ์',
-        instruction: 'เลือกเรื่องที่ต้องการเน้น แล้วคลิกที่ไพ่ 1 ใบเพื่อเปิดดูคำพยากรณ์',
+        title: 'ดูดวงรายวัน: รับพลังงานประจำวัน',
+        instruction: 'คลิกที่ไพ่ 1 ใบเพื่อเปิดดูคำทำนายและคำแนะนำสำหรับวันนี้',
         cardsCount: 1,
-        slotTitles: ['พลังงานประจำวัน'],
-        cost: 10 // 10 baht / 10 coins (free 1st time per day)
+        slotTitles: ['พลังงานและโชคชะตาประจำวัน'],
+        cost: 10
       },
       monthly: {
-        title: 'ดูดวงรายเดือน: เจาะลึก 3 มิติแห่งชีวิต',
-        instruction: 'เลือกเรื่องที่ต้องการเน้น แล้วคลิกเปิดไพ่ 3 ใบ',
+        title: 'ดูดวงรายเดือน: ภาพรวมและทิศทาง 3 มิติ',
+        instruction: 'คลิกเลือกไพ่ทีละใบให้ครบ 3 ใบ (1: อิทธิพลเด่น, 2: การงาน-การเงิน, 3: ความรัก-สุขภาพ)',
         cardsCount: 3,
-        slotTitles: ['อิทธิพลหลักประจำเดือน', 'การงาน & การเงิน', 'ความรัก & สุขภาพ'],
-        cost: 19 // 19 baht / 19 coins
+        slotTitles: ['ไพ่ใบที่ 1: อิทธิพลเด่นประจำเดือน', 'ไพ่ใบที่ 2: การงาน & การเงิน', 'ไพ่ใบที่ 3: ความรัก & สุขภาพ'],
+        cost: 19
       },
       yearly: {
-        title: 'ดูดวงรายปี: เข็มทิศ 4 ไตรมาสแห่งชีวิต',
-        instruction: 'เลือกเรื่องที่ต้องการเน้น แล้วคลิกเปิดไพ่ 4 ใบ ประจำ 4 ไตรมาสของปี',
+        title: 'ดูดวงรายปี: เข็มทิศ 4 ไตรมาสของชีวิต',
+        instruction: 'คลิกเลือกไพ่ให้ครบ 4 ใบ เพื่อดูภาพรวมและแนวทางความสำเร็จตลอดทั้งปี',
         cardsCount: 4,
-        slotTitles: ['ไตรมาสที่ 1 (ตัวตน & ก้าวแรก)', 'ไตรมาสที่ 2 (หน้าที่การงาน)', 'ไตรมาสที่ 3 (การเงิน & โชคลาภ)', 'ไตรมาสที่ 4 (ความรัก & ความสุข)'],
-        cost: 29 // 29 baht / 29 coins
+        slotTitles: ['ไตรมาสที่ 1 (ตัวตนและเป้าหมาย)', 'ไตรมาสที่ 2 (หน้าที่การงาน)', 'ไตรมาสที่ 3 (การเงินและโชคลาภ)', 'ไตรมาสที่ 4 (ความรักและสุขภาวะ)'],
+        cost: 29
       }
     };
 
-    // Synthesized Audio
-    class AudioFX {
+    // Web Audio API Synthesized Cute Sound FX (Zero External Assets needed!)
+    class SoundFX {
       static init() {
         if (!this.ctx) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
           this.ctx = new AudioContext();
         }
       }
+
       static playChime() {
         try {
           this.init();
@@ -1412,16 +1467,17 @@
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(659.25, now);
-          osc.frequency.exponentialRampToValueAtTime(1046.5, now + 0.15);
+          osc.frequency.setValueAtTime(587.33, now); // D5
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.15); // A5
           gain.gain.setValueAtTime(0.2, now);
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
           osc.connect(gain);
           gain.connect(this.ctx.destination);
           osc.start(now);
           osc.stop(now + 0.45);
-        } catch(e) {}
+        } catch (e) {}
       }
+
       static playFlip() {
         try {
           this.init();
@@ -1429,25 +1485,27 @@
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = 'triangle';
-          osc.frequency.setValueAtTime(360, now);
-          osc.frequency.exponentialRampToValueAtTime(720, now + 0.1);
+          osc.frequency.setValueAtTime(320, now);
+          osc.frequency.exponentialRampToValueAtTime(640, now + 0.1);
           gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
           osc.connect(gain);
           gain.connect(this.ctx.destination);
           osc.start(now);
-          osc.stop(now + 0.22);
-        } catch(e) {}
+          osc.stop(now + 0.2);
+        } catch (e) {}
       }
+
       static playSuccess() {
         try {
           this.init();
-          [523.25, 659.25, 783.99, 1046.50].forEach((f, i) => {
-            const now = this.ctx.currentTime + (i * 0.08);
+          const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+          notes.forEach((freq, idx) => {
+            const now = this.ctx.currentTime + (idx * 0.08);
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(f, now);
+            osc.frequency.setValueAtTime(freq, now);
             gain.gain.setValueAtTime(0.18, now);
             gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
             osc.connect(gain);
@@ -1455,99 +1513,111 @@
             osc.start(now);
             osc.stop(now + 0.35);
           });
-        } catch(e) {}
+        } catch (e) {}
       }
     }
 
-    function loadData() {
-      const c = localStorage.getItem('meow_coins');
-      if (c !== null) AppState.coins = parseInt(c, 10);
+    // LocalStorage Helper
+    function loadUserData() {
+      const savedCoins = localStorage.getItem('aura_coins');
+      if (savedCoins !== null) AppState.coins = parseInt(savedCoins, 10);
 
-      AppState.lastFreeDrawDate = localStorage.getItem('meow_last_draw');
+      AppState.lastFreeDrawDate = localStorage.getItem('aura_last_free_draw');
 
-      const bName = localStorage.getItem('meow_bank_name');
+      const bName = localStorage.getItem('aura_bank_name');
       if (bName) AppState.bankName = bName;
 
-      const bAcc = localStorage.getItem('meow_bank_acc');
-      if (bAcc) AppState.bankAccNumber = bAcc;
+      const bAcc = localStorage.getItem('aura_bank_acc');
+      if (bAcc) AppState.bankAcc = bAcc;
 
-      const bOwner = localStorage.getItem('meow_bank_owner');
-      if (bOwner) AppState.bankAccOwner = bOwner;
+      const bOwner = localStorage.getItem('aura_bank_owner');
+      if (bOwner) AppState.bankOwner = bOwner;
 
-      const customQr = localStorage.getItem('meow_custom_qr');
-      if (customQr) AppState.customQrImage = customQr;
+      const qr = localStorage.getItem('aura_custom_qr');
+      if (qr) AppState.customQrImage = qr;
 
       updateUI();
     }
 
-    function saveData() {
-      localStorage.setItem('meow_coins', AppState.coins);
+    function saveUserData() {
+      localStorage.setItem('aura_coins', AppState.coins);
       if (AppState.lastFreeDrawDate) {
-        localStorage.setItem('meow_last_draw', AppState.lastFreeDrawDate);
+        localStorage.setItem('aura_last_free_draw', AppState.lastFreeDrawDate);
       }
-      localStorage.setItem('meow_bank_name', AppState.bankName);
-      localStorage.setItem('meow_bank_acc', AppState.bankAccNumber);
-      localStorage.setItem('meow_bank_owner', AppState.bankAccOwner);
+      localStorage.setItem('aura_bank_name', AppState.bankName);
+      localStorage.setItem('aura_bank_acc', AppState.bankAcc);
+      localStorage.setItem('aura_bank_owner', AppState.bankOwner);
       if (AppState.customQrImage) {
-        localStorage.setItem('meow_custom_qr', AppState.customQrImage);
+        localStorage.setItem('aura_custom_qr', AppState.customQrImage);
       } else {
-        localStorage.removeItem('meow_custom_qr');
+        localStorage.removeItem('aura_custom_qr');
       }
       updateUI();
     }
 
-    function getTodayStr() {
+    function getTodayString() {
       const d = new Date();
       return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     }
 
-    function isFreeAvailable() {
-      return AppState.lastFreeDrawDate !== getTodayStr();
+    function isFreeDrawAvailableToday() {
+      const today = getTodayString();
+      return AppState.lastFreeDrawDate !== today;
     }
 
     function updateUI() {
       document.getElementById('userCoins').textContent = AppState.coins;
-      const userBahtElem = document.getElementById('userBaht');
-      if (userBahtElem) userBahtElem.textContent = AppState.coins;
-
-      const isFree = isFreeAvailable();
+      const isFree = isFreeDrawAvailableToday();
       const quotaNotice = document.getElementById('freeQuotaNotice');
       const statusBadge = document.getElementById('freeStatusBadge');
       const tabFreeBadge = document.getElementById('tabFreeBadge');
       const dailyCostText = document.getElementById('dailyCostText');
 
       if (isFree) {
-        quotaNotice.textContent = 'วันนี้คุณมีสิทธิ์กรงเล็บวิเศษเปิดไพ่รายวันฟรี 1 ครั้ง 🐾✨';
+        quotaNotice.textContent = 'วันนี้คุณมีสิทธิ์เปิดไพ่ดูดวงรายวันฟรี 1 ครั้ง ✨';
         statusBadge.innerHTML = '<span class="badge-status badge-ready">พร้อมใช้งานฟรี 1 ครั้ง</span>';
         tabFreeBadge.style.display = 'inline-block';
-        dailyCostText.textContent = 'สิทธิ์ฟรีวันละ 1 ครั้ง (ครั้งต่อไป 10 บาท / 10 เหรียญ)';
+        dailyCostText.textContent = 'สิทธิ์ฟรี 1 ครั้ง (ครั้งต่อไป 10 เหรียญ)';
       } else {
-        quotaNotice.textContent = 'คุณใช้สิทธิ์ฟรีของวันนี้แล้ว (ครั้งต่อไป 10 บาท / 10 เหรียญ รีเซ็ตเที่ยงคืน)';
+        quotaNotice.textContent = 'คุณใช้สิทธิ์ฟรีของวันนี้แล้ว (เปิดครั้งต่อไปใช้ 10 เหรียญ รีเซ็ตเที่ยงคืน)';
         statusBadge.innerHTML = '<span class="badge-status badge-used">ใช้สิทธิ์แล้ววันนี้</span>';
         tabFreeBadge.style.display = 'none';
-        dailyCostText.textContent = 'ค่าบริการ 10 บาท / 10 เหรียญ (ฟรีวันพรุ่งนี้)';
+        dailyCostText.textContent = 'ค่าบริการ 10 เหรียญ (ฟรีวันพรุ่งนี้)';
       }
 
-      document.getElementById('settingBankName').value = AppState.bankName;
-      document.getElementById('settingBankAcc').value = AppState.bankAccNumber;
-      document.getElementById('settingBankOwner').value = AppState.bankAccOwner;
+      const userCoins = document.getElementById('userCoins');
+      if (userCoins) userCoins.textContent = `${AppState.coins} เหรียญ (${AppState.coins} บาท)`;
 
-      document.getElementById('topupAccNumDisplay').textContent = AppState.bankAccNumber;
-      document.getElementById('topupAccOwnerDisplay').textContent = `ชื่อบัญชี: ${AppState.bankAccOwner}`;
-      document.getElementById('donateAccNumDisplay').textContent = AppState.bankAccNumber;
-      document.getElementById('donateAccOwnerDisplay').textContent = `ชื่อบัญชี: ${AppState.bankAccOwner}`;
+      const sBank = document.getElementById('settingBankName');
+      if (sBank) sBank.value = AppState.bankName;
+      const sAcc = document.getElementById('settingBankAcc');
+      if (sAcc) sAcc.value = AppState.bankAcc;
+      const sOwner = document.getElementById('settingBankOwner');
+      if (sOwner) sOwner.value = AppState.bankOwner;
+
+      const tAcc = document.getElementById('topupAccNum');
+      if (tAcc) tAcc.textContent = AppState.bankAcc;
+      const tOwner = document.getElementById('topupAccOwner');
+      if (tOwner) tOwner.textContent = `ชื่อบัญชี: ${AppState.bankOwner}`;
+
+      const dAcc = document.getElementById('donateAccNum');
+      if (dAcc) dAcc.textContent = AppState.bankAcc;
+      const dOwner = document.getElementById('donateAccOwner');
+      if (dOwner) dOwner.textContent = `ชื่อบัญชี: ${AppState.bankOwner}`;
 
       if (AppState.customQrImage) {
-        document.getElementById('qrPreviewWrapper').style.display = 'block';
-        document.getElementById('qrPreviewImg').src = AppState.customQrImage;
+        const wrap = document.getElementById('qrPreviewWrap');
+        if (wrap) wrap.style.display = 'block';
+        const img = document.getElementById('qrPreview');
+        if (img) img.src = AppState.customQrImage;
       }
     }
 
-    // Switch Divination Mode
+    // Switch Reading Modes
     function switchMode(mode) {
       AppState.currentMode = mode;
-      document.querySelectorAll('.mode-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.mode === mode);
+      document.querySelectorAll('.mode-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.mode === mode);
       });
 
       const cfg = ModeConfig[mode];
@@ -1557,20 +1627,7 @@
       resetSpread();
     }
 
-    // Select Topic Filter (งาน, เงิน, ความรัก, ดูทั้งหมด)
-    function selectTopic(topic) {
-      AppState.currentTopic = topic;
-      document.querySelectorAll('.topic-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.topic === topic);
-      });
-
-      // If cards are already revealed, re-render results to match topic instantly!
-      if (AppState.selectedCards.length > 0 && AppState.revealedCount === AppState.cardsCount) {
-        renderInterpretation();
-      }
-    }
-
-    // Reset Spread
+    // Reset Card Spread
     function resetSpread() {
       const cfg = ModeConfig[AppState.currentMode];
       AppState.cardsCount = cfg.cardsCount;
@@ -1584,19 +1641,21 @@
         const slot = document.createElement('div');
         slot.className = 'card-slot';
         slot.dataset.index = i;
-        slot.onclick = () => onCardClick(i);
+        slot.onclick = () => onCardSlotClick(i);
 
         slot.innerHTML = `
-          <div class="slot-tag">${cfg.slotTitles[i]}</div>
+          <div class="card-slot-name">${cfg.slotTitles[i]}</div>
           <div class="card-inner" id="cardInner_${i}">
             <div class="card-back">
-              <div class="card-back-frame">
-                <div class="card-back-cat">🐱🌸</div>
-                <div class="card-back-text">MEOW TAROT</div>
-                <div class="card-back-sub">แตะเพื่อเปิด 🐾</div>
+              <div class="card-back-pattern">
+                <div class="card-back-emblem">✨</div>
+                <div class="card-back-text">AURA TAROT</div>
+                <div style="font-size: 13px; opacity: 0.85;">คลิกเพื่อเปิด</div>
               </div>
             </div>
-            <div class="card-front" id="cardFront_${i}"></div>
+            <div class="card-front" id="cardFront_${i}">
+              <!-- Content filled when drawn -->
+            </div>
           </div>
         `;
         spread.appendChild(slot);
@@ -1608,7 +1667,46 @@
       document.getElementById('btnReset').style.display = 'none';
     }
 
-    function onCardClick(index) {
+    // Start Divination Flow (Checks Quota & Coins)
+    function startDivination() {
+      const isDaily = AppState.currentMode === 'daily';
+      const isFree = isDaily && isFreeDrawAvailableToday();
+      const cost = isFree ? 0 : ModeConfig[AppState.currentMode].cost;
+
+      if (!isFree && AppState.coins < cost) {
+        SoundFX.playChime();
+        showToast('เหรียญของคุณไม่พอสำหรับการทำนายนี้ กรุณาเติมเหรียญก่อนนะคะ 🪙');
+        openTopupModal();
+        return;
+      }
+
+      // Deduct coins or consume daily free draw
+      if (isFree) {
+        AppState.lastFreeDrawDate = getTodayString();
+        showToast('ใช้สิทธิ์ดูดวงฟรีประจำวันเรียบร้อยแล้ว ✨');
+      } else {
+        AppState.coins -= cost;
+        showToast(`หักค่าบริการ ${cost} เหรียญเรียบร้อยแล้ว 🔮`);
+      }
+
+      saveUserData();
+
+      // Randomly pick cards without duplicates
+      const shuffledDeck = [...tarotDeck].sort(() => Math.random() - 0.5);
+      AppState.selectedCards = shuffledDeck.slice(0, AppState.cardsCount);
+
+      // Reveal all cards with cute cascade animation
+      AppState.selectedCards.forEach((card, idx) => {
+        setTimeout(() => {
+          revealCard(idx, card);
+        }, idx * 300);
+      });
+
+      document.getElementById('btnDraw').style.display = 'none';
+      document.getElementById('btnReset').style.display = 'inline-flex';
+    }
+
+    function onCardSlotClick(index) {
       const inner = document.getElementById(`cardInner_${index}`);
       if (inner.classList.contains('flipped')) return;
 
@@ -1617,490 +1715,179 @@
       }
     }
 
-    function startDivination() {
-      const isDaily = AppState.currentMode === 'daily';
-      const isFree = isDaily && isFreeAvailable();
-      const cost = isFree ? 0 : ModeConfig[AppState.currentMode].cost;
-
-      if (!isFree && AppState.coins < cost) {
-        AudioFX.playChime();
-        showToast(`เหรียญของคุณไม่พอ (ต้องใช้ ${cost} เหรียญ / ${cost} บาท) กรุณาเติมเหรียญก่อนนะงับ 🪙`);
-        openTopupModal();
-        return;
-      }
-
-      // Ensure card elements are created in DOM
-      if (!document.getElementById('cardInner_0')) {
-        resetSpread();
-      }
-
-      if (isFree) {
-        AppState.lastFreeDrawDate = getTodayStr();
-        showToast('ใช้สิทธิ์เปิดไพ่ฟรีประจำวันแล้ว เมี้ยว! 🐾');
-      } else {
-        AppState.coins -= cost;
-        showToast(`หักค่าบริการ ${cost} เหรียญ (${cost} บาท) เรียบร้อยแล้ว 🔮`);
-      }
-
-      saveData();
-
-      const shuffled = [...tarotDeck].sort(() => Math.random() - 0.5);
-      AppState.selectedCards = shuffled.slice(0, AppState.cardsCount);
-      AppState.revealedCount = 0;
-
-      AppState.selectedCards.forEach((card, idx) => {
-        setTimeout(() => {
-          revealCard(idx, card);
-        }, idx * 350);
-      });
-
-      const btnD = document.getElementById('btnDraw');
-      if (btnD) btnD.style.display = 'none';
-      const btnR = document.getElementById('btnReset');
-      if (btnR) btnR.style.display = 'inline-flex';
-    }
-
     function revealCard(index, card) {
       const cardFront = document.getElementById(`cardFront_${index}`);
       const cardInner = document.getElementById(`cardInner_${index}`);
-      if (!cardFront || !cardInner) {
-        console.error('Card element not found for index', index);
-        return;
-      }
 
       cardFront.innerHTML = `
-        <div class="card-front-content" style="background: ${card.bg_gradient}; padding: 0;">
-          <img src="images/card_${card.id}.jpg" class="card-real-img" alt="${card.name_en}" 
-               onerror="handleCardImgError(this, ${card.id})">
-          <div class="card-fallback-art" style="display: none; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: space-between; padding: 10px 6px;">
-            <span class="card-front-title-en">${card.name_en}</span>
-            <div class="card-front-art">${card.art_icon}</div>
-            <div class="card-front-title-th">${card.name_th}</div>
-          </div>
+        <div class="card-frame">
+          <span class="card-roman">${card.name_en.toUpperCase()}</span>
+          <div class="card-art">${card.symbol}</div>
+          <div class="card-label-th">${card.name_th}</div>
         </div>
       `;
 
       cardInner.classList.add('flipped');
-      AudioFX.playFlip();
+      SoundFX.playFlip();
 
       AppState.revealedCount++;
       if (AppState.revealedCount === AppState.cardsCount) {
         setTimeout(() => {
-          AudioFX.playSuccess();
+          SoundFX.playSuccess();
           renderInterpretation();
         }, 600);
       }
     }
 
-    function handleCardImgError(img, cardId) {
-      if (img.src.endsWith('.jpg')) {
-        img.src = `images/card_${cardId}.jpeg`;
-      } else if (img.src.endsWith('.jpeg')) {
-        img.src = `images/card_${cardId}.png`;
-      } else {
-        img.style.display = 'none';
-        if (img.nextElementSibling) {
-          img.nextElementSibling.style.display = 'flex';
-        }
-      }
-    }
-
-    // Render Interpretation according to Selected Topic (งาน, เงิน, ความรัก, ดูทั้งหมด)
-    // Render Interpretation according to Selected Mode & Topic Filter (No Duplicate/Conflicting Readings!)
-
-    function formatWorkHTML(card) {
-      return `
-        <div class="aspect-box" style="border-left: 4px solid #38bdf8; background: rgba(14, 50, 92, 0.45);">
-          <div class="aspect-title" style="color: #38bdf8; font-size: 17px;">💼 การงาน & การเรียน:</div>
-          <div style="margin-top: 8px;">
-            <div style="margin-bottom: 8px;">
-              <span style="background: #1e40af; color: #bfdbfe; padding: 2px 10px; border-radius: 6px; font-size: 13px; font-weight: 700;">🏢 คนทำงาน / มีงานทำ:</span>
-              <span style="font-size: 15px; margin-left: 6px; color: #f1f5f9;">${card.work_employed}</span>
-            </div>
-            <div>
-              <span style="background: #047857; color: #a7f3d0; padding: 2px 10px; border-radius: 6px; font-size: 13px; font-weight: 700;">🔍 คนว่างงาน / รองาน:</span>
-              <span style="font-size: 15px; margin-left: 6px; color: #f1f5f9;">${card.work_unemployed}</span>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function formatLoveHTML(card) {
-      return `
-        <div class="aspect-box" style="border-left: 4px solid #f472b6; background: rgba(90, 20, 60, 0.45);">
-          <div class="aspect-title" style="color: #f472b6; font-size: 17px;">💖 ความรัก & ความสัมพันธ์:</div>
-          <div style="margin-top: 8px;">
-            <div style="margin-bottom: 8px;">
-              <span style="background: #9d174d; color: #fbcfe8; padding: 2px 10px; border-radius: 6px; font-size: 13px; font-weight: 700;">🌸 คนโสด:</span>
-              <span style="font-size: 15px; margin-left: 6px; color: #fdf2f8;">${card.love_single}</span>
-            </div>
-            <div style="margin-bottom: 8px;">
-              <span style="background: #be185d; color: #fce7f3; padding: 2px 10px; border-radius: 6px; font-size: 13px; font-weight: 700;">💌 คนแอบรัก / แอบชอบ / คนคุย:</span>
-              <span style="font-size: 15px; margin-left: 6px; color: #fdf2f8;">${card.love_crush}</span>
-            </div>
-            <div>
-              <span style="background: #86198f; color: #f5d0fe; padding: 2px 10px; border-radius: 6px; font-size: 13px; font-weight: 700;">👩‍❤️‍👨 คนมีคู่:</span>
-              <span style="font-size: 15px; margin-left: 6px; color: #fdf2f8;">${card.love_couple}</span>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    // Render Interpretation according to Selected Mode & Topic Filter
+    // Render Full Fortune Interpretation
     function renderInterpretation() {
-      const resSec = document.getElementById('resultSection');
-      resSec.innerHTML = '';
-      resSec.style.display = 'block';
+      const resultSec = document.getElementById('resultSection');
+      resultSec.innerHTML = '';
+      resultSec.style.display = 'block';
 
-      const mode = AppState.currentMode;
-      const topic = AppState.currentTopic;
-      const cfg = ModeConfig[mode];
+      const modeCfg = ModeConfig[AppState.currentMode];
 
-      let headerText = '';
-      if (mode === 'daily') {
-        if (topic === 'all') headerText = '🔮 คำทำนายรายวัน: ครบทุกมิติ (ภาพรวม งาน เงิน รัก)';
-        else if (topic === 'work') headerText = '💼 เจาะลึกดวงการงานประจำวัน (คนทำงาน & คนว่างงาน)';
-        else if (topic === 'finance') headerText = '💰 เจาะลึกดวงการเงิน & โชคลาภประจำวัน';
-        else if (topic === 'love') headerText = '💖 เจาะลึกดวงความรักประจำวัน (คนโสด & คนมีคู่)';
-      } else if (mode === 'monthly') {
-        if (topic === 'all') headerText = '🌙 คำทำนายรายเดือน: แบ่งตาม 3 หน้าที่ของไพ่ (ภาพรวม / การงาน-การเงิน / ความรัก)';
-        else if (topic === 'work') headerText = '💼 เจาะลึกดวงการงานประจำเดือน (คนทำงาน & คนว่างงาน)';
-        else if (topic === 'finance') headerText = '💰 เจาะลึกดวงการเงินประจำเดือน (ไพ่ใบที่ 2)';
-        else if (topic === 'love') headerText = '💖 เจาะลึกดวงความรักประจำเดือน (คนโสด & คนมีคู่)';
-      } else if (mode === 'yearly') {
-        if (topic === 'all') headerText = '🪐 คำทำนายรายปี: 4 ไตรมาสแห่งชีวิต (ก้าวแรก / การงาน / การเงิน / ความรัก)';
-        else if (topic === 'work') headerText = '💼 เจาะลึกดวงการงานประจำปี (ไตรมาสที่ 2)';
-        else if (topic === 'finance') headerText = '💰 เจาะลึกดวงการเงินประจำปี (ไตรมาสที่ 3)';
-        else if (topic === 'love') headerText = '💖 เจาะลึกดวงความรักประจำปี (ไตรมาสที่ 4)';
-      }
-
-      const banner = document.createElement('div');
-      banner.style.textAlign = 'center';
-      banner.style.marginBottom = '20px';
-      banner.innerHTML = `
-        <div style="display: inline-flex; align-items: center; gap: 8px; background: #281447; border: 1.5px solid #7e22ce; padding: 8px 22px; border-radius: 999px; font-weight: 700; color: #fde047; font-size: 16px;">
-          ${headerText}
+      const headerDiv = document.createElement('div');
+      headerDiv.style.textAlign = 'center';
+      headerDiv.style.marginBottom = '24px';
+      headerDiv.innerHTML = `
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--pastel-purple-100); padding: 6px 16px; border-radius: 999px; font-weight: 600; color: var(--primary-dark); font-size: 16px;">
+          🔮 คำทำนายไพ่ประจำตัวของคุณ (${modeCfg.title})
         </div>
       `;
-      resSec.appendChild(banner);
+      resultSec.appendChild(headerDiv);
 
       AppState.selectedCards.forEach((card, idx) => {
         const cardBox = document.createElement('div');
         cardBox.className = 'result-card';
 
-        let slotTitle = cfg.slotTitles[idx];
-        let bodyHTML = '';
-
-        if (mode === 'daily') {
-          if (topic === 'all') {
-            bodyHTML = `
-              <div class="aspect-box" style="border-left: 4px solid #a855f7;">
-                <div class="aspect-title" style="color: #c084fc;">🌟 ภาพรวมพลังงานวันนี้:</div>
-                <p style="font-size: 16px; margin-top: 4px;">${card.overall}</p>
-              </div>
-              ${formatWorkHTML(card)}
-              <div class="aspect-box" style="border-left: 4px solid #facc15; background: rgba(85, 60, 10, 0.45);">
-                <div class="aspect-title" style="color: #facc15; font-size: 17px;">💰 การเงิน & โชคลาภ:</div>
-                <p style="font-size: 16px; margin-top: 4px;">${card.finance}</p>
-              </div>
-              ${formatLoveHTML(card)}
-            `;
-          } else if (topic === 'work') {
-            bodyHTML = formatWorkHTML(card);
-          } else if (topic === 'finance') {
-            bodyHTML = `
-              <div class="aspect-box" style="border-left: 4px solid #facc15; background: rgba(85, 60, 10, 0.55);">
-                <div class="aspect-title" style="color: #facc15; font-size: 18px;">💰 คำทำนายด้านการเงินวันนี้:</div>
-                <p style="font-size: 16px; margin-top: 6px;">${card.finance}</p>
-              </div>
-            `;
-          } else if (topic === 'love') {
-            bodyHTML = formatLoveHTML(card);
-          }
-        } else if (mode === 'monthly') {
-          if (topic === 'all') {
-            if (idx === 0) {
-              bodyHTML = `
-                <div class="aspect-box" style="border-left: 4px solid #a855f7; background: rgba(46, 16, 101, 0.45);">
-                  <div class="aspect-title" style="color: #c084fc; font-size: 18px;">🌟 อิทธิพลเด่น & ภาพรวมชีวิตประจำเดือนนี้:</div>
-                  <p style="font-size: 16px; margin-top: 6px;">${card.overall}</p>
-                </div>
-              `;
-            } else if (idx === 1) {
-              bodyHTML = `
-                ${formatWorkHTML(card)}
-                <div class="aspect-box" style="border-left: 4px solid #facc15; background: rgba(85, 60, 10, 0.45); margin-top: 10px;">
-                  <div class="aspect-title" style="color: #facc15; font-size: 17px;">💰 ทิศทางการเงิน & โชคลาภประจำเดือน:</div>
-                  <p style="font-size: 16px; margin-top: 6px;">${card.finance}</p>
-                </div>
-              `;
-            } else if (idx === 2) {
-              bodyHTML = formatLoveHTML(card);
-            }
-          } else if (topic === 'work') {
-            if (idx === 1) {
-              slotTitle = '⭐ ไพ่หลักด้านการงานประจำเดือน';
-              bodyHTML = formatWorkHTML(card);
-            } else if (idx === 0) {
-              slotTitle = 'ไพ่สนับสนุน: พลังงานเสริมด้านงาน';
-              bodyHTML = `<p style="font-size: 15px; color: #e2d9f3;">ภาพรวมพลังงานของเดือนนี้ (${card.name_th}) ส่งผลให้บรรยากาศการทำงาน: ${card.overall}</p>`;
-            } else {
-              slotTitle = 'ไพ่ประกอบ: คำแนะนำการทำงาน';
-              bodyHTML = `<p style="font-size: 15px; color: #a89ec4;">คำแนะนำเสริมสำหรับการทำงาน: ${card.advice}</p>`;
-            }
-          } else if (topic === 'finance') {
-            if (idx === 1) {
-              slotTitle = '⭐ ไพ่หลักด้านการเงินประจำเดือน';
-              bodyHTML = `
-                <div class="aspect-box" style="border-left: 4px solid #facc15; background: rgba(85, 60, 10, 0.6);">
-                  <div class="aspect-title" style="color: #facc15; font-size: 18px;">💰 คำทำนายการเงิน & โชคลาภประจำเดือนของคุณ:</div>
-                  <p style="font-size: 16px; margin-top: 6px;">${card.finance}</p>
-                </div>
-              `;
-            } else if (idx === 0) {
-              slotTitle = 'ไพ่สนับสนุน: จังหวะโชคชะตา';
-              bodyHTML = `<p style="font-size: 15px; color: #e2d9f3;">จังหวะโชคลาภประจำเดือนนี้: ${card.overall}</p>`;
-            } else {
-              slotTitle = 'ไพ่ประกอบ: คำแนะนำการใช้จ่าย';
-              bodyHTML = `<p style="font-size: 15px; color: #a89ec4;">แนวทางการบริหารเงิน: ${card.advice}</p>`;
-            }
-          } else if (topic === 'love') {
-            if (idx === 2) {
-              slotTitle = '⭐ ไพ่หลักด้านความรักประจำเดือน';
-              bodyHTML = formatLoveHTML(card);
-            } else if (idx === 0) {
-              slotTitle = 'ไพ่สนับสนุน: พลังงานและอารมณ์';
-              bodyHTML = `<p style="font-size: 15px; color: #e2d9f3;">อิทธิพลต่อจิตใจและความรัก: ${card.overall}</p>`;
-            } else {
-              slotTitle = 'ไพ่ประกอบ: คำเตือนข้อคิด';
-              bodyHTML = `<p style="font-size: 15px; color: #a89ec4;">คำแนะนำสำหรับความสัมพันธ์: ${card.advice}</p>`;
-            }
-          }
-        } else if (mode === 'yearly') {
-          if (topic === 'all') {
-            if (idx === 0) {
-              bodyHTML = `
-                <div class="aspect-box" style="border-left: 4px solid #a855f7;">
-                  <div class="aspect-title" style="color: #c084fc;">🌸 ไตรมาสที่ 1 (ตัวตน & การเริ่มต้นใหม่):</div>
-                  <p style="font-size: 16px; margin-top: 4px;">${card.overall}</p>
-                </div>
-              `;
-            } else if (idx === 1) {
-              bodyHTML = formatWorkHTML(card);
-            } else if (idx === 2) {
-              bodyHTML = `
-                <div class="aspect-box" style="border-left: 4px solid #facc15;">
-                  <div class="aspect-title" style="color: #facc15;">💰 ไตรมาสที่ 3 (การเงิน ทรัพย์สิน & โชคลาภ):</div>
-                  <p style="font-size: 16px; margin-top: 4px;">${card.finance}</p>
-                </div>
-              `;
-            } else if (idx === 3) {
-              bodyHTML = formatLoveHTML(card);
-            }
-          } else if (topic === 'work') {
-            bodyHTML = formatWorkHTML(card);
-          } else if (topic === 'finance') {
-            bodyHTML = `
-              <div class="aspect-box" style="border-left: 4px solid #facc15;">
-                <div class="aspect-title" style="color: #facc15;">💰 การเงินในช่วง${slotTitle}:</div>
-                <p style="font-size: 16px; margin-top: 4px;">${card.finance}</p>
-              </div>
-            `;
-          } else if (topic === 'love') {
-            bodyHTML = formatLoveHTML(card);
-          }
-        }
+        let interpretationText = card.daily;
+        if (AppState.currentMode === 'monthly') interpretationText = card.monthly;
+        if (AppState.currentMode === 'yearly') interpretationText = card.yearly;
 
         cardBox.innerHTML = `
-          <div class="result-header">
-            <div class="result-name" style="display: flex; align-items: center; gap: 12px;">
-              <img src="images/card_${card.id}.jpg" style="width: 44px; height: 62px; object-fit: cover; border-radius: 6px; border: 1.5px solid #f472b6; box-shadow: 0 2px 8px rgba(244, 114, 182, 0.2);" onerror="this.style.display='none';">
-              <div>
-                <span style="font-size: 14px; color: #db2777; display: block;">${slotTitle}</span>
-                <span style="font-size: 20px;">${card.symbol} ${card.name_th}</span>
-              </div>
+          <div class="result-card-header">
+            <div class="result-title">
+              <span>${card.symbol}</span>
+              <span>${modeCfg.slotTitles[idx]}: ${card.name_th}</span>
             </div>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <span class="result-tag">สีมงคล: ${card.lucky_color}</span>
-              <span class="result-tag">เลขนำโชค: ${card.lucky_number}</span>
+            <div class="result-tags">
+              <span class="lucky-tag">สีมงคล: ${card.lucky_color}</span>
+              <span class="lucky-tag">เลขนำโชค: ${card.lucky_number}</span>
             </div>
           </div>
           <div class="result-body">
-            <div style="font-weight: 700; color: #c084fc; margin-bottom: 4px;">🐾 สัตว์พิทักษ์: ${card.animal}</div>
-            <div style="font-weight: 700; color: #f472b6; margin-bottom: 10px;">✨ พลังงานเด่น: ${card.keywords}</div>
-            ${bodyHTML}
-            <div class="result-advice">
-              💡 <strong>คำแนะนำจากแม่หมอเหมียว:</strong> ${card.advice}
+            <div class="result-section-title">✨ คีย์เวิร์ดพลังงาน:</div>
+            <p style="color: var(--primary-dark); font-weight: 500;">${card.keywords}</p>
+
+            <div class="result-section-title">🔮 รายละเอียดคำทำนาย:</div>
+            <p>${interpretationText}</p>
+
+            <div class="advice-box">
+              💡 <strong>คำแนะนำจากไพ่:</strong> ${card.advice}
             </div>
           </div>
         `;
-        resSec.appendChild(cardBox);
+        resultSec.appendChild(cardBox);
       });
 
-      const actions = document.createElement('div');
-      actions.style.display = 'flex';
-      actions.style.justifyContent = 'center';
-      actions.style.gap = '12px';
-      actions.style.marginTop = '24px';
-      actions.style.flexWrap = 'wrap';
-
-      actions.innerHTML = `
-        <button class="btn btn-outline" onclick="copyResult()">📋 คัดลอกคำทำนาย</button>
-        <button class="btn btn-primary" onclick="window.print()">🖨️ บันทึกรูป/พิมพ์คำทำนาย</button>
-        <button class="btn btn-pink" onclick="openDonateModal()">🍗 เลี้ยงขนมแม่หมอ</button>
+      // Share / Action button
+      const shareDiv = document.createElement('div');
+      shareDiv.className = 'result-footer-actions';
+      shareDiv.innerHTML = `
+        <button class="btn btn-outline" onclick="copyReadingSummary()">
+          <span>📋</span> คัดลอกคำทำนาย
+        </button>
+        <button class="btn btn-primary" onclick="window.print()">
+          <span>🖨️</span> บันทึกเป็นรูป/พิมพ์คำทำนาย
+        </button>
+        <button class="btn btn-accent" onclick="openDonateModal()">
+          <span>💖</span> ส่งโดเนตให้แม่หมอ
+        </button>
       `;
-      resSec.appendChild(actions);
-      resSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      resultSec.appendChild(shareDiv);
+
+      resultSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function copyResult() {
-      const topic = AppState.currentTopic;
-      let t = `✨ สรุปคำทำนาย MeowMagic Tarot 🐾 (${ModeConfig[AppState.currentMode].title}) ✨\n`;
-      AppState.selectedCards.forEach((c, idx) => {
-        t += `\n🎴 ${ModeConfig[AppState.currentMode].slotTitles[idx]}: ${c.name_th}\n`;
-        t += `• พลังงานเด่น: ${c.keywords}\n`;
-        if (topic === 'all') {
-          t += `• การงาน (คนทำงาน): ${c.work_employed}\n`;
-          t += `• การงาน (คนว่างงาน): ${c.work_unemployed}\n`;
-          t += `• การเงิน: ${c.finance}\n`;
-          t += `• ความรัก (คนโสด): ${c.love_single}\n`;
-          t += `• ความรัก (คนมีคู่): ${c.love_couple}\n`;
-        } else if (topic === 'work') {
-          t += `• การงาน (คนทำงาน): ${c.work_employed}\n`;
-          t += `• การงาน (คนว่างงาน): ${c.work_unemployed}\n`;
-        } else if (topic === 'finance') {
-          t += `• การเงิน: ${c.finance}\n`;
-        } else if (topic === 'love') {
-          t += `• ความรัก (คนโสด): ${c.love_single}\n`;
-          t += `• ความรัก (คนมีคู่): ${c.love_couple}\n`;
-        }
-        t += `• สีมงคล: ${c.lucky_color} | เลขมงคล: ${c.lucky_number}\n`;
-        t += `• คำแนะนำ: ${c.advice}\n`;
+    function copyReadingSummary() {
+      let text = `✨ สรุปคำทำนาย AuraPastel Tarot (${ModeConfig[AppState.currentMode].title}) ✨\n`;
+      AppState.selectedCards.forEach((card, idx) => {
+        text += `\n🎴 ${ModeConfig[AppState.currentMode].slotTitles[idx]}: ${card.name_th}\n`;
+        text += `• คีย์เวิร์ด: ${card.keywords}\n`;
+        text += `• สีมงคล: ${card.lucky_color} | เลขมงคล: ${card.lucky_number}\n`;
+        text += `• คำแนะนำ: ${card.advice}\n`;
       });
-      t += `\n🐾 ขอให้มีแต่ความเฮงและพลังบวกเต็มเปี่ยมนะเมี้ยว 💜`;
+      text += `\n🔮 ขอพลังงานบวกและสิ่งดีๆ จงสถิตอยู่กับคุณนะคะ 💜`;
 
-      navigator.clipboard.writeText(t).then(() => {
-        showToast('คัดลอกคำทำนายแล้ว ส่งต่อให้เพื่อนได้เลยงับ ✨');
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('คัดลอกคำทำนายเรียบร้อยแล้ว สามารถแชร์ให้เพื่อนได้เลยค่ะ ✨');
       }).catch(() => {
-        showToast('ไม่สามารถคัดลอกอัตโนมัติได้ค่ะ');
+        showToast('ไม่สามารถคัดลอกได้อัตโนมัติ กรุณาคัดลอกด้วยตนเองค่ะ');
       });
     }
 
-    function displayQR(containerId) {
-      const container = document.getElementById(containerId);
-      if (AppState.customQrImage) {
-        container.innerHTML = `<img src="${AppState.customQrImage}" alt="QR Code ของเรา" style="max-width:100%; max-height:100%; object-fit:contain;">`;
-      } else {
-        container.innerHTML = `
-          <svg viewBox="0 0 160 160" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <rect width="160" height="160" fill="#ffffff" rx="10" />
-            <rect x="15" y="15" width="36" height="36" fill="#1e1138" rx="4" />
-            <rect x="21" y="21" width="24" height="24" fill="#ffffff" rx="2" />
-            <rect x="27" y="27" width="12" height="12" fill="#7e22ce" rx="2" />
-            <rect x="109" y="15" width="36" height="36" fill="#1e1138" rx="4" />
-            <rect x="115" y="21" width="24" height="24" fill="#ffffff" rx="2" />
-            <rect x="121" y="27" width="12" height="12" fill="#7e22ce" rx="2" />
-            <rect x="15" y="109" width="36" height="36" fill="#1e1138" rx="4" />
-            <rect x="21" y="115" width="24" height="24" fill="#ffffff" rx="2" />
-            <rect x="27" y="121" width="12" height="12" fill="#7e22ce" rx="2" />
-            <rect x="70" y="55" width="20" height="20" fill="#a855f7" rx="4" />
-            <text x="80" y="69" font-family="Arial" font-size="11" font-weight="bold" fill="white" text-anchor="middle">BBL</text>
-            <rect x="60" y="20" width="8" height="8" fill="#7e22ce" rx="1" />
-            <rect x="74" y="20" width="8" height="8" fill="#1e1138" rx="1" />
-            <rect x="88" y="20" width="12" height="8" fill="#7e22ce" rx="1" />
-            <rect x="60" y="34" width="12" height="8" fill="#1e1138" rx="1" />
-            <rect x="78" y="34" width="8" height="14" fill="#7e22ce" rx="1" />
-            <rect x="92" y="34" width="8" height="8" fill="#1e1138" rx="1" />
-            <rect x="20" y="60" width="8" height="12" fill="#7e22ce" rx="1" />
-            <rect x="34" y="60" width="14" height="8" fill="#1e1138" rx="1" />
-            <rect x="54" y="58" width="10" height="10" fill="#7e22ce" rx="1" />
-            <rect x="96" y="60" width="14" height="8" fill="#1e1138" rx="1" />
-            <rect x="116" y="60" width="8" height="12" fill="#7e22ce" rx="1" />
-            <rect x="130" y="60" width="12" height="8" fill="#1e1138" rx="1" />
-            <rect x="20" y="78" width="12" height="8" fill="#1e1138" rx="1" />
-            <rect x="38" y="78" width="8" height="14" fill="#7e22ce" rx="1" />
-            <rect x="52" y="74" width="12" height="8" fill="#1e1138" rx="1" />
-            <rect x="96" y="74" width="12" height="8" fill="#7e22ce" rx="1" />
-            <rect x="114" y="78" width="14" height="8" fill="#1e1138" rx="1" />
-            <rect x="134" y="78" width="8" height="14" fill="#7e22ce" rx="1" />
-            <rect x="60" y="85" width="8" height="14" fill="#1e1138" rx="1" />
-            <rect x="74" y="85" width="12" height="8" fill="#7e22ce" rx="1" />
-            <rect x="92" y="85" width="8" height="14" fill="#1e1138" rx="1" />
-            <rect x="60" y="105" width="12" height="8" fill="#7e22ce" rx="1" />
-            <rect x="78" y="100" width="8" height="18" fill="#1e1138" rx="1" />
-            <rect x="92" y="105" width="12" height="8" fill="#7e22ce" rx="1" />
-            <rect x="60" y="125" width="8" height="12" fill="#1e1138" rx="1" />
-            <rect x="74" y="125" width="14" height="8" fill="#7e22ce" rx="1" />
-            <rect x="94" y="125" width="8" height="12" fill="#1e1138" rx="1" />
-            <rect x="110" y="100" width="12" height="8" fill="#7e22ce" rx="1" />
-            <rect x="128" y="100" width="14" height="8" fill="#1e1138" rx="1" />
-            <rect x="110" y="114" width="8" height="14" fill="#1e1138" rx="1" />
-            <rect x="124" y="114" width="18" height="8" fill="#7e22ce" rx="1" />
-            <rect x="110" y="134" width="14" height="8" fill="#7e22ce" rx="1" />
-            <rect x="130" y="130" width="12" height="12" fill="#1e1138" rx="1" />
-          </svg>
-        `;
-      }
-    }
-
+    // Top-up Modal Logic
     function openTopupModal() {
-      AudioFX.playChime();
+      SoundFX.playChime();
       document.getElementById('topupModal').style.display = 'flex';
-      displayQR('topupQrBox');
+      renderPromptPayQR('topupQrBox', AppState.selectedTopupPackage.thb);
     }
 
-    function selectTopupPkg(elem, coins, thb) {
-      document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+    function selectPackage(elem, coins, thb) {
+      document.querySelectorAll('.package-item').forEach(p => p.classList.remove('selected'));
       elem.classList.add('selected');
-      AppState.selectedTopupPkg = { coins, thb };
-      document.getElementById('topupPriceDisplay').textContent = `ยอดชำระ: เติม ${thb} บาท (ได้รับ ${coins} เหรียญ)`;
+      AppState.selectedTopupPackage = { coins, thb };
+      document.getElementById('topupPriceDisplay').textContent = `ยอดชำระ: ${thb} บาท (ได้รับ ${coins} เหรียญ)`;
+      renderPromptPayQR('topupQrBox', thb);
     }
 
     function confirmTopup() {
-      const { coins, thb } = AppState.selectedTopupPkg;
+      const { coins, thb } = AppState.selectedTopupPackage;
       AppState.coins += coins;
-      saveData();
-      AudioFX.playSuccess();
+      saveUserData();
+      SoundFX.playSuccess();
       closeModal('topupModal');
-      showToast(`เติมสำเร็จ! ได้รับ +${coins} เหรียญ (ยอดเงินของคุณ: ${AppState.coins} บาท) 🎉`);
+      showToast(`เติมเหรียญสำเร็จ! ได้รับ +${coins} เหรียญ ยอดคงเหลือ: ${AppState.coins} เหรียญ 🎉`);
     }
 
+    // Donation Modal Logic
     function openDonateModal() {
-      AudioFX.playChime();
+      SoundFX.playChime();
       document.getElementById('donateModal').style.display = 'flex';
-      displayQR('donateQrBox');
+      const amt = document.getElementById('donatorAmount').value || 39;
+      updateDonateQr(amt);
     }
 
     function selectDonationPreset(amount, title) {
       document.getElementById('donatorAmount').value = amount;
-      document.getElementById('donatorMsg').value = `เลี้ยง${title} ขอให้แม่หมอรวยๆ นะคะ`;
+      document.getElementById('donatorMessage').value = `เลี้ยง${title} ขอให้มีพลังงานบวกทุกวันนะคะ`;
       openDonateModal();
-      updateDonateDisplay(amount);
     }
 
-    function updateDonateDisplay(val) {
-      const amt = parseFloat(val) || 0;
-      document.getElementById('donatePriceDisplay').textContent = `ยอดโดเนต: ${amt} บาท`;
+    function updateDonateQr(amount) {
+      const amt = parseFloat(amount) || 0;
+      document.getElementById('donateAmountDisplay').textContent = `ยอดโดเนต: ${amt} บาท`;
+      renderPromptPayQR('donateQrBox', amt);
     }
 
     function confirmDonation() {
-      const name = document.getElementById('donatorName').value.trim() || 'ทาสแมวใจดี';
-      const amt = document.getElementById('donatorAmount').value || 9;
-      const msg = document.getElementById('donatorMsg').value.trim() || 'รักแม่หมอเหมียวนะคะ';
+      const name = document.getElementById('donatorName').value.trim() || 'ผู้มีจิตศรัทธาใจดี';
+      const amount = document.getElementById('donatorAmount').value || '39';
+      const msg = document.getElementById('donatorMessage').value.trim() || 'เป็นกำลังใจให้แม่หมอค่ะ';
 
       const wall = document.getElementById('donatorsWall');
       const chip = document.createElement('span');
-      chip.style.cssText = 'background: #271445; border: 1px solid #581c87; padding: 5px 14px; border-radius: 999px; font-size: 13px; color: #e9d5ff;';
-      chip.textContent = `🍗 คุณ${name} โดเนต ${amt}฿ "${msg}"`;
+      chip.className = 'donator-chip';
+      chip.innerHTML = `💖 คุณ${name} โดเนต ${amount}฿ "${msg}"`;
       wall.prepend(chip);
 
-      AudioFX.playSuccess();
+      SoundFX.playSuccess();
       closeModal('donateModal');
-      showToast(`ขอบพระคุณ คุณ${name} ที่เลี้ยงขนมแม่หมอนะคะ ปังๆ รวยๆ ค่า 💖`);
+      showToast(`ขอบพระคุณ คุณ${name} ที่ร่วมสนับสนุนแม่หมอนะคะ ขอให้เฮงๆ ปังๆ ค่า 🌸💜`);
     }
 
+    // Settings Modal Logic
     function openSettingsModal() {
       document.getElementById('settingsModal').style.display = 'flex';
     }
@@ -2108,12 +1895,13 @@
     function handleQrUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = function(e) {
         AppState.customQrImage = e.target.result;
-        document.getElementById('qrPreviewWrapper').style.display = 'block';
-        document.getElementById('qrPreviewImg').src = AppState.customQrImage;
+        const wrap = document.getElementById('qrPreviewWrap');
+        if (wrap) wrap.style.display = 'block';
+        const img = document.getElementById('qrPreview');
+        if (img) img.src = AppState.customQrImage;
         showToast('อัปโหลดรูปภาพ QR Code เรียบร้อยแล้ว อย่าลืมกดบันทึกนะงับ 📸');
       };
       reader.readAsDataURL(file);
@@ -2124,16 +1912,16 @@
       const bAcc = document.getElementById('settingBankAcc').value.trim();
       const bOwner = document.getElementById('settingBankOwner').value.trim();
       if (bName) AppState.bankName = bName;
-      if (bAcc) AppState.bankAccNumber = bAcc;
-      if (bOwner) AppState.bankAccOwner = bOwner;
-      saveData();
+      if (bAcc) AppState.bankAcc = bAcc;
+      if (bOwner) AppState.bankOwner = bOwner;
+      saveUserData();
       closeModal('settingsModal');
       showToast('บันทึกข้อมูลบัญชีธนาคารกรุงเทพ & QR Code เรียบร้อยแล้ว ✅');
     }
 
     function copyBankAcc() {
-      navigator.clipboard.writeText(AppState.bankAccNumber).then(() => {
-        showToast(`คัดลอกเลขบัญชี ${AppState.bankAccNumber} เรียบร้อยแล้ว 📋`);
+      navigator.clipboard.writeText(AppState.bankAcc).then(() => {
+        showToast(`คัดลอกเลขบัญชี ${AppState.bankAcc} เรียบร้อยแล้ว 📋`);
       }).catch(() => {
         showToast('กรุณากดคัดลอกด้วยตนเองค่ะ');
       });
@@ -2141,77 +1929,152 @@
 
     function addTestCoins(qty) {
       AppState.coins += qty;
-      saveData();
-      showToast(`เพิ่ม ${qty} เหรียญทดสอบสำเร็จ (ยอดเงินรวม: ${AppState.coins} บาท)`);
+      saveUserData();
+      showToast(`เพิ่ม ${qty} เหรียญจำลองสำเร็จ (คงเหลือ: ${AppState.coins} เหรียญ)`);
     }
 
-    function resetDailyDraw() {
+    function resetFreeDailyDraw() {
       AppState.lastFreeDrawDate = null;
-      saveData();
-      showToast('รีเซ็ตสิทธิ์เปิดไพ่ฟรีวันนี้เรียบร้อย ✨');
+      saveUserData();
+      showToast('รีเซ็ตสิทธิ์เปิดไพ่ฟรีประจำวันแล้ว พร้อมใช้งานทันที ✨');
     }
 
-    function clearAllData() {
-      if (confirm('ต้องการล้างข้อมูลและรูปภาพ QR ทั้งหมดใช่หรือไม่?')) {
+    function clearAllUserData() {
+      if (confirm('คุณต้องการรีเซ็ตข้อมูลเหรียญและสิทธิ์ทั้งหมดใช่หรือไม่?')) {
         localStorage.clear();
         AppState.coins = 0;
         AppState.lastFreeDrawDate = null;
-        AppState.customQrImage = null;
-        saveData();
-        document.getElementById('qrPreviewWrapper').style.display = 'none';
-        showToast('รีเซ็ตระบบทั้งหมดเรียบร้อย (ยอดเหรียญเป็น 0 เหรียญ)');
+        updateUI();
+        showToast('ล้างข้อมูลเรียบร้อย คืนค่ายอดเหรียญเป็น 0 เหรียญ');
       }
+    }
+
+    function openTermsModal() {
+      document.getElementById('termsModal').style.display = 'flex';
     }
 
     function closeModal(id) {
       document.getElementById(id).style.display = 'none';
     }
 
+    // Close on overlay click
     window.onclick = function(e) {
       if (e.target.classList.contains('modal-overlay')) {
         e.target.style.display = 'none';
       }
     };
 
-    let toastTimer = null;
-    function showToast(msg, icon = '✨') {
+    // PromptPay QR SVG Generator (Deterministic EMVCo / Cute Visual QR)
+    function renderPromptPayQR(containerId, amount) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      if (AppState.customQrImage) {
+        container.innerHTML = `<img src="${AppState.customQrImage}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:8px;">`;
+        return;
+      }
+      // Clean modern visual QR Code SVG with PromptPay styling
+      container.innerHTML = `
+        <svg viewBox="0 0 160 160" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <rect width="160" height="160" fill="#ffffff" rx="10" />
+          <!-- Corner Position Detection Patterns -->
+          <rect x="15" y="15" width="36" height="36" fill="#2d2150" rx="4" />
+          <rect x="21" y="21" width="24" height="24" fill="#ffffff" rx="2" />
+          <rect x="27" y="27" width="12" height="12" fill="#7e63d8" rx="2" />
+
+          <rect x="109" y="15" width="36" height="36" fill="#2d2150" rx="4" />
+          <rect x="115" y="21" width="24" height="24" fill="#ffffff" rx="2" />
+          <rect x="121" y="27" width="12" height="12" fill="#7e63d8" rx="2" />
+
+          <rect x="15" y="109" width="36" height="36" fill="#2d2150" rx="4" />
+          <rect x="21" y="115" width="24" height="24" fill="#ffffff" rx="2" />
+          <rect x="27" y="121" width="12" height="12" fill="#7e63d8" rx="2" />
+
+          <!-- Dynamic Pseudo-Data Blocks -->
+          <rect x="60" y="20" width="8" height="8" fill="#7e63d8" rx="1" />
+          <rect x="74" y="20" width="8" height="8" fill="#2d2150" rx="1" />
+          <rect x="88" y="20" width="12" height="8" fill="#7e63d8" rx="1" />
+          
+          <rect x="60" y="34" width="12" height="8" fill="#2d2150" rx="1" />
+          <rect x="78" y="34" width="8" height="14" fill="#7e63d8" rx="1" />
+          <rect x="92" y="34" width="8" height="8" fill="#2d2150" rx="1" />
+
+          <rect x="20" y="60" width="8" height="12" fill="#7e63d8" rx="1" />
+          <rect x="34" y="60" width="14" height="8" fill="#2d2150" rx="1" />
+          <rect x="54" y="58" width="10" height="10" fill="#7e63d8" rx="1" />
+          
+          <rect x="70" y="55" width="20" height="20" fill="#9d84e8" rx="4" />
+          <text x="80" y="69" font-family="Arial" font-size="11" font-weight="bold" fill="white" text-anchor="middle">THB</text>
+
+          <rect x="96" y="60" width="14" height="8" fill="#2d2150" rx="1" />
+          <rect x="116" y="60" width="8" height="12" fill="#7e63d8" rx="1" />
+          <rect x="130" y="60" width="12" height="8" fill="#2d2150" rx="1" />
+
+          <rect x="20" y="78" width="12" height="8" fill="#2d2150" rx="1" />
+          <rect x="38" y="78" width="8" height="14" fill="#7e63d8" rx="1" />
+          <rect x="52" y="74" width="12" height="8" fill="#2d2150" rx="1" />
+          <rect x="96" y="74" width="12" height="8" fill="#7e63d8" rx="1" />
+          <rect x="114" y="78" width="14" height="8" fill="#2d2150" rx="1" />
+          <rect x="134" y="78" width="8" height="14" fill="#7e63d8" rx="1" />
+
+          <rect x="60" y="85" width="8" height="14" fill="#2d2150" rx="1" />
+          <rect x="74" y="85" width="12" height="8" fill="#7e63d8" rx="1" />
+          <rect x="92" y="85" width="8" height="14" fill="#2d2150" rx="1" />
+
+          <rect x="60" y="105" width="12" height="8" fill="#7e63d8" rx="1" />
+          <rect x="78" y="100" width="8" height="18" fill="#2d2150" rx="1" />
+          <rect x="92" y="105" width="12" height="8" fill="#7e63d8" rx="1" />
+
+          <rect x="60" y="125" width="8" height="12" fill="#2d2150" rx="1" />
+          <rect x="74" y="125" width="14" height="8" fill="#7e63d8" rx="1" />
+          <rect x="94" y="125" width="8" height="12" fill="#2d2150" rx="1" />
+
+          <rect x="110" y="100" width="12" height="8" fill="#7e63d8" rx="1" />
+          <rect x="128" y="100" width="14" height="8" fill="#2d2150" rx="1" />
+          <rect x="110" y="114" width="8" height="14" fill="#2d2150" rx="1" />
+          <rect x="124" y="114" width="18" height="8" fill="#7e63d8" rx="1" />
+          <rect x="110" y="134" width="14" height="8" fill="#7e63d8" rx="1" />
+          <rect x="130" y="130" width="12" height="12" fill="#2d2150" rx="1" />
+        </svg>
+      `;
+    }
+
+    // Toast Notification helper
+    let toastTimeout = null;
+    function showToast(message, icon = '✨') {
       const toast = document.getElementById('toast');
-      document.getElementById('toastMsg').textContent = msg;
+      document.getElementById('toastMsg').textContent = message;
       document.getElementById('toastIcon').textContent = icon;
       toast.classList.add('show');
-      if (toastTimer) clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3800);
     }
 
-    function initSpaceBackground() {
-      const container = document.getElementById('bgSpace');
-      for (let i = 0; i < 45; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        const size = Math.random() * 3 + 1;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.animationDelay = `${Math.random() * 5}s`;
-        container.appendChild(star);
-      }
-      const paws = ['🐾', '✨', '🐾', '🌙', '🐾'];
-      for (let i = 0; i < 8; i++) {
-        const p = document.createElement('div');
-        p.className = 'floating-paw';
-        p.textContent = paws[i % paws.length];
-        p.style.left = `${Math.random() * 95}%`;
-        p.style.animationDelay = `${Math.random() * 10}s`;
-        p.style.animationDuration = `${Math.random() * 6 + 10}s`;
-        container.appendChild(p);
+    // Floating Sparkles Generator
+    function initSparkles() {
+      const container = document.getElementById('sparkles');
+      const count = 22;
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        const size = Math.random() * 6 + 3;
+        s.style.width = `${size}px`;
+        s.style.height = `${size}px`;
+        s.style.left = `${Math.random() * 100}%`;
+        s.style.top = `${Math.random() * 100}%`;
+        s.style.animationDelay = `${Math.random() * 5}s`;
+        s.style.animationDuration = `${Math.random() * 4 + 4}s`;
+        container.appendChild(s);
       }
     }
 
+    // Initialize application on page load
     window.addEventListener('DOMContentLoaded', () => {
-      try { initSpaceBackground(); } catch(e) { console.error(e); }
-      try { loadData(); } catch(e) { console.error(e); }
-      try { resetSpread(); } catch(e) { console.error(e); }
+      try { initSparkles(); } catch(e) {}
+      try { loadUserData(); } catch(e) {}
+      try { resetSpread(); } catch(e) {}
     });
   </script>
 </body>
