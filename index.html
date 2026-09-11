@@ -3,28 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeowMagic Tarot | แม่หมอเหมียวดูดวงไพ่ทาโรต์สัตว์น่ารัก</title>
+  <title>MeowMagic Tarot | แม่หมอเหมียวดูดวงไพ่ทาโรต์แมวน่ารักในสวนดอกไม้</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Itim&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #0c0817;
-      --bg-surface: #140d24;
-      --bg-surface-elevated: #1e1336;
-      --primary: #a855f7;
-      --primary-light: #c084fc;
-      --primary-hover: #9333ea;
-      --primary-glow: rgba(168, 85, 247, 0.45);
-      --accent-pink: #f472b6;
-      --accent-gold: #facc15;
-      --text-white: #faf5ff;
-      --text-muted: #a89ec4;
-      --border-purple: #3b285f;
-      --border-glow: #6b21a8;
-      --radius-sm: 12px;
-      --radius-md: 20px;
-      --radius-lg: 28px;
+      --pastel-pink: #ffd1dc;
+      --pastel-pink-deep: #f472b6;
+      --pastel-yellow: #fef08a;
+      --pastel-yellow-deep: #eab308;
+      --pastel-blue: #bae6fd;
+      --pastel-blue-deep: #38bdf8;
+      --pastel-purple: #e9d5ff;
+      --pastel-purple-deep: #c084fc;
+      --pastel-green: #bbf7d0;
+      --pastel-green-deep: #4ade80;
+      
+      --bg-gradient: linear-gradient(135deg, #fff5f8 0%, #fefcf3 25%, #f0f7ff 50%, #fbf3ff 75%, #f2fff6 100%);
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --card-border: #fbcfe8;
+      --text-main: #4a355e;
+      --text-muted: #7c6a8f;
+      --text-highlight: #db2777;
+      
+      --radius-sm: 14px;
+      --radius-md: 22px;
+      --radius-lg: 30px;
+      --shadow-soft: 0 10px 28px rgba(244, 114, 182, 0.15);
+      --shadow-hover: 0 14px 36px rgba(244, 114, 182, 0.25);
     }
 
     * {
@@ -36,8 +43,8 @@
     }
 
     body {
-      background: radial-gradient(circle at 50% 10%, #2e1065 0%, #170c31 35%, #0c0817 100%);
-      color: var(--text-white);
+      background: var(--bg-gradient);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -47,8 +54,8 @@
       line-height: 1.65;
     }
 
-    /* Background Stars & Floating Paws */
-    .bg-space {
+    /* Floating Flowers & Petals Background */
+    .bg-petals {
       position: fixed;
       top: 0;
       left: 0;
@@ -58,28 +65,18 @@
       z-index: 0;
       overflow: hidden;
     }
-    .star {
+    .petal {
       position: absolute;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 4s infinite ease-in-out;
-    }
-    .floating-paw {
-      position: absolute;
-      font-size: 22px;
-      opacity: 0.15;
-      animation: floatPaw 12s infinite ease-in-out;
+      font-size: 24px;
+      opacity: 0.35;
+      animation: floatPetal 14s infinite ease-in-out;
       user-select: none;
     }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; transform: scale(0.8); }
-      50% { opacity: 0.9; transform: scale(1.3); }
-    }
-    @keyframes floatPaw {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      20% { opacity: 0.25; }
-      80% { opacity: 0.25; }
-      100% { transform: translateY(-50px) rotate(45deg); opacity: 0; }
+    @keyframes floatPetal {
+      0% { transform: translateY(-40px) rotate(0deg) scale(0.8); opacity: 0; }
+      20% { opacity: 0.55; }
+      80% { opacity: 0.55; }
+      100% { transform: translateY(105vh) rotate(360deg) scale(1.1); opacity: 0; }
     }
 
     .container {
@@ -93,13 +90,13 @@
 
     /* Navbar */
     .navbar {
-      background: rgba(20, 13, 36, 0.9);
-      backdrop-filter: blur(14px);
-      border-bottom: 1.5px solid var(--border-purple);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid #fed7e2;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 20px rgba(244, 114, 182, 0.12);
     }
     .nav-inner {
       display: flex;
@@ -115,21 +112,21 @@
       text-decoration: none;
     }
     .brand-icon {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, #7e22ce, #db2777);
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #fbcfe8, #fef08a, #bae6fd);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      box-shadow: 0 0 16px var(--primary-glow);
-      border: 2px solid #c084fc;
+      font-size: 30px;
+      box-shadow: 0 4px 14px rgba(244, 114, 182, 0.3);
+      border: 2px solid #f472b6;
     }
     .brand-title {
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 700;
-      background: linear-gradient(135deg, #f3e8ff, #d8b4fe, #f472b6);
+      background: linear-gradient(135deg, #db2777, #9333ea, #2563eb);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -146,26 +143,26 @@
       flex-wrap: wrap;
     }
 
-    /* Coin Wallet Badge (Clear display of coins & baht) */
+    /* Coin Wallet Badge */
     .wallet-badge {
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #1f1438;
-      border: 1.5px solid var(--border-glow);
+      background: #ffffff;
+      border: 2px solid #fbcfe8;
       padding: 6px 14px;
       border-radius: 999px;
       cursor: pointer;
       font-size: 15px;
       font-weight: 700;
-      color: #fde047;
-      box-shadow: 0 0 14px rgba(250, 204, 21, 0.25);
+      color: #be185d;
+      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
       transition: all 0.25s;
     }
     .wallet-badge:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(250, 204, 21, 0.45);
-      border-color: #facc15;
+      box-shadow: 0 6px 18px rgba(244, 114, 182, 0.3);
+      border-color: #f472b6;
     }
 
     /* Buttons */
@@ -185,73 +182,73 @@
       text-decoration: none;
     }
     .btn-primary {
-      background: linear-gradient(135deg, #9333ea, #c026d3);
+      background: linear-gradient(135deg, #f472b6, #c084fc);
       color: white;
-      box-shadow: 0 0 18px rgba(168, 85, 247, 0.5);
-      border: 1px solid #d8b4fe;
+      box-shadow: 0 4px 15px rgba(244, 114, 182, 0.35);
+      border: 1.5px solid #fbcfe8;
     }
     .btn-primary:hover {
-      background: linear-gradient(135deg, #a855f7, #e11d48);
+      background: linear-gradient(135deg, #ec4899, #a855f7);
       transform: translateY(-2px);
-      box-shadow: 0 0 24px rgba(216, 180, 254, 0.7);
+      box-shadow: 0 6px 20px rgba(244, 114, 182, 0.5);
     }
     .btn-pink {
-      background: linear-gradient(135deg, #db2777, #f43f5e);
+      background: linear-gradient(135deg, #fb7185, #f43f5e);
       color: white;
-      box-shadow: 0 0 15px rgba(219, 39, 119, 0.4);
+      box-shadow: 0 4px 15px rgba(251, 113, 133, 0.35);
     }
     .btn-pink:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 22px rgba(244, 63, 94, 0.6);
+      box-shadow: 0 6px 20px rgba(251, 113, 133, 0.5);
     }
     .btn-outline {
-      background: rgba(30, 19, 54, 0.7);
-      border: 1.5px solid var(--border-purple);
-      color: var(--text-white);
+      background: #ffffff;
+      border: 2px solid #e9d5ff;
+      color: #6b21a8;
     }
     .btn-outline:hover {
-      background: var(--bg-surface-elevated);
-      border-color: var(--primary-light);
+      background: #faf5ff;
+      border-color: #c084fc;
     }
 
     /* Hero */
     .hero {
       text-align: center;
-      padding: 34px 0 20px;
+      padding: 36px 0 20px;
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(46, 16, 101, 0.75);
-      border: 1.5px solid var(--border-glow);
-      padding: 6px 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #fbcfe8;
+      padding: 6px 22px;
       border-radius: 999px;
       font-size: 15px;
-      font-weight: 600;
-      color: #e9d5ff;
+      font-weight: 700;
+      color: #db2777;
       margin-bottom: 16px;
-      box-shadow: 0 0 15px var(--primary-glow);
+      box-shadow: 0 4px 14px rgba(244, 114, 182, 0.2);
     }
     .hero-title {
       font-size: 38px;
       font-weight: 700;
-      color: white;
-      text-shadow: 0 0 25px rgba(192, 132, 252, 0.6);
+      color: #4a355e;
       margin-bottom: 12px;
       letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(244, 114, 182, 0.15);
     }
     .hero-desc {
       font-size: 16px;
       color: var(--text-muted);
-      max-width: 640px;
+      max-width: 660px;
       margin: 0 auto 20px;
     }
 
     /* Free Quota Banner */
     .free-quota-card {
-      background: linear-gradient(135deg, #1b1033 0%, #251347 100%);
-      border: 2px dashed var(--border-glow);
+      background: linear-gradient(135deg, #ffffff 0%, #fff7ed 50%, #fdf4ff 100%);
+      border: 2px dashed #f472b6;
       border-radius: var(--radius-md);
       padding: 16px 24px;
       margin: 0 auto 26px;
@@ -260,7 +257,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 15px;
-      box-shadow: 0 0 20px rgba(107, 33, 168, 0.35);
+      box-shadow: var(--shadow-soft);
     }
     .quota-info {
       display: flex;
@@ -268,42 +265,42 @@
       gap: 14px;
     }
     .quota-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #581c87, #7e22ce);
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #fbcfe8, #fef08a);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      border: 1px solid #c084fc;
-      box-shadow: 0 0 10px rgba(192, 132, 252, 0.4);
+      font-size: 28px;
+      border: 1.5px solid #f472b6;
+      box-shadow: 0 4px 10px rgba(244, 114, 182, 0.25);
     }
     .quota-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
-      color: #f3e8ff;
+      color: #831843;
     }
     .quota-sub {
       font-size: 14px;
       color: var(--text-muted);
     }
     .badge-status {
-      padding: 5px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
     }
     .badge-ready {
-      background: rgba(16, 185, 129, 0.25);
-      color: #34d399;
-      border: 1.5px solid #10b981;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+      background: #dcfce7;
+      color: #15803d;
+      border: 1.5px solid #86efac;
+      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.2);
     }
     .badge-used {
-      background: rgba(244, 63, 94, 0.25);
-      color: #fb7185;
-      border: 1.5px solid #f43f5e;
+      background: #ffe4e6;
+      color: #be123c;
+      border: 1.5px solid #fecdd3;
     }
 
     /* Mode Tabs */
@@ -315,8 +312,8 @@
       flex-wrap: wrap;
     }
     .mode-tab {
-      background: var(--bg-surface);
-      border: 2px solid var(--border-purple);
+      background: #ffffff;
+      border: 2px solid #e9d5ff;
       border-radius: var(--radius-md);
       padding: 14px 22px;
       cursor: pointer;
@@ -325,25 +322,25 @@
       gap: 12px;
       transition: all 0.25s ease;
       min-width: 210px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 15px rgba(233, 213, 255, 0.4);
     }
     .mode-tab:hover {
       transform: translateY(-3px);
-      border-color: var(--primary-light);
-      box-shadow: 0 0 18px var(--primary-glow);
+      border-color: #f472b6;
+      box-shadow: 0 6px 20px rgba(244, 114, 182, 0.25);
     }
     .mode-tab.active {
-      background: linear-gradient(135deg, #2b1354 0%, #3b1973 100%);
-      border-color: #c084fc;
-      box-shadow: 0 0 24px var(--primary-glow);
+      background: linear-gradient(135deg, #fff1f2 0%, #fdf4ff 50%, #eff6ff 100%);
+      border-color: #ec4899;
+      box-shadow: 0 6px 22px rgba(236, 72, 153, 0.25);
     }
     .tab-icon {
-      font-size: 30px;
+      font-size: 32px;
     }
     .tab-title {
       font-size: 17px;
       font-weight: 700;
-      color: #f3e8ff;
+      color: #4a355e;
     }
     .tab-cost {
       font-size: 13px;
@@ -351,7 +348,7 @@
       margin-top: 2px;
     }
     .tab-tag {
-      background: #10b981;
+      background: #ec4899;
       color: white;
       font-size: 11px;
       padding: 2px 8px;
@@ -362,19 +359,19 @@
 
     /* Reading Stage */
     .reading-stage {
-      background: rgba(20, 13, 36, 0.88);
-      backdrop-filter: blur(14px);
-      border: 2px solid var(--border-purple);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border: 2px solid #fed7e2;
       border-radius: var(--radius-lg);
-      padding: 32px 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      padding: 34px 24px;
+      box-shadow: var(--shadow-soft);
       margin-bottom: 40px;
       text-align: center;
     }
     .stage-title {
       font-size: 26px;
       font-weight: 700;
-      color: #f3e8ff;
+      color: #831843;
     }
     .stage-instruction {
       font-size: 15px;
@@ -382,14 +379,14 @@
       margin-top: 6px;
     }
 
-    /* Topic Filter Selector (งาน, เงิน, ความรัก, ดูทั้งหมด) */
+    /* Topic Filter Selector */
     .topic-filter-box {
-      background: rgba(30, 17, 56, 0.8);
-      border: 1.5px solid var(--border-glow);
-      border-radius: 16px;
+      background: #fdf2f8;
+      border: 2px solid #fbcfe8;
+      border-radius: 18px;
       padding: 14px 18px;
       margin: 20px auto 10px;
-      max-width: 680px;
+      max-width: 700px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -399,7 +396,7 @@
     .topic-label {
       font-size: 15px;
       font-weight: 700;
-      color: #fde047;
+      color: #be185d;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -410,32 +407,32 @@
       flex-wrap: wrap;
     }
     .topic-btn {
-      background: #130926;
-      border: 1.5px solid var(--border-purple);
-      color: #d8b4fe;
-      padding: 7px 16px;
+      background: #ffffff;
+      border: 1.5px solid #fbcfe8;
+      color: #831843;
+      padding: 7px 18px;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
     }
     .topic-btn:hover {
-      border-color: #c084fc;
-      color: white;
+      border-color: #f472b6;
+      background: #fff1f2;
     }
     .topic-btn.active {
-      background: linear-gradient(135deg, #9333ea, #db2777);
+      background: linear-gradient(135deg, #f472b6, #c084fc);
       border-color: #f472b6;
       color: white;
-      box-shadow: 0 0 14px var(--primary-glow);
+      box-shadow: 0 4px 14px rgba(244, 114, 182, 0.35);
     }
 
     /* Card Spread Container */
     .deck-container {
       perspective: 1000px;
-      margin: 24px 0 30px;
-      min-height: 250px;
+      margin: 26px 0 32px;
+      min-height: 260px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -450,8 +447,8 @@
 
     /* 3D Tarot Card */
     .card-slot {
-      width: 160px;
-      height: 248px;
+      width: 165px;
+      height: 255px;
       perspective: 1000px;
       cursor: pointer;
       position: relative;
@@ -463,11 +460,11 @@
       text-align: center;
       transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-style: preserve-3d;
-      border-radius: 16px;
+      border-radius: 18px;
     }
     .card-slot:hover .card-inner:not(.flipped) {
       transform: translateY(-10px) scale(1.04);
-      box-shadow: 0 0 25px var(--primary-glow);
+      box-shadow: 0 12px 28px rgba(244, 114, 182, 0.35);
     }
     .card-inner.flipped {
       transform: rotateY(180deg);
@@ -479,63 +476,69 @@
       height: 100%;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      border-radius: 16px;
+      border-radius: 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       padding: 10px;
-      border: 2px solid #a855f7;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      border: 2px solid #f472b6;
+      box-shadow: 0 6px 20px rgba(244, 114, 182, 0.2);
       overflow: hidden;
     }
 
-    /* Card Back (Cosmic Dark Purple Velvet with Gold Stars & Paw) */
+    /* Card Back (Pastel Floral Cat Theme) */
     .card-back {
-      background: radial-gradient(circle at 50% 50%, #3b0764 0%, #1e0b36 70%, #0c0418 100%);
-      border: 2px solid #c084fc;
-      box-shadow: 0 0 16px rgba(168, 85, 247, 0.4);
+      background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #e0f2fe 100%);
+      border: 2px solid #f472b6;
     }
     .card-back-frame {
       width: 100%;
       height: 100%;
-      border: 1.5px dashed rgba(216, 180, 254, 0.6);
-      border-radius: 12px;
+      border: 1.5px dashed #ec4899;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 80%);
+      gap: 6px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, transparent 80%);
     }
     .card-back-cat {
-      font-size: 36px;
-      filter: drop-shadow(0 0 8px #f472b6);
-      animation: catGlow 3s infinite alternate ease-in-out;
+      font-size: 38px;
+      filter: drop-shadow(0 4px 8px rgba(244, 114, 182, 0.4));
+      animation: catBounce 2.5s infinite alternate ease-in-out;
     }
-    @keyframes catGlow {
-      0% { transform: scale(1); filter: drop-shadow(0 0 6px #c084fc); }
-      100% { transform: scale(1.1); filter: drop-shadow(0 0 14px #f472b6); }
+    @keyframes catBounce {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-6px) scale(1.08); }
     }
     .card-back-text {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 1.5px;
-      color: #e9d5ff;
+      color: #be185d;
     }
 
     /* Card Front */
     .card-front {
       transform: rotateY(180deg);
-      background: #180d2e;
-      border-color: #facc15;
-      box-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
+      background: #ffffff;
+      border-color: #f472b6;
+      box-shadow: 0 8px 24px rgba(244, 114, 182, 0.25);
       padding: 8px;
+    }
+    .card-real-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
     }
     .card-front-content {
       width: 100%;
       height: 100%;
-      border-radius: 10px;
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -543,27 +546,25 @@
       padding: 10px 6px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
     }
     .card-front-title-en {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1px;
-      color: #fde047;
+      color: #831843;
       text-transform: uppercase;
-      text-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
     }
     .card-front-art {
-      font-size: 46px;
+      font-size: 48px;
       margin: 6px 0;
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.8));
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     }
     .card-front-title-th {
       font-size: 13px;
       font-weight: 700;
-      color: #ffffff;
+      color: #4a355e;
       line-height: 1.3;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
     }
     .slot-tag {
       position: absolute;
@@ -572,12 +573,12 @@
       right: 0;
       font-size: 12px;
       font-weight: 700;
-      color: #f3e8ff;
-      background: #2b144e;
-      border: 1px solid var(--border-glow);
+      color: #be185d;
+      background: #ffffff;
+      border: 1.5px solid #fbcfe8;
       padding: 3px 8px;
       border-radius: 999px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      box-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
     }
 
     /* Results Box */
@@ -592,35 +593,35 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .result-card {
-      background: linear-gradient(135deg, #180e2e 0%, #221240 100%);
-      border: 1.5px solid var(--border-glow);
+      background: #ffffff;
+      border: 2px solid #fed7e2;
       border-radius: var(--radius-md);
       padding: 24px;
       margin-bottom: 22px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-soft);
     }
     .result-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #382459;
+      border-bottom: 1.5px solid #fce7f3;
       padding-bottom: 12px;
       margin-bottom: 14px;
       flex-wrap: wrap;
       gap: 10px;
     }
     .result-name {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 700;
-      color: #fde047;
+      color: #831843;
       display: flex;
       align-items: center;
       gap: 8px;
     }
     .result-tag {
-      background: #331a54;
-      color: #e9d5ff;
-      border: 1px solid #581c87;
+      background: #fdf2f8;
+      color: #be185d;
+      border: 1.5px solid #fbcfe8;
       padding: 4px 12px;
       border-radius: 999px;
       font-size: 13px;
@@ -629,46 +630,47 @@
     .result-body {
       font-size: 16px;
       line-height: 1.7;
-      color: #e2d9f3;
+      color: #4a355e;
     }
     .aspect-box {
-      background: rgba(30, 16, 56, 0.7);
-      border: 1px solid #4a2472;
-      border-radius: 12px;
-      padding: 12px 16px;
-      margin: 10px 0;
+      background: #faf5ff;
+      border: 1px solid #e9d5ff;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin: 12px 0;
     }
     .aspect-title {
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .result-advice {
-      background: rgba(168, 85, 247, 0.18);
-      border-left: 4px solid #c084fc;
-      border-radius: 8px;
+      background: #fdf2f8;
+      border-left: 4px solid #f472b6;
+      border-radius: 10px;
       padding: 14px 18px;
       margin-top: 14px;
       font-size: 15px;
-      color: #f3e8ff;
+      color: #831843;
+      font-weight: 600;
     }
 
     /* Donation / Support Section */
     .support-section {
-      background: linear-gradient(135deg, #160c2b 0%, #20113d 100%);
-      border: 2px solid var(--border-purple);
+      background: linear-gradient(135deg, #ffffff 0%, #fff1f2 50%, #fdf4ff 100%);
+      border: 2px solid #fed7e2;
       border-radius: var(--radius-lg);
-      padding: 34px 24px;
+      padding: 36px 24px;
       margin-bottom: 40px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: var(--shadow-soft);
     }
     .support-title {
       font-size: 26px;
       font-weight: 700;
-      color: #f3e8ff;
+      color: #831843;
       margin-bottom: 8px;
     }
     .donate-grid {
@@ -679,18 +681,19 @@
       margin: 22px 0;
     }
     .donate-card {
-      background: #1c0f36;
-      border: 2px solid var(--border-purple);
+      background: #ffffff;
+      border: 2px solid #fbcfe8;
       border-radius: var(--radius-md);
       padding: 16px 14px;
       cursor: pointer;
       min-width: 140px;
       transition: all 0.25s;
+      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.1);
     }
     .donate-card:hover {
       transform: translateY(-4px);
-      border-color: var(--accent-pink);
-      box-shadow: 0 0 18px rgba(244, 114, 182, 0.4);
+      border-color: #ec4899;
+      box-shadow: var(--shadow-hover);
     }
     .donate-icon {
       font-size: 34px;
@@ -698,13 +701,13 @@
     }
     .donate-label {
       font-size: 14px;
-      color: #e9d5ff;
+      color: #4a355e;
       font-weight: 700;
     }
     .donate-price {
       font-size: 18px;
       font-weight: 700;
-      color: #f472b6;
+      color: #db2777;
       margin-top: 2px;
     }
 
@@ -716,58 +719,58 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(10, 5, 20, 0.78);
-      backdrop-filter: blur(10px);
+      background: rgba(74, 53, 94, 0.45);
+      backdrop-filter: blur(8px);
       z-index: 1000;
       align-items: center;
       justify-content: center;
       padding: 16px;
     }
     .modal-content {
-      background: #160d2b;
-      border: 2px solid var(--border-glow);
+      background: #ffffff;
+      border: 2px solid #fbcfe8;
       border-radius: var(--radius-lg);
       width: 100%;
       max-width: 500px;
       padding: 28px 24px;
-      box-shadow: 0 0 35px rgba(168, 85, 247, 0.5);
+      box-shadow: 0 16px 40px rgba(244, 114, 182, 0.35);
       position: relative;
       max-height: 90vh;
       overflow-y: auto;
-      color: white;
+      color: #4a355e;
     }
     .modal-close {
       position: absolute;
       top: 16px;
       right: 18px;
-      background: #2d1752;
+      background: #fce7f3;
       border: none;
       width: 34px;
       height: 34px;
       border-radius: 50%;
       font-size: 18px;
       cursor: pointer;
-      color: #c084fc;
+      color: #db2777;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .modal-close:hover {
-      background: #4a1f85;
-      color: white;
+      background: #fbcfe8;
+      color: #831843;
     }
     .modal-title {
       font-size: 22px;
       font-weight: 700;
-      color: #f3e8ff;
+      color: #831843;
       text-align: center;
       margin-bottom: 6px;
     }
 
     /* Rate Notice Banner */
     .rate-banner {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(219, 39, 119, 0.25));
-      border: 1.5px solid #c084fc;
+      background: linear-gradient(135deg, #fdf2f8, #fef9c3);
+      border: 1.5px solid #fbcfe8;
       border-radius: 12px;
       padding: 10px 16px;
       margin-bottom: 18px;
@@ -776,8 +779,8 @@
 
     /* QR Code Display Frame */
     .qr-container {
-      background: #110922;
-      border: 2px dashed var(--border-glow);
+      background: #fff7ed;
+      border: 2px dashed #f472b6;
       border-radius: var(--radius-md);
       padding: 18px;
       text-align: center;
@@ -792,9 +795,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       padding: 8px;
       overflow: hidden;
+      border: 1px solid #fed7e2;
     }
     .qr-box img {
       max-width: 100%;
@@ -810,8 +814,8 @@
       margin-bottom: 20px;
     }
     .package-card {
-      background: #1e1138;
-      border: 2px solid var(--border-purple);
+      background: #ffffff;
+      border: 2px solid #e9d5ff;
       border-radius: var(--radius-md);
       padding: 14px 10px;
       text-align: center;
@@ -819,18 +823,18 @@
       transition: all 0.2s;
     }
     .package-card:hover, .package-card.selected {
-      border-color: #c084fc;
-      background: #2b1552;
-      box-shadow: 0 0 15px var(--primary-glow);
+      border-color: #ec4899;
+      background: #fff1f2;
+      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.2);
     }
     .pkg-coins {
       font-size: 18px;
       font-weight: 700;
-      color: #fde047;
+      color: #be185d;
     }
     .pkg-thb {
       font-size: 14px;
-      color: #d8b4fe;
+      color: #4a355e;
       margin-top: 4px;
     }
 
@@ -842,7 +846,7 @@
     .form-label {
       font-size: 14px;
       font-weight: 700;
-      color: #e9d5ff;
+      color: #4a355e;
       margin-bottom: 6px;
       display: block;
     }
@@ -850,15 +854,15 @@
       width: 100%;
       padding: 10px 14px;
       border-radius: var(--radius-sm);
-      border: 1.5px solid var(--border-purple);
-      background: #0f071d;
-      color: white;
+      border: 1.5px solid #fed7e2;
+      background: #ffffff;
+      color: #4a355e;
       font-size: 15px;
       outline: none;
     }
     .form-input:focus {
-      border-color: var(--primary-light);
-      box-shadow: 0 0 10px var(--primary-glow);
+      border-color: #ec4899;
+      box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
     }
 
     /* Toast */
@@ -866,14 +870,14 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: rgba(30, 19, 54, 0.96);
-      border: 1.5px solid var(--primary-light);
+      background: rgba(74, 53, 94, 0.95);
+      border: 1.5px solid #f472b6;
       color: white;
       padding: 14px 24px;
       border-radius: 999px;
       font-size: 15px;
       font-weight: 700;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       z-index: 2000;
       display: flex;
       align-items: center;
@@ -889,8 +893,8 @@
 
     .footer {
       margin-top: auto;
-      background: rgba(15, 8, 28, 0.9);
-      border-top: 1.5px solid var(--border-purple);
+      background: rgba(255, 255, 255, 0.85);
+      border-top: 2px solid #fed7e2;
       padding: 24px 0;
       text-align: center;
       font-size: 14px;
@@ -912,13 +916,13 @@
 <body>
 
   <!-- Floating Stars & Cosmic Cat Paws Background -->
-  <div class="bg-space" id="bgSpace"></div>
+  <div class="bg-petals" id="bgPetals"></div>
 
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-inner">
       <div class="brand" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-        <div class="brand-icon">🧙‍♂️</div>
+        <div class="brand-icon">🐱🌸</div>
         <div>
           <span class="brand-title">MeowMagic Tarot</span>
           <span class="brand-subtitle">ตำหนักแม่หมอเหมียวพยากรณ์ 🐾</span>
@@ -952,7 +956,7 @@
     <!-- Hero -->
     <header class="hero">
       <div class="hero-badge">
-        <span>✨🐾</span> ไพ่ทาโรต์สัตว์น่ารักในจักรวาลสีดำม่วงคอสมิก
+        <span>🌸🐾</span> ไพ่ทาโรต์แมวเหมียวสุดน่ารัก
       </div>
       <h1 class="hero-title">🔮 พยากรณ์ชะตาชีวิตกับแม่หมอเหมียว</h1>
       <p class="hero-desc">
@@ -1323,7 +1327,7 @@
   </div>
 
   <script>
-    const tarotDeck = [{"id": 0, "name_th": "The Fool (ลูกแมวนักผจญภัย)", "name_en": "The Fool", "animal": "ลูกแมวน้อยสะพายย่าม 🐱🎒", "symbol": "🐱", "bg_gradient": "linear-gradient(135deg, #2e1065, #4c1d95, #7e22ce)", "art_icon": "🐱🎒✨", "keywords": "เริ่มต้นใหม่, อิสระ, ก้าวสู่โลกกว้าง, ความหวังสดใส", "overall": "พลังงานบริสุทธิ์สดใสเหมือนลูกแมวเพิ่งออกสู่สนามหญ้ากว้าง มีโอกาสใหม่ๆ และความตื่นเต้นรออยู่ข้างหน้า อย่ากลัวที่จะเริ่มต้นสิ่งใหม่", "work_employed": "เหมาะกับการริเริ่มโปรเจกต์ใหม่ ไอเดียนอกกรอบจะได้รับการตอบรับดี มีเกณฑ์ได้ทำงานที่ไม่เคยทำมาก่อน บรรยากาศการทำงานผ่อนคลายและมีอิสระมากขึ้น", "work_unemployed": "มีเกณฑ์ได้งานใหม่แบบไม่คาดฝัน โดยเฉพาะงานที่ต้องใช้ความคิดสร้างสรรค์ สื่อออนไลน์ หรือสตาร์ทอัพ อย่ากลัวที่จะลองยื่นใบสมัครในสายงานใหม่ๆ", "finance": "การเงินคล่องตัว มีช่องทางรายได้ใหม่เข้ามา แต่ควรระวังการใช้จ่ายตามอารมณ์หรือช้อปปิ้งของกุ๊กกิ๊กเพลินมือ", "love_single": "มีเกณฑ์พบรักแรกพบกับคนมีเสน่ห์ ขี้เล่น น่ารัก เข้ามาทำให้หัวใจเต้นแรง", "love_couple": "ชวนกันไปเที่ยวเปิดหูเปิดตา เติมความสดชื่นให้ความสัมพันธ์เหมือนตอนรักกันใหม่ๆ", "advice": "ก้าวไปข้างหน้าด้วยความกล้าหาญและความจริงใจ แต่ตาต้องมองทางใต้ฝ่าเท้าให้ดีด้วยนะเมี้ยว", "lucky_color": "ม่วงพาสเทล & ส้มแซลมอน", "lucky_number": "0, 9", "love_crush": "มีโอกาสดีมากในการทักไปคุยก่อน อย่ากลัวที่จะเริ่มทัก เขาเปิดรับความน่ารักสดใสและรอยยิ้มของคุณ ลุยเลย!"}, {"id": 1, "name_th": "The Magician (แมวดำพ่อมดมนตรา)", "name_en": "The Magician", "animal": "แมวดำสวมหมวกเวทมนตร์ 🧙‍♀️🐈‍⬛", "symbol": "🐈‍⬛", "bg_gradient": "linear-gradient(135deg, #1e1b4b, #312e81, #6366f1)", "art_icon": "🐈‍⬛🪄🔮", "keywords": "เสกความสำเร็จ, ไหวพริบ, วาจาศักดิ์สิทธิ์, พรสวรรค์", "overall": "จักรวาลมอบเครื่องมือและพลังอำนาจให้คุณครบครัน คุณมีไหวพริบยอดเยี่ยม หยิบจับอะไรก็สามารถเปลี่ยนเป็นความสำเร็จได้ดั่งใจนึก", "work_employed": "การเจรจา การพรีเซนต์ และการปิดดีลราบรื่นมาก วาจาเป็นทรัพย์ ปัญหาเฉพาะหน้าถูกคลี่คลายด้วยความเฉลียวฉลาดของคุณเอง", "work_unemployed": "โดดเด่นมากในการสัมภาษณ์งาน พรสวรรค์และไหวพริบของคุณจะเตะตากรรมการ มีเกณฑ์ได้งานที่ตรงกับความสามารถอย่างรวดเร็ว", "finance": "หาเงินเก่ง มีช่องทางเพิ่มรายได้จากทักษะพิเศษหรืออาชีพเสริม เงินทองไหลเข้ากระเป๋าคล่องตัว", "love_single": "เสน่ห์แพรวพราว มีคนเข้ามาทักทายคุยเก่งคารมดี เคมีเข้ากันได้ง่าย", "love_couple": "สื่อสารเข้าใจกันดี คุยกันเรื่องอนาคตได้อย่างราบรื่นและพร้อมส่งเสริมซึ่งกันและกัน", "advice": "เชื่อมั่นในพลังเวทมนตร์และศักยภาพของตัวเอง ลงมือทำทันทีโดยไม่ต้องลังเล", "lucky_color": "ม่วงกล้วยไม้ & ทองคำสุกปลั่ง", "lucky_number": "1, 8", "love_crush": "เขารู้สึกว่าคุณมีเสน่ห์และคุยสนุก ใช้ไหวพริบหยอดทีละนิด แกล้งถามเรื่องที่เขาชอบ จะได้ผลตอบรับดีเกินคาด"}, {"id": 2, "name_th": "The High Priestess (จิ้งจอกขาวแห่งดวงจันทร์)", "name_en": "The High Priestess", "animal": "จิ้งจอกขาวเก้าหาง 🦊🌙", "symbol": "🦊", "bg_gradient": "linear-gradient(135deg, #172554, #1e3a8a, #3b82f6)", "art_icon": "🦊🌙📖", "keywords": "สัญชาตญาณแม่นยำ, เซ้นส์แรง, ความสงบ, ปัญญาหยั่งรู้", "overall": "พลังงานความหยั่งรู้และความสงบนิ่ง สัญชาตญาณของคุณแม่นยำเป็นพิเศษในเวลานี้ ให้เชื่อความรู้สึกแรกของตัวเอง", "work_employed": "เหมาะกับงานวางแผนเบื้องหลัง งานวิจัย งานข้อมูล ไม่ควรเปิดเผยแผนการให้คนอื่นรู้เร็วเกินไป ระวังคลื่นใต้น้ำในที่ทำงานแต่คุณจะเอาตัวรอดได้สบาย", "work_unemployed": "ช่วงนี้เหมาะกับการพัฒนาทักษะเพิ่มเติม ศึกษาหาความรู้เฉพาะทาง จะมีงานสายวิเคราะห์ วิจัย หรือการศึกษาติดต่อเข้ามา", "finance": "การเงินเน้นการเก็บออมเงียบๆ มีลาภลอยจากเซ้นส์สัมผัสหรือความฝันแม่นยำ อย่าเพิ่งให้ใครหยิบยืมเงิน", "love_single": "มีคนแอบชอบ แอบมอง หรือมีความสัมพันธ์ที่ยังไม่พร้อมเปิดเผยต่อสาธารณะ", "love_couple": "ใช้ความรู้สึกและเซ้นส์ในการดูแลกัน ควรคุยกันตรงไปตรงมาเพื่อลดความระแวง", "advice": "นิ่งสงบดุจผิวน้ำสะท้อนเงาจันทร์ ฟังเสียงกระซิบจากหัวใจของคุณเอง", "lucky_color": "ม่วงคราม & เงินแสงจันทร์", "lucky_number": "2, 7", "love_crush": "เขากำลังจับตามองหรือแอบมีใจให้คุณเงียบๆ เหมือนกัน แต่ฟอร์มจัด ให้หยั่งเชิงดูไปก่อนอย่าเพิ่งรุกแรงเกินไป"}, {"id": 3, "name_th": "The Empress (กระต่ายน้อยในสวนดอกไม้)", "name_en": "The Empress", "animal": "แม่กระต่ายผู้อบอุ่น 🐰🌸", "symbol": "🐰", "bg_gradient": "linear-gradient(135deg, #4a044e, #701a75, #c026d3)", "art_icon": "🐰🌸🍓", "keywords": "ความอุดมสมบูรณ์, มั่งคั่ง, ความสุข, ขนมแมวเลียเต็มชาม", "overall": "ช่วงเวลาแห่งความสุขสบาย ความอบอุ่น และการได้รับการดูแลเอาใจใส่ ชีวิตอุดมสมบูรณ์ไปด้วยสิ่งดีงาม", "work_employed": "ผู้ใหญ่และเพื่อนร่วมงานเมตตาให้ความช่วยเหลือ งานสายครีเอทีฟ ศิลปะ ความงาม อาหาร และบริการเติบโตรุ่งเรืองอย่างงดงาม", "work_unemployed": "มีเกณฑ์ได้งานเร็วๆ นี้ โดยเฉพาะงานในองค์กรที่มีความมั่นคง บรรยากาศอบอุ่น หรือได้รับการฝากฝังแนะนำจากผู้ใหญ่ใจดี", "finance": "การเงินมั่งคั่งอุดมสมบูรณ์ มีเงินหมุนเวียนเข้ามาไม่ขาดมือ ได้รับของขวัญหรือรางวัลชิ้นใหญ่", "love_single": "มีคนเข้ามาเอาอกเอาใจ ดูแลทะนุถนอมเหมือนเจ้าหญิง/เจ้าชาย", "love_couple": "ความรักหวานชื่น มีเกณฑ์วางแผนแต่งงาน หรือมีสมาชิกตัวน้อยเข้ามาเติมเต็มครอบครัว", "advice": "ดูแลตัวเองและแบ่งปันความรักให้คนรอบข้าง ความอ่อนโยนจะชนะใจทุกคน", "lucky_color": "ชมพูซากุระ & ม่วงพาสเทล", "lucky_number": "3, 6", "love_crush": "เขารู้สึกอบอุ่นและสบายใจเวลาอยู่ใกล้คุณ มีเกณฑ์พัฒนาจากคนแอบชอบไปเป็นคนพิเศษได้อย่างงดงาม"}, {"id": 4, "name_th": "The Emperor (สิงโตน้อยผู้สง่างาม)", "name_en": "The Emperor", "animal": "ราชสีห์น้อยสวมมงกุฎ 🦁👑", "symbol": "🦁", "bg_gradient": "linear-gradient(135deg, #431407, #7c2d12, #c2410c)", "art_icon": "🦁👑🛡️", "keywords": "ผู้นำ, อำนาจบารมี, ความมั่นคง, ความเด็ดขาด", "overall": "ความหนักแน่น มั่นคง และการควบคุมสถานการณ์ได้อย่างอยู่หมัด คุณคือเสาหลักที่ทุกคนพึ่งพาได้", "work_employed": "มีเกณฑ์ได้เลื่อนขั้น เลื่อนตำแหน่ง หรือได้รับมอบหมายให้คุมทีมและโปรเจกต์สำคัญ ผู้ใหญ่ให้ความไว้วางใจและมีอำนาจตัดสินใจเต็มที่", "work_unemployed": "มีโอกาสได้งานในองค์กรขนาดใหญ่ ราชการ รัฐวิสาหกิจ หรือบริษัทข้ามชาติที่มั่นคง การสัมภาษณ์ควรแสดงความมั่นใจและภาวะผู้นำ", "finance": "ฐานะการเงินแข็งแกร่ง มีโครงสร้างรายได้ที่มั่นคง เหมาะกับการวางแผนซื้ออสังหาริมทรัพย์หรือลงทุนระยะยาว", "love_single": "มีเกณฑ์พบคนมีฐานะมั่นคง บุคลิกดี เป็นผู้ใหญ่ที่พึ่งพาได้", "love_couple": "ความรักมั่นคง หนักแน่น แต่อย่าใช้อารมณ์บงการหรือเผด็จการกับคนรักมากเกินไป", "advice": "วางแผนให้รอบคอบและลงมือทำอย่างมีระเบียบวินัย ความสม่ำเสมอจะนำพาความสำเร็จที่ยิ่งใหญ่", "lucky_color": "แดงทับทิม & ม่วงเข้ม", "lucky_number": "4, 10", "love_crush": "เขาอาจจะดูนิ่งๆ วางท่า หรือฟอร์มเยอะ แต่จริงๆ เขาก็แอบมองคุณอยู่ แสดงความจริงใจให้เขาเห็นแล้วเขาจะเปิดใจ"}, {"id": 5, "name_th": "The Hierophant (นกฮูกนักปราชญ์)", "name_en": "The Hierophant", "animal": "นกฮูกเฒ่าผู้เปี่ยมปัญญา 🦉📜", "symbol": "🦉", "bg_gradient": "linear-gradient(135deg, #1f2937, #374151, #6b7280)", "art_icon": "🦉📜🗝️", "keywords": "ปัญญา, กัลยาณมิตร, การเรียนรู้, ผู้ใหญ่เมตตาอุปถัมภ์", "overall": "ช่วงเวลาแห่งการเรียนรู้และการทำสิ่งที่ถูกต้อง จะมีผู้ใหญ่ ครูอาจารย์ หรือที่ปรึกษาคอยชี้แนะทางสว่าง", "work_employed": "การทำงานยึดตามระเบียบแบบแผนจะปลอดภัยที่สุด การสอบเลื่อนขั้น อบรม หรือขออนุมัติเอกสารจะผ่านการรับรองอย่างราบรื่น", "work_unemployed": "มีโอกาสได้งานด้านการศึกษา วิชาการ สถาบันการเงิน หรือองค์กรที่มีระบบแบบแผนชัดเจน มีผู้ใหญ่ช่วยแนะนำงานให้", "finance": "การเงินปลอดภัย ไม่แนะนำให้เสี่ยงโชคเก็งกำไร เน้นการออมและผลตอบแทนที่สม่ำเสมอ", "love_single": "มีผู้ใหญ่หรือเพื่อนสนิทเป็นแม่สื่อชักนำคนดี มีศีลธรรมเข้ามาให้ทำความรู้จัก", "love_couple": "ความรักเป็นไปตามขนบธรรมเนียม มีเกณฑ์เข้าหาผู้ใหญ่เพื่อสู่ขอหรือตกลงเรื่องหมั้นหมาย", "advice": "ยึดมั่นในความซื่อสัตย์สุจริต และพร้อมเปิดใจรับฟังคำแนะนำจากผู้หวังดี", "lucky_color": "ม่วงคราม & เหลืองครีม", "lucky_number": "5, 14", "love_crush": "ความสัมพันธ์เริ่มจากการเป็นเพื่อน พี่น้อง หรือที่ปรึกษา ค่อยๆ สะสมความไว้ใจและความผูกพัน ไม่ควรรีบร้อน"}, {"id": 6, "name_th": "The Lovers (คู่รักแมวเหมียวใต้แสงดาว)", "name_en": "The Lovers", "animal": "แมวคู่รักเคล้าคลอ 🐱💕🐱", "symbol": "🐱", "bg_gradient": "linear-gradient(135deg, #581c87, #831843, #db2777)", "art_icon": "🐱💕🐱✨", "keywords": "พรหมลิขิต, ความรัก, ทางเลือกที่ตรงใจ, ความลงตัว", "overall": "พลังงานแห่งความผูกพัน ความสุข และการได้พบสิ่งที่สอดคล้องกับหัวใจอย่างแท้จริง", "work_employed": "การทำงานร่วมกับพาร์ทเนอร์หรือเพื่อนร่วมงานราบรื่นมาก เข้าขากันเป็นปี่เป็นขลุ่ย มีงานที่ทำแล้วมีความสุขและอินกับมันเต็มที่", "work_unemployed": "อาจมีตัวเลือกงานเข้ามามากกว่า 1 ที่ ให้เลือกงานที่ตรงกับความชอบและใจรัก จะทำให้เติบโตและมีความสุขในระยะยาว", "finance": "การเงินคล่องตัว ได้เงินจากการร่วมหุ้น ร่วมทุน หรือการค้าขายกับคู่ค้าที่ไว้ใจกัน", "love_single": "พรหมลิขิตทำงานเต็มที่ มีเกณฑ์เจอคนรู้ใจที่คุยแล้วรู้สึกเหมือนรู้จักกันมานาน", "love_couple": "หวานชื่น โรแมนติก เข้าใจกันอย่างลึกซึ้ง มีความสุขกับทุกช่วงเวลาที่ได้อยู่ด้วยกัน", "advice": "เลือกทางที่หัวใจคุณรู้สึกสงบและเปี่ยมสุข ความจริงใจจะนำพาสิ่งดีๆ เข้ามา", "lucky_color": "ชมพูมาเจนต้า & ม่วงสว่าง", "lucky_number": "6, 15", "love_crush": "กรี๊ดดด! เขาก็แอบมีใจให้คุณเหมือนกัน เคมีตรงกันสุดๆ โอกาสสารภาพรักแล้วได้พัฒนาเป็นแฟนสูงมาก เมี้ยว!"}, {"id": 7, "name_th": "The Chariot (ชิบะน้อยนักรบผู้กล้า)", "name_en": "The Chariot", "animal": "ชิบะอินุน้อยขับเกวียน 🐕⚔️", "symbol": "🐕", "bg_gradient": "linear-gradient(135deg, #1e1b4b, #3730a3, #4f46e5)", "art_icon": "🐕⚔️🎠", "keywords": "มุ่งมั่น, ฝ่าฟันอุปสรรค, คว้าชัยชนะ, เดินทางไกล", "overall": "พลังแห่งความกล้าหาญและการก้าวข้ามอุปสรรค แม้จะต้องออกแรงเยอะ แต่ชัยชนะรออยู่ตรงหน้าแน่นอน", "work_employed": "งานท้าทาย มีความกดดันและการแข่งขันสูง แต่ด้วยความมุ่งมั่น คุณจะฟันฝ่าจนสำเร็จและได้รับการยกย่อง มีเกณฑ์เดินทางไกลเรื่องงาน", "work_unemployed": "อย่าเพิ่งถอดใจ ให้ลุยส่งใบสมัครต่อไป ชัยชนะเป็นของคนที่อดทน มีเกณฑ์ได้งานเกี่ยวกับการขนส่ง โลจิสติกส์ งานลุย หรือต่างถิ่น", "finance": "รายได้เกิดจากความขยันและน้ำพักน้ำแรง ยิ่งลุยยิ่งรวย ระวังค่าใช้จ่ายเกี่ยวกับรถหรือการเดินทาง", "love_single": "ความรักต้องใช้ความกล้าในการเข้าหา หรืออาจพบรักกับคนต่างถิ่นแดนไกล", "love_couple": "ร่วมมือกันฟันฝ่าอุปสรรคชีวิตคู่ เป็นกำลังใจให้กันและกันเสมอ", "advice": "ควบคุมอารมณ์และจับบังเหียนชีวิตให้มั่น อย่าให้สิ่งรบกวนทำให้ไขว้เขวจากเป้าหมาย", "lucky_color": "ม่วงเข้ม & น้ำเงินโคบอลต์", "lucky_number": "7, 16", "love_crush": "ต้องรุกอย่างต่อเนื่องและสม่ำเสมอ อย่าเพิ่งถอดใจ แม้คู่แข่งจะเยอะแต่ความเสมอต้นเสมอปลายจะชนะใจเขาได้"}, {"id": 8, "name_th": "Strength (แพนด้าน้อยผู้ใจเย็น)", "name_en": "Strength", "animal": "แพนด้ากอดลูกสิงโต 🐼🦁", "symbol": "🐼", "bg_gradient": "linear-gradient(135deg, #064e3b, #047857, #10b981)", "art_icon": "🐼🌸🦁", "keywords": "อ่อนโยนสยบแข็งกร้าว, พลังใจ, ความอดทน, เมตตาธรรม", "overall": "พลังภายในอันเข้มแข็งที่ซ่อนอยู่ภายใต้ความนุ่มนวล คุณสามารถจัดการกับสถานการณ์ยากๆ ได้ด้วยรอยยิ้มและสติ", "work_employed": "ต้องรับมือกับหัวหน้า ลูกค้า หรือเพื่อนร่วมงานที่อารมณ์ร้อน แต่ความนิ่งและวาทศิลป์อันนุ่มนวลของคุณจะสยบปัญหาได้หมดจด", "work_unemployed": "ความอดทนไม่ยอมแพ้จะผลิดอกออกผล มีโอกาสได้งานที่ท้าทายความสามารถด้านการประสานงาน จัดการคน หรือการบริการ", "finance": "บริหารเงินได้เก่งขึ้น มีวินัยในการควบคุมรายจ่าย สามารถปลดเปลื้องภาระหนี้สินได้อย่างน่าประทับใจ", "love_single": "เสน่ห์อยู่ที่ความใจเย็น เป็นผู้ฟังที่ดี มีคนเข้ามาอยากให้คุณเป็นที่พักพิงทางใจ", "love_couple": "ใช้ความเข้าใจและความประนีประนอม ความอ่อนโยนจะละลายความขัดแย้งทุกอย่าง", "advice": "ความอ่อนโยนคือพลังที่แท้จริง สติและความอดทนจะนำพาชัยชนะมาให้", "lucky_color": "เขียวมรกต & ม่วงพาสเทล", "lucky_number": "8, 11", "love_crush": "ใช้ความอ่อนโยนและรอยยิ้มเข้าหา อย่าทำให้อึดอัด ค่อยๆ เข้าไปอยู่ในชีวิตประจำวันของเขาจะชนะใจได้ชัวร์"}, {"id": 9, "name_th": "The Hermit (โคอาล่าฤาษีแห่งขุนเขา)", "name_en": "The Hermit", "animal": "โคอาล่าน้อยถือโคมไฟ 🐨🏮", "symbol": "🐨", "bg_gradient": "linear-gradient(135deg, #18181b, #27272a, #3f3f46)", "art_icon": "🐨🏮🏔️", "keywords": "ค้นหาตนเอง, ความสงบ, สมาธิ, การตกผลึกทางปัญญา", "overall": "ช่วงเวลาแห่งการพักผ่อน ทบทวนชีวิต และค้นหาความหมายที่แท้จริง เหมาะกับการอยู่เงียบๆ เพื่อเติมพลังใจ", "work_employed": "เด่นมากสำหรับงานวิชาการ วิจัย วางแผนระยะยาว คอนเทนต์ หรืองานที่ต้องใช้สมาธิคนเดียว หลีกเลี่ยงความวุ่นวายในที่ทำงาน", "work_unemployed": "เป็นช่วงเวลาดีในการอัปสกิล อ่านหนังสือ หรือเตรียมตัวให้พร้อม งานที่ได้จะเป็นงานที่ใช้ความชำนาญเฉพาะทาง", "finance": "การเงินสมถะ ใช้จ่ายเท่าที่จำเป็น ไม่ควรใจร้อนลงทุนตามกระแส เน้นความมั่นคง", "love_single": "ยังหวงแหนชีวิตโสด ชอบความสบายใจในการอยู่คนเดียวมากกว่าความสัมพันธ์ที่วุ่นวาย", "love_couple": "ควรเว้นสเปซให้กันและกันบ้าง การมีพื้นที่ส่วนตัวจะทำให้รักยืนยาวขึ้น", "advice": "มองเข้าไปในจิตใจตัวเอง คำตอบที่คุณตามหาอยู่ภายในใจคุณเอง", "lucky_color": "เทาควันบุหรี่ & ม่วงหมอก", "lucky_number": "9, 18", "love_crush": "เขาอาจเป็นคนเข้าถึงยาก โลกส่วนตัวสูง หรือยังไม่พร้อมมีใคร ให้พื้นที่เขาและเป็นเพื่อนที่เข้าใจจะดีที่สุด"}, {"id": 10, "name_th": "Wheel of Fortune (แฮมสเตอร์กงล้อทองคำ)", "name_en": "Wheel of Fortune", "animal": "แฮมสเตอร์วิ่งวงล้อดวงดาว 🐹🎡", "symbol": "🐹", "bg_gradient": "linear-gradient(135deg, #713f12, #a16207, #eab308)", "art_icon": "🐹🎡⭐", "keywords": "โชคลาภหมุนมา, จังหวะทอง, จุดเปลี่ยนดวงชะตา, ฟ้าเปิดทาง", "overall": "กงล้อแห่งโชคชะตากำลังหมุนพาความเฮง ความปัง และสิ่งดีๆ มาเสิร์ฟถึงที่ ปัญหาเดิมๆ กำลังจะหมดไป", "work_employed": "จังหวะชีวิตกำลังเปลี่ยนไปในทางที่ดี มีเกณฑ์ได้ปรับตำแหน่ง เปลี่ยนงานใหม่ที่รายได้ดีกว่าเดิม หรือมีโปรเจกต์ใหญ่ที่สร้างชื่อเสียง", "work_unemployed": "ข่าวดีกำลังมาถึง! กำลังจะมีสายเรียกสัมภาษณ์งานหรือการตอบรับเข้าทำงานแบบสายฟ้าแลบ ฟ้าเปิดทางให้คุณแล้ว", "finance": "โชคลาภก้อนโตหมุนเข้ามา มีเกณฑ์ได้ลาภลอย ปลดล็อกหนี้สิน การเงินหมุนเวียนคล่องตัวแบบก้าวกระโดด", "love_single": "พรหมลิขิตจะพัดพาคนที่ใช่เข้ามาแบบบังเอิญ เจอในจังหวะที่ไม่คาดคิด", "love_couple": "ความสัมพันธ์ยกระดับไปในทางที่ดี ปัญหาที่ค้างคาใจจะคลี่คลายอย่างน่าอัศจรรย์", "advice": "เมื่อจังหวะทองมาถึง จงกล้าที่จะกระโดดคว้าโอกาสไว้ทันที", "lucky_color": "ทองประกาย & ม่วงพาสเทล", "lucky_number": "10, 21", "love_crush": "จังหวะฟ้าเปิด! จะมีเหตุการณ์บังเอิญที่ทำให้ได้ใกล้ชิดหรือได้คุยกันมากขึ้น รีบคว้าโอกาสทองนี้ไว้เลย"}, {"id": 11, "name_th": "Justice (แมวขาวตาชั่งแห่งความจริง)", "name_en": "Justice", "animal": "แมวขาวถือตาชั่งและดาบ 🐱⚖️", "symbol": "🐱", "bg_gradient": "linear-gradient(135deg, #1e293b, #334155, #475569)", "art_icon": "🐱⚖️📜", "keywords": "ความยุติธรรม, ความถูกต้อง, สัญญาเอกสาร, ผลลัพธ์เที่ยงตรง", "overall": "ช่วงเวลาแห่งความจริงและความเป็นธรรม สิ่งที่คุณเคยหว่านพืชไว้ในอดีต จะส่งผลออกดอกให้เก็บเกี่ยวในวันนี้", "work_employed": "การเจรจาต่อรองสัญญา ข้อตกลงทางธุรกิจ หรือการประเมินผลงานจะเป็นไปอย่างยุติธรรมและราบรื่นหากรอบคอบในข้อกฎหมาย", "work_unemployed": "มีโอกาสได้งานที่เกี่ยวข้องกับกฎหมาย เอกสาร การตรวจสอบ หรือองค์กรที่มีมาตรฐานชัดเจน เตรียมเอกสารสมัครงานให้เป๊ะ", "finance": "ได้รับเงินตกเบิก เงินคืนภาษี หรือผลตอบแทนที่สมน้ำสมเนื้อกับความเหน็ดเหนื่อย", "love_single": "ใช้เหตุผลนำทาง มองหาความสัมพันธ์ที่ชัดเจน ตรงไปตรงมา และให้เกียรติซึ่งกันและกัน", "love_couple": "พูดคุยและตกลงกติกาชีวิตคู่ด้วยความเข้าอกเข้าใจและเป็นธรรมทั้งสองฝ่าย", "advice": "ทำในสิ่งที่ถูกต้องเสมอ ชั่งน้ำหนักอย่างเป็นกลางก่อนตัดสินใจเรื่องสำคัญ", "lucky_color": "ม่วงดอกรัก & ขาวมุก", "lucky_number": "11, 22", "love_crush": "เขาเป็นคนดูความจริงใจและความชัดเจน ไม่ชอบความคลุมเครือ แสดงออกให้ตรงไปตรงมาจะทำให้เขาประทับใจ"}, {"id": 12, "name_th": "The Hanged Man (ค้างคาวน้อยห้อยหัว)", "name_en": "The Hanged Man", "animal": "ค้างคาวผลไม้น้อยห้อยหัว 🦇💡", "symbol": "🦇", "bg_gradient": "linear-gradient(135deg, #312e81, #3730a3, #4338ca)", "art_icon": "🦇💡🌌", "keywords": "มุมมองใหม่, การรอคอย, การปล่อยวาง, ปัญญาจากการหยุดนิ่ง", "overall": "บางสถานการณ์อาจต้องใช้ความอดทนรอคอย ลองกลับหัวมองปัญหาในมุมต่าง แล้วจะพบทางออกที่ลึกซึ้ง", "work_employed": "งานอาจชะลอตัวชั่วคราวเพื่อรอการอนุมัติ อย่าเพิ่งอึดอัด ใช้เวลานี้ตรวจสอบความเรียบร้อย การยอมปรับแผนจะช่วยให้งานรอด", "work_unemployed": "อาจต้องรอคอยผลการสัมภาษณ์สักระยะ อย่าเพิ่งท้อแท้ ลองปรับรูปแบบเรซูเม่ใหม่ให้โดดเด่น แล้วโอกาสจะเปิดกว้างขึ้น", "finance": "การเงินต้องใช้จ่ายอย่างรัดกุม การเสียสละเงินบางส่วนเพื่อการเรียนรู้หรือลงทุนระยะยาวจะส่งผลดีในอนาคต", "love_single": "ยังไม่ใช่จังหวะเร่งรีบ ให้เวลาตัวเองได้ทบทวนและตกตะกอนหัวใจ", "love_couple": "บางเรื่องต้องยอมถอยคนละก้าว การยอมเสียสละทิฐิจะช่วยรักษาความสัมพันธ์ไว้ได้", "advice": "การหยุดนิ่งเพื่อสังเกตไม่ใช่ความพ่ายแพ้ แต่เป็นการตั้งหลักอย่างชาญฉลาด", "lucky_color": "ม่วงกล้วยไม้ & ฟ้าอมเขียว", "lucky_number": "12, 3", "love_crush": "อาจต้องอดทนรอจังหวะอีกสักนิด ช่วงนี้ทำได้แค่ส่งความห่วงใยอยู่ห่างๆ อย่าเพิ่งกดดันให้เขาเลือกหรือตอบ"}, {"id": 13, "name_th": "Death (ผีเสื้อราตรีลอกคราบ)", "name_en": "Death", "animal": "ผีเสื้อเรืองแสงโบยบิน 🦋🌌", "symbol": "🦋", "bg_gradient": "linear-gradient(135deg, #09090b, #18181b, #27272a)", "art_icon": "🦋🌌🌅", "keywords": "ผลัดใบ, จบสิ้นสิ่งเก่า, รุ่งอรุณใหม่, การกำเนิดใหม่", "overall": "การสิ้นสุดของสิ่งเก่าที่หมดเวลา เพื่อเปิดทางให้รุ่งอรุณใหม่ที่งดงามกว่าเดิมได้เริ่มต้นขึ้น", "work_employed": "การปิดโปรเจกต์เดิม การปรับเปลี่ยนโครงสร้าง หรือการตัดสินใจลาออกจากงานที่หมดไฟเพื่อไปสู่งานใหม่ที่ตอบโจทย์ชีวิตมากกว่า", "work_unemployed": "หลุดพ้นจากช่วงเวลาว่างงานอันน่าอึดอัด กำลังจะได้เริ่มต้นงานใหม่ที่เป็นจุดเปลี่ยนสำคัญในชีวิตแบบหน้ามือเป็นหลังมือ", "finance": "เคลียร์หนี้สินเก่า จัดระเบียบการเงินใหม่ ปลดภาระค่าใช้จ่ายที่ไม่จำเป็นออกไปเพื่อเริ่มต้นความมั่งคั่งใหม่", "love_single": "ตัดใจจากคนเก่าในอดีตได้สำเร็จ หัวใจพร้อมโบยบินเปิดรับความรักครั้งใหม่ที่สดใส", "love_couple": "ทิ้งพฤติกรรมเดิมๆ ที่เป็นพิษต่อกัน แล้วเริ่มต้นปรับนิสัยเพื่อสร้างความสัมพันธ์ใหม่ที่ดีกว่าเดิม", "advice": "อย่ากลัวการจากลา เพราะไม่มีเช้าวันใหม่หากราตรีไม่ผ่านพ้น", "lucky_color": "ม่วงดึกดำบรรพ์ & เงินวาว", "lucky_number": "13, 4", "love_crush": "ถึงเวลาเลือกระหว่าง 'สารภาพรักให้รู้แล้วรู้รอด' หรือ 'ตัดใจเพื่อเปิดรับคนใหม่ที่ดีกว่า' จบความอึดอัดในใจซะ"}, {"id": 14, "name_th": "Temperance (นากน้อยแห่งสายน้ำ)", "name_en": "Temperance", "animal": "นากทะเลน้อยลอยน้ำ 🦦🌊", "symbol": "🦦", "bg_gradient": "linear-gradient(135deg, #0f766e, #14b8a6, #2dd4bf)", "art_icon": "🦦🌊🕊️", "keywords": "ความสมดุล, ยืดหยุ่น, การเยียวยาจิตใจ, ความพอดี", "overall": "ความสมดุลและความกลมกลืนในชีวิต สุขภาพกายและใจได้รับการฟื้นฟู สบายๆ เหมือนนากลอยน้ำ", "work_employed": "การประสานงานติดต่อระหว่างฝ่ายราบรื่น สามารถเป็นตัวกลางไกล่เกลี่ยปัญหาและปรับตัวเข้ากับสภาพแวดล้อมใหม่ได้อย่างยอดเยี่ยม", "work_unemployed": "มีเกณฑ์ได้งานที่ต้องใช้ความสามารถรอบด้าน หรือมีงานฟรีแลนซ์/งานสัญญาจ้างระยะสั้นเข้ามาช่วยเสริมรายได้ระหว่างรองานประจำ", "finance": "การเงินหมุนเวียนสมดุล รายรับรายจ่ายลงตัว มีเงินเหลือเก็บออมอย่างต่อเนื่อง", "love_single": "มีความสุขกับความสัมพันธ์ที่ค่อยเป็นค่อยไป ศึกษานิสัยใจคออย่างไม่รีบร้อน", "love_couple": "ช่วยเหลือและประคับประคองชีวิตคู่ได้อย่างกลมกลืน ถ้อยทีถ้อยอาศัยกันดีมาก", "advice": "เดินทางสายกลาง ปรับตัวให้ยืดหยุ่นดั่งสายน้ำที่ไหลผ่านทุกอุปสรรค", "lucky_color": "เขียวมิ้นต์ & ม่วงพาสเทล", "lucky_number": "14, 5", "love_crush": "ความสัมพันธ์ค่อยๆ เป็น ค่อยๆ ไป ปรับตัวเข้าหากันทีละนิด ทักไปคุยเรื่อยๆ สบายๆ ไม่ต้องเร่งรัดจะดีที่สุด"}, {"id": 15, "name_th": "The Devil (แมวดำซุกซนเจ้าเสน่ห์)", "name_en": "The Devil", "animal": "แมวดำมีปีกค้างคาว 🐈‍⬛😈", "symbol": "🐈‍⬛", "bg_gradient": "linear-gradient(135deg, #450a0a, #7f1d1d, #b91c1c)", "art_icon": "🐈‍⬛😈⛓️", "keywords": "กิเลสเย้ายวน, เสน่ห์ล้นเหลือ, พันธนาการทางใจ, ความลุ่มหลง", "overall": "พลังเสน่ห์ดึงดูดขั้นสุด แต่ให้ระวังเรื่องการตกเป็นทาสของอารมณ์ กิเลส หรือความอยากได้อยากมี", "work_employed": "มีความทะเยอทะยานสูงและมุ่งมั่นจะกอบโกยผลงาน แต่อย่าหักโหมจนเสียสุขภาพ ระวังการเมืองและผลประโยชน์ทับซ้อนในที่ทำงาน", "work_unemployed": "ระวังงานที่ดูได้เงินง่ายผิดปกติหรือมีเงื่อนไขสัญญาที่ไม่เป็นธรรม ตรวจสอบรายละเอียดบริษัทให้รอบคอบก่อนตกลงเซ็นสัญญา", "finance": "ระวังการช้อปปิ้งตามอารมณ์ หรือการลงทุนที่มีความเสี่ยงสูง อย่าไว้ใจใครเรื่องการเงินง่ายๆ", "love_single": "เสน่ห์แรงมาก มีคนเข้ามาพัวพันหลายคน ระวังความสัมพันธ์ที่ฉาบฉวยหรือรักซ้อน", "love_couple": "ระวังความหึงหวง อารมณ์ฉุนเฉียว หรือความต้องการครอบงำคนรักมากเกินไป", "advice": "รู้ทันกิเลสในใจ โซ่ที่ตรวนเราไว้สามารถปลดออกได้ด้วยสติของคุณเอง", "lucky_color": "ม่วงเบอร์รี่เข้ม & ดำขลับ", "lucky_number": "15, 6", "love_crush": "เขารู้สึกดึงดูดในเสน่ห์ของคุณมาก แต่อาจเป็นความหลงใหลชั่วคราว เช็กให้ดีว่าเขามีใครคุยซ้อนอยู่ไหม"}, {"id": 16, "name_th": "The Tower (กบสายฟ้าแห่งการตื่นรู้)", "name_en": "The Tower", "animal": "กบน้อยสายฟ้าฟาด 🐸⚡", "symbol": "🐸", "bg_gradient": "linear-gradient(135deg, #581c87, #6b21a8, #7e22ce)", "art_icon": "🐸⚡🏰", "keywords": "ฟ้าผ่าทลายกำแพง, เปลี่ยนแปลงกะทันหัน, ตื่นรู้, ฟ้าหลังฝน", "overall": "การเปลี่ยนแปลงที่เกิดขึ้นอย่างฉับพลันเพื่อทลายสิ่งลวงตาและปัญหาหมักหมมให้หมดสิ้นไป", "work_employed": "อาจมีการปรับเปลี่ยนโครงสร้างกะทันหัน หรือมีงานด่วนเข้ามาทดสอบสติ แต่จะช่วยให้สะสางปัญหาเดิมและมองเห็นทางออกที่เร็วกว่าเดิม", "work_unemployed": "อาจมีข่าวเรียกสัมภาษณ์ด่วน หรือมีโอกาสงานที่ไม่เคยคาดคิดมาก่อนติดต่อเข้ามาแบบกะทันหัน เตรียมตัวให้พร้อมตลอดเวลา", "finance": "ควรมีเงินสำรองฉุกเฉินไว้ ระวังรายจ่ายซ่อมแซมยานพาหนะ โทรศัพท์ หรืออุปกรณ์ทำงานที่ชำรุด", "love_single": "ฟ้าผ่าเปิดตาเปิดใจ ได้พบคนที่ทำให้ความคิดและทัศนคติเรื่องความรักเปลี่ยนไปโดยสิ้นเชิง", "love_couple": "หากมีเรื่องขัดแย้งสะสม ให้เปิดอกคุยความจริงกันตรงๆ การเคลียร์ใจจะช่วยให้ฟ้าหลังฝนสดใส", "advice": "ตั้งสติให้มั่นคง ยอมรับความจริงอย่างกล้าหาญ ฟ้าหลังฝนย่อมสดใสเสมอ", "lucky_color": "ม่วงเข้ม & ส้มแสด", "lucky_number": "16, 7", "love_crush": "อาจมีเรื่องเซอร์ไพรส์กะทันหัน เช่น รู้ความลับของเขา หรือจู่ๆ เขาก็ทักข้อความมาแบบไม่คาดฝัน ตั้งสติให้ดี"}, {"id": 17, "name_th": "The Star (กวางดาวแห่งความหวัง)", "name_en": "The Star", "animal": "ลูกกวางประดับดวงดาว 🦌⭐", "symbol": "🦌", "bg_gradient": "linear-gradient(135deg, #1e1b4b, #312e81, #4f46e5)", "art_icon": "🦌⭐✨", "keywords": "ความหวัง, แสงสว่างนำทาง, ความฝันเป็นจริง, สุขภาพฟื้นฟู", "overall": "ช่วงเวลาแห่งความสุขใจ ความหวัง และพลังบวกอันบริสุทธิ์ จักรวาลกำลังจัดสรรสิ่งดีๆ ให้คุณ", "work_employed": "ผลงานสร้างชื่อเสียง ได้รับคำชมเชยและแรงสนับสนุนอย่างอบอุ่น มีแรงบันดาลใจในการทำงานล้นหลาม สภาพแวดล้อมในที่ทำงานน่าอยู่", "work_unemployed": "ความหวังเป็นจริงแล้ว! กำลังจะได้งานที่ตรงใจ บรรยากาศเป็นกันเอง และตอบโจทย์ชีวิตที่เคยวาดฝันไว้", "finance": "การเงินเริ่มฟื้นตัวอย่างสดใส มีโชคลาภจากความดีงามและมีผู้ใหญ่คอยเกื้อหนุนช่วยเหลือ", "love_single": "มีเกณฑ์พบคนที่ทำให้ใจฟู มีความอ่อนโยน เข้ามาเยียวยาหัวใจได้อย่างงดงาม", "love_couple": "ความรักเต็มไปด้วยความเข้าใจ ความหวัง และความสุขสงบในจิตใจร่วมกัน", "advice": "มองไปยังดวงดาวด้วยความศรัทธา ความคิดบวกของคุณจะดึงดูดปาฏิหาริย์เข้ามา", "lucky_color": "ม่วงประกายเพชร & ฟ้าพาสเทล", "lucky_number": "17, 8", "love_crush": "มีความหวังเต็มเปี่ยม! เขาเริ่มมองคุณเป็นพลังบวกและความสดใสในใจ มีเกณฑ์ได้เลื่อนสถานะเป็นคนคุยคนพิเศษ"}, {"id": 18, "name_th": "The Moon (หมาป่ารัตติกาลใต้แสงจันทร์)", "name_en": "The Moon", "animal": "ลูกหมาป่าขนปุย 🐺🌕", "symbol": "🐺", "bg_gradient": "linear-gradient(135deg, #172554, #1e3a8a, #2563eb)", "art_icon": "🐺🌕🌌", "keywords": "จินตนาการ, เซ้นส์สัมผัส, ความคิดมาก, ความรู้สึกลึกซึ้ง", "overall": "พลังงานจินตนาการและอารมณ์ความรู้สึกที่ลึกซึ้ง ระวังความคิดมากเกินจริงหรือความวิตกกังวลในสิ่งที่ยังมาไม่ถึง", "work_employed": "เด่นมากสำหรับงานสร้างสรรค์ ศิลปะ การออกแบบ หรือวงการบันเทิง แต่อย่าเพิ่งหวั่นไหวกับข่าวลือหรือความไม่แน่นอนในออฟฟิศ", "work_unemployed": "อาจรู้สึกเคว้งคว้างและกังวลใจ อย่าเพิ่งกดดันตัวเองจนเกินไป ให้อดทนรอจังหวะที่เหมาะสม อีกไม่นานเมฆหมอกจะจางหาย", "finance": "ตรวจสอบเอกสารสัญญาการเงินให้รอบคอบ อย่าเพิ่งตัดสินใจลงทุนด้วยความไม่แน่ใจหรือตามคำชวนของคนอื่น", "love_single": "อารมณ์อ่อนไหว ระวังคนเข้ามาพูดจาหวานล้อมแต่ยังไม่ชัดเจนในเจตนา", "love_couple": "อย่าปล่อยให้ความระแวงทำร้ายความสัมพันธ์ มีอะไรให้เปิดใจคุยกันด้วยเหตุผล", "advice": "แยกแยะระหว่างความจริงกับภาพลวงตา ดึงสติอยู่กับปัจจุบันและรักตัวเองให้มาก", "lucky_color": "ม่วงควันบุหรี่ & เงินประกาย", "lucky_number": "18, 9", "love_crush": "ระวังคิดไปเองหรือมโนไปไกล อย่าเพิ่งตีความการกระทำของเขาเกินจริง ดูการกระทำที่ชัดเจนมากกว่าคำพูดหวานๆ"}, {"id": 19, "name_th": "The Sun (ลูกเป็ดน้อยพระอาทิตย์)", "name_en": "The Sun", "animal": "ลูกเป็ดสีทองและดอกทานตะวัน 🐥🌻", "symbol": "🐥", "bg_gradient": "linear-gradient(135deg, #78350f, #b45309, #f59e0b)", "art_icon": "🐥🌻☀️", "keywords": "ความสุขสูงสุด, พลังชีวิต, ชัยชนะ, ความสำเร็จแจ่มจรัส", "overall": "ไพ่ที่ดีที่สุดในสำรับ! เต็มไปด้วยความเบิกบาน รอยยิ้ม ความสำเร็จ และแสงสว่างที่ขับไล่ความมืดมิด", "work_employed": "ประสบความสำเร็จอย่างงดงาม ได้รับการโปรโมทผลงาน ผู้ใหญ่ชื่นชม โปรเจกต์ผ่านฉลุย บรรยากาศการทำงานเต็มไปด้วยพลังบวก", "work_unemployed": "ยินดีด้วยค่ะ! โอกาสได้งานใหม่สูงมาก ได้งานที่ดี มีความก้าวหน้า มีผู้คนต้อนรับอย่างอบอุ่นและให้ผลตอบแทนดีเยี่ยม", "finance": "การเงินมั่งคั่ง มีกำไรจากการค้าขาย ได้รับโชคลาภเงินก้อน มีสภาพคล่องทางการเงินสูงมาก", "love_single": "มีคนดี นิสัยอบอุ่น สดใส เข้ามามอบความรักที่ชัดเจนและเปิดเผยให้", "love_couple": "ความรักเบิกบาน หวานชื่น ได้รับการยอมรับจากครอบครัวและคนรอบข้างอย่างเต็มที่", "advice": "ส่งต่อรอยยิ้มและความอบอุ่นให้โลกรอบตัว ความสุขของคุณจะส่องสว่างอย่างไม่มีที่สิ้นสุด", "lucky_color": "เหลืองทองคำ & ม่วงพาสเทล", "lucky_number": "19, 1", "love_crush": "ปังมากกก! เขารู้สึกสดใสและมีความสุขทุกครั้งที่ได้คุยกับคุณ โอกาสสารภาพรักแล้วสมหวังสูงถึง 99%!"}, {"id": 20, "name_th": "Judgement (นกฟีนิกซ์ตัวจิ๋ว)", "name_en": "Judgement", "animal": "ฟีนิกซ์น้อยตื่นจากเถ้าถ่าน 🦚🎺", "symbol": "🦚", "bg_gradient": "linear-gradient(135deg, #3b0764, #581c87, #7e22ce)", "art_icon": "🦚🎺🌅", "keywords": "ตื่นรู้, โอกาสครั้งที่สอง, เสียงเรียกจากใจ, การเกิดใหม่", "overall": "เวลาแห่งการเริ่มต้นใหม่ที่ยกระดับจิตวิญญาณ การได้รับข่าวดีที่รอคอยมานาน และการปลดปล่อยสู่อิสรภาพ", "work_employed": "ได้รับการประเมินผลงานที่ดีเยี่ยม มีเกณฑ์ได้เลื่อนตำแหน่ง หรือได้รับโอกาสครั้งสำคัญในการโชว์ศักยภาพและทำได้สำเร็จงดงาม", "work_unemployed": "จะได้รับข่าวดีเรื่องงานที่เคยไปสัมภาษณ์ไว้ หรือมีบริษัทเก่า/คนรู้จักติดต่อเสนองานใหม่ที่น่าสนใจเข้ามา", "finance": "ปัญหาการเงินที่เคยติดขัดจะได้รับการปลดล็อก ได้รับเงินตกเบิกหรือเงินชดเชยที่ยุติธรรม", "love_single": "คนที่ใช่ในเวลาที่ถูกต้องกำลังจะปรากฏตัว หรือคนคุยเก่าวนกลับมาในเวอร์ชันที่ดีขึ้น", "love_couple": "ให้อภัยซึ่งกันและกัน ความสัมพันธ์ก้าวข้ามปัญหาเดิมและมั่นคงขึ้นกว่าเดิม", "advice": "ให้อภัยอดีต ฟังเสียงเรียกที่แท้จริงของจิตวิญญาณ แล้วก้าวไปข้างหน้าอย่างภาคภูมิใจ", "lucky_color": "ม่วงกล้วยไม้ & ขาวกระจ่าง", "lucky_number": "20, 2", "love_crush": "ถึงเวลาที่จักรวาลจะให้คำตอบ ความรู้สึกที่เก็บไว้ถึงเวลาต้องเผยออกไป หรือเขาจะเป็นฝ่ายเอ่ยปากเองเร็วๆ นี้"}, {"id": 21, "name_th": "The World (วาฬท่องอวกาศ)", "name_en": "The World", "animal": "วาฬน้อยลอยในจักรวาล 🐋🪐", "symbol": "🐋", "bg_gradient": "linear-gradient(135deg, #0c4a6e, #0284c7, #38bdf8)", "art_icon": "🐋🪐👑", "keywords": "สมบูรณ์แบบ, เดินทางรอบโลก, อิสรภาพ, บรรลุเป้าหมาย", "overall": "ความสำเร็จอันสมบูรณ์แบบในทุกมิติของชีวิต ความสุขสงบ การเติมเต็ม และความภาคภูมิใจในเส้นทางที่ผ่านมา", "work_employed": "โครงการใหญ่ปิดจบลุล่วงตามเป้าหมาย ประสบความสำเร็จในระดับสากล มีเกณฑ์ได้ทำงานกับต่างชาติหรือได้เดินทางไปทำงานต่างประเทศ", "work_unemployed": "ได้งานที่ตรงกับความใฝ่ฝันอย่างสมบูรณ์แบบ ได้เริ่มต้นชีวิตการทำงานในที่ที่ทำให้คุณมีความสุขและภาคภูมิใจ", "finance": "การเงินสมบูรณ์พูนสุข มั่งคั่ง มีความมั่นคงสูง ไร้ความกังวลเรื่องเงินทอง", "love_single": "พบคนที่พร้อมร่วมเดินทางชีวิตไปด้วยกันอย่างสมบูรณ์แบบและลงตัวทุกอย่าง", "love_couple": "ความรักลงตัว อบอุ่น มีความสุขร่วมกันอย่างแท้จริง มีความสุขกับความมั่นคงของชีวิตคู่", "advice": "ร่วมยินดีกับทุกก้าวที่คุณฟันฝ่ามา จักรวาลทั้งใบพร้อมโอบกอดคุณด้วยความรัก", "lucky_color": "ม่วงคอสมิก & เขียวมรกตอ่อน", "lucky_number": "21, 3", "love_crush": "ความรู้สึกตรงกันอย่างสมบูรณ์แบบ ทั้งสองฝ่ายต่างรู้สึกดีต่อกัน มีเกณฑ์ข้ามขั้นจากคนแอบรักไปสู่คนรู้ใจ"}];
+    const tarotDeck = [{"id": 0, "name_th": "The Fool (กระต่ายน้อยสะพายย่าม)", "name_en": "The Fool", "animal": "กระต่ายน้อยร่าเริงสะพายย่ามเดินท่องทุ่งดอกไม้ 🐰🎒🌸", "symbol": "🐰", "bg_gradient": "linear-gradient(135deg, #fce7f3, #fed7aa, #fef08a)", "art_icon": "🐰🎒🌸", "keywords": "การเริ่มต้นใหม่, อิสระ, ก้าวสู่โลกกว้าง, ความสดใสไร้เดียงสา", "overall": "พลังงานแห่งความสดชื่นเหมือนกระต่ายน้อยกระโดดโลดเต้นสู่โลกกว้างอย่างไร้กังวล จักรวาลพร้อมมอบการเริ่มต้นใหม่และโอกาสดีๆ ให้คุณ อย่ากลัวที่จะออกเดินทาง", "work_employed": "เหมาะกับการริเริ่มโปรเจกต์ใหม่ ความคิดสร้างสรรค์นอกกรอบจะได้รับการตอบรับดี บรรยากาศในการทำงานผ่อนคลายและมีอิสระมากขึ้น", "work_unemployed": "มีเกณฑ์ได้งานใหม่แบบไม่คาดฝัน โดยเฉพาะงานสายครีเอทีฟ สื่อออนไลน์ งานอิสระ หรือองค์กรรุ่นใหม่ อย่าลังเลที่จะลองยื่นใบสมัครในสายงานที่ไม่เคยทำ", "finance": "การเงินคล่องตัว มีช่องทางรายรับใหม่ๆ เข้ามา แต่ควรระวังการใช้จ่ายตามอารมณ์หรือช้อปปิ้งของกุ๊กกิ๊กเพลินมือ", "love_single": "มีเกณฑ์พบรักแรกพบกับคนมีเสน่ห์ ขี้เล่น อารมณ์ดี เข้ามาทำให้หัวใจเต้นแรงและยิ้มได้ทั้งวัน", "love_crush": "มีโอกาสดีมากในการทักไปคุยก่อน อย่ากลัวที่จะเริ่มทัก เขาเปิดรับความน่ารักสดใสและรอยยิ้มของคุณ ลุยเลย!", "love_couple": "ชวนกันไปเที่ยวเปิดหูเปิดตา เติมความสดชื่นให้ความสัมพันธ์เหมือนตอนรักกันใหม่ๆ", "advice": "ก้าวไปข้างหน้าด้วยความกล้าหาญและความสดใส แต่ตาต้องมองทางใต้ฝ่าเท้าให้ดีด้วยนะ", "lucky_color": "ชมพูพาสเทล & เหลืองอ่อน", "lucky_number": "0, 9"}, {"id": 1, "name_th": "The Magician (แพนด้าแดงพ่อมดมนตรา)", "name_en": "The Magician", "animal": "แพนด้าแดงพ่อมดถือไม้กายสิทธิ์ดวงดาว 🐼🪄🔮", "symbol": "🐼", "bg_gradient": "linear-gradient(135deg, #e9d5ff, #c7d2fe, #bae6fd)", "art_icon": "🐼🪄🔮", "keywords": "เสกความสำเร็จ, ไหวพริบยอดเยี่ยม, วาจาศักดิ์สิทธิ์, พรสวรรค์", "overall": "คุณมีพลังเวทมนตร์ในตัวเองเหมือนแพนด้าแดงที่พร้อมเสกทุกเป้าหมายให้เป็นจริง ด้วยไหวพริบ พรสวรรค์ และเครื่องมือครบครันในมือคุณ", "work_employed": "การเจรจา การพรีเซนต์ และการปิดดีลราบรื่นมาก วาจาเป็นทรัพย์ ปัญหาเฉพาะหน้าถูกคลี่คลายด้วยความเฉลียวฉลาดของคุณเอง", "work_unemployed": "โดดเด่นมากในการสัมภาษณ์งาน พรสวรรค์และไหวพริบของคุณจะเตะตากรรมการ มีเกณฑ์ได้งานที่ตรงกับความสามารถอย่างรวดเร็ว", "finance": "หาเงินเก่ง มีช่องทางเพิ่มรายได้จากทักษะพิเศษหรืออาชีพเสริม เงินทองไหลเข้ากระเป๋าคล่องตัว", "love_single": "เสน่ห์แพรวพราว มีคนเข้ามาทักทายคุยเก่งคารมดี เคมีเข้ากันได้ง่าย", "love_crush": "เขารู้สึกว่าคุณมีเสน่ห์และคุยสนุก ใช้ไหวพริบหยอดทีละนิด แกล้งถามเรื่องที่เขาชอบ จะได้ผลตอบรับดีเกินคาด", "love_couple": "สื่อสารเข้าใจกันดี คุยกันเรื่องอนาคตได้อย่างราบรื่นและพร้อมส่งเสริมซึ่งกันและกัน", "advice": "เชื่อมั่นในพลังเวทมนตร์และศักยภาพของตัวเอง ลงมือทำทันทีโดยไม่ต้องลังเล", "lucky_color": "ม่วงลาเวนเดอร์ & ฟ้าใส", "lucky_number": "1, 8"}, {"id": 2, "name_th": "The High Priestess (นกฮูกขาวบนดอกบัว)", "name_en": "The High Priestess", "animal": "นกฮูกขาวบริสุทธิ์เกาะบนดอกบัวใต้จันทร์เพ็ญ 🦉🪷🌙", "symbol": "🦉", "bg_gradient": "linear-gradient(135deg, #e0f2fe, #d1fae5, #f5d0fe)", "art_icon": "🦉🪷🌙", "keywords": "สัญชาตญาณแม่นยำ, เซ้นส์แรง, ความสงบ, ปัญญาหยั่งรู้", "overall": "ความสงบนิ่งดั่งนกฮูกขาวนั่งสมาธิบนดอกบัวกลางสระน้ำสะท้อนเงาจันทร์ สัญชาตญาณของคุณแม่นยำเป็นพิเศษ ให้เชื่อมั่นในเซ้นส์และความรู้สึกแรกของตัวเอง", "work_employed": "เหมาะกับงานวางแผนเบื้องหลัง งานวิจัย งานข้อมูล ไม่ควรเปิดเผยแผนการให้คนอื่นรู้เร็วเกินไป ระวังคลื่นใต้น้ำแต่คุณจะเอาตัวรอดได้สบาย", "work_unemployed": "ช่วงนี้เหมาะกับการพัฒนาทักษะเพิ่มเติม ศึกษาหาความรู้เฉพาะทาง จะมีงานสายวิเคราะห์ วิจัย หรือการศึกษาติดต่อเข้ามา", "finance": "การเงินเน้นการเก็บออมเงียบๆ มีลาภลอยจากเซ้นส์สัมผัสหรือความฝันแม่นยำ อย่าเพิ่งให้ใครหยิบยืมเงิน", "love_single": "มีคนแอบชอบ แอบมอง หรือมีความสัมพันธ์ที่ยังไม่พร้อมเปิดเผยต่อสาธารณะ", "love_crush": "เขากำลังจับตามองหรือแอบมีใจให้คุณเงียบๆ เหมือนกัน แต่ฟอร์มจัด ให้หยั่งเชิงดูไปก่อนอย่าเพิ่งรุกแรงเกินไป", "love_couple": "ใช้ความรู้สึกและเซ้นส์ในการดูแลกัน ควรคุยกันตรงไปตรงมาเพื่อลดความระแวง", "advice": "นิ่งสงบดุจผิวน้ำสะท้อนเงาจันทร์ ฟังเสียงกระซิบจากหัวใจของคุณเอง", "lucky_color": "ฟ้าพาสเทล & เขียวมินต์", "lucky_number": "2, 7"}, {"id": 3, "name_th": "The Empress (ลูกกวางน้อยในดงกุหลาบ)", "name_en": "The Empress", "animal": "ลูกกวางน้อยสวมมงกุฎดอกไม้นอนหลับในดงกุหลาบ 🦌👑🌹", "symbol": "🦌", "bg_gradient": "linear-gradient(135deg, #ffe4e6, #fed7aa, #fce7f3)", "art_icon": "🦌👑🌹", "keywords": "ความอุดมสมบูรณ์, มั่งคั่ง, ความสุข, ความอบอุ่นในใจ", "overall": "ช่วงเวลาแห่งความสุขสบาย ความอบอุ่น และการได้รับการดูแลเอาใจใส่ ดั่งลูกกวางน้อยที่นอนหลับอย่างปลอดภัยท่ามกลางกลิ่นหอมของดอกกุหลาบ", "work_employed": "ผู้ใหญ่และเพื่อนร่วมงานเมตตาให้ความช่วยเหลือ งานสายครีเอทีฟ ศิลปะ ความงาม อาหาร และบริการเติบโตรุ่งเรืองอย่างงดงาม", "work_unemployed": "มีเกณฑ์ได้งานเร็วๆ นี้ โดยเฉพาะงานในองค์กรที่มีความมั่นคง บรรยากาศอบอุ่น หรือได้รับการฝากฝังแนะนำจากผู้ใหญ่ใจดี", "finance": "การเงินมั่งคั่งอุดมสมบูรณ์ มีเงินหมุนเวียนเข้ามาไม่ขาดมือ ได้รับของขวัญหรือรางวัลชิ้นใหญ่", "love_single": "มีคนเข้ามาเอาอกเอาใจ ดูแลทะนุถนอมเหมือนเจ้าหญิง/เจ้าชาย", "love_crush": "เขารู้สึกอบอุ่นและสบายใจเวลาอยู่ใกล้คุณ มีเกณฑ์พัฒนาจากคนแอบชอบไปเป็นคนพิเศษได้อย่างงดงาม", "love_couple": "ความรักหวานชื่น มีเกณฑ์วางแผนแต่งงาน หรือมีสมาชิกตัวน้อยเข้ามาเติมเต็มครอบครัว", "advice": "ดูแลตัวเองและแบ่งปันความรักให้คนรอบข้าง ความอ่อนโยนจะชนะใจทุกคน", "lucky_color": "ชมพูกุหลาบ & พีชพาสเทล", "lucky_number": "3, 6"}, {"id": 4, "name_th": "The Emperor (ลูกหมีบนบัลลังก์ศิลา)", "name_en": "The Emperor", "animal": "ลูกหมีสวมมงกุฎถือคทาแสงบนบัลลังก์หิน 🐻👑🛡️", "symbol": "🐻", "bg_gradient": "linear-gradient(135deg, #fef08a, #fed7aa, #fde047)", "art_icon": "🐻👑🛡️", "keywords": "ผู้นำ, อำนาจบารมี, ความมั่นคง, ความเด็ดขาด", "overall": "ความหนักแน่น มั่นคง และการควบคุมสถานการณ์ได้อย่างอยู่หมัด ดั่งลูกหมีผู้สง่างามบนบัลลังก์ศิลาที่ทุกคนเคารพรักและพึ่งพาได้เสมอ", "work_employed": "มีเกณฑ์ได้เลื่อนขั้น เลื่อนตำแหน่ง หรือได้รับมอบหมายให้คุมทีมและโปรเจกต์สำคัญ ผู้ใหญ่ให้ความไว้วางใจและมีอำนาจตัดสินใจเต็มที่", "work_unemployed": "มีโอกาสได้งานในองค์กรขนาดใหญ่ ราชการ รัฐวิสาหกิจ หรือบริษัทข้ามชาติที่มั่นคง การสัมภาษณ์ควรแสดงความมั่นใจและภาวะผู้นำ", "finance": "ฐานะการเงินแข็งแกร่ง มีโครงสร้างรายได้ที่มั่นคง เหมาะกับการวางแผนซื้ออสังหาริมทรัพย์หรือลงทุนระยะยาว", "love_single": "มีเกณฑ์พบคนมีฐานะมั่นคง บุคลิกดี เป็นผู้ใหญ่ที่พึ่งพาได้", "love_crush": "เขาอาจจะดูนิ่งๆ วางท่า หรือฟอร์มเยอะ แต่จริงๆ เขาก็แอบมองคุณอยู่ แสดงความจริงใจให้เขาเห็นแล้วเขาจะเปิดใจ", "love_couple": "ความรักมั่นคง หนักแน่น แต่อย่าใช้อารมณ์บงการหรือเผด็จการกับคนรักมากเกินไป", "advice": "วางแผนให้รอบคอบและลงมือทำอย่างมีระเบียบวินัย ความสม่ำเสมอจะนำพาความสำเร็จที่ยิ่งใหญ่", "lucky_color": "เหลืองทอง & น้ำตาลอบอุ่น", "lucky_number": "4, 10"}, {"id": 5, "name_th": "The Hierophant (ลูกช้างน้อยในวิหารกุญแจทอง)", "name_en": "The Hierophant", "animal": "ลูกช้างน้อยในชุดคลุมถือกุญแจทองคำในวิหาร 🐘📜🗝️", "symbol": "🐘", "bg_gradient": "linear-gradient(135deg, #ede9fe, #fef9c3, #ddd6fe)", "art_icon": "🐘📜🗝️", "keywords": "ปัญญา, กัลยาณมิตร, กุญแจไขปัญหา, ผู้ใหญ่เมตตาอุปถัมภ์", "overall": "กุญแจทองคำแห่งปัญญาจะช่วยเปิดประตูทางออกให้กับทุกเรื่อง จะมีผู้ใหญ่ ครูอาจารย์ หรือผู้ทรงศีลธรรมคอยชี้แนะและเมตตาช่วยเหลือ", "work_employed": "การทำงานยึดตามระเบียบแบบแผนจะปลอดภัยที่สุด การสอบเลื่อนขั้น อบรม หรือขออนุมัติเอกสารจะผ่านการรับรองอย่างราบรื่น", "work_unemployed": "มีโอกาสได้งานด้านการศึกษา วิชาการ สถาบันการเงิน หรือองค์กรที่มีระบบแบบแผนชัดเจน มีผู้ใหญ่ช่วยแนะนำงานให้", "finance": "การเงินปลอดภัย ไม่แนะนำให้เสี่ยงโชคเก็งกำไร เน้นการออมและผลตอบแทนที่สม่ำเสมอ", "love_single": "มีผู้ใหญ่หรือเพื่อนสนิทเป็นแม่สื่อชักนำคนดี มีศีลธรรมเข้ามาให้ทำความรู้จัก", "love_crush": "ความสัมพันธ์เริ่มจากการเป็นเพื่อน พี่น้อง หรือที่ปรึกษา ค่อยๆ สะสมความไว้ใจและความผูกพัน ไม่ควรรีบร้อน", "love_couple": "ความรักเป็นไปตามขนบธรรมเนียม มีเกณฑ์เข้าหาผู้ใหญ่เพื่อสู่ขอหรือตกลงเรื่องหมั้นหมาย", "advice": "ยึดมั่นในความซื่อสัตย์สุจริต และพร้อมเปิดใจรับฟังคำแนะนำจากผู้หวังดี", "lucky_color": "ม่วงลาเวนเดอร์ & ครีมทอง", "lucky_number": "5, 14"}, {"id": 6, "name_th": "The Lovers (คู่รักจิ้งจอกใต้ซุ้มซากุระ)", "name_en": "The Lovers", "animal": "คู่รักจิ้งจอกเคียงคู่ใต้ซุ้มดอกซากุระ 🦊💕🦊🌸", "symbol": "🦊", "bg_gradient": "linear-gradient(135deg, #fbcfe8, #fce7f3, #fed7e2)", "art_icon": "🦊💕🦊🌸", "keywords": "พรหมลิขิต, ความรัก, ทางเลือกที่ตรงใจ, ความลงตัว", "overall": "พลังงานแห่งความผูกพัน ความสุข และการได้พบสิ่งที่สอดคล้องกับหัวใจอย่างแท้จริง ดั่งคู่รักจิ้งจอกที่อิงแอบแนบชิดใต้ซุ้มซากุระบานสะพรั่ง", "work_employed": "การทำงานร่วมกับพาร์ทเนอร์หรือเพื่อนร่วมงานราบรื่นมาก เข้าขากันเป็นปี่เป็นขลุ่ย มีงานที่ทำแล้วมีความสุขและอินกับมันเต็มที่", "work_unemployed": "อาจมีตัวเลือกงานเข้ามามากกว่า 1 ที่ ให้เลือกงานที่ตรงกับความชอบและใจรัก จะทำให้เติบโตและมีความสุขในระยะยาว", "finance": "การเงินคล่องตัว ได้เงินจากการร่วมหุ้น ร่วมทุน หรือการค้าขายกับคู่ค้าที่ไว้ใจกัน", "love_single": "พรหมลิขิตทำงานเต็มที่ มีเกณฑ์เจอคนรู้ใจที่คุยแล้วรู้สึกเหมือนรู้จักกันมานาน", "love_crush": "กรี๊ดดด! เขาก็แอบมีใจให้คุณเหมือนกัน เคมีตรงกันสุดๆ โอกาสสารภาพรักแล้วได้พัฒนาเป็นแฟนสูงมาก เมี้ยว!", "love_couple": "หวานชื่น โรแมนติก เข้าใจกันอย่างลึกซึ้ง มีความสุขกับทุกช่วงเวลาที่ได้อยู่ด้วยกัน", "advice": "เลือกทางที่หัวใจคุณรู้สึกสงบและเปี่ยมสุข ความจริงใจจะนำพาสิ่งดีๆ เข้ามา", "lucky_color": "ชมพูซากุระ & ขาวมุก", "lucky_number": "6, 15"}, {"id": 7, "name_th": "The Chariot (เต่าน้อยบนเกวียนผีเสื้อ)", "name_en": "The Chariot", "animal": "เต่าน้อยมุ่งมั่นบนเกวียนเทียมผีเสื้อแสนสวย 🐢🦋🎠", "symbol": "🐢", "bg_gradient": "linear-gradient(135deg, #bae6fd, #a7f3d0, #c7d2fe)", "art_icon": "🐢🦋🎠", "keywords": "ช้าแต่มั่นคง, พลังใจ, มุ่งมั่นสู่เส้นชัย, ผีเสื้อนำทาง", "overall": "ความมุ่งมั่นที่ไม่ยอมแพ้ดั่งเต่าน้อยติดปีกผีเสื้อ แม้จะเริ่มต้นอย่างค่อยเป็นค่อยไป แต่ด้วยความพยายามและมีทิศทางที่ชัดเจน ชัยชนะรอคุณอยู่แน่นอน", "work_employed": "งานท้าทาย มีความกดดันและการแข่งขันสูง แต่ด้วยความมุ่งมั่น คุณจะฟันฝ่าจนสำเร็จและได้รับการยกย่อง มีเกณฑ์เดินทางไกลเรื่องงาน", "work_unemployed": "อย่าเพิ่งถอดใจ ให้ลุยส่งใบสมัครต่อไป ชัยชนะเป็นของคนที่อดทน มีเกณฑ์ได้งานเกี่ยวกับการขนส่ง โลจิสติกส์ งานลุย หรือต่างถิ่น", "finance": "รายได้เกิดจากความขยันและน้ำพักน้ำแรง ยิ่งลุยยิ่งรวย ระวังค่าใช้จ่ายเกี่ยวกับรถหรือการเดินทาง", "love_single": "ความรักต้องใช้ความกล้าในการเข้าหา หรืออาจพบรักกับคนต่างถิ่นแดนไกล", "love_crush": "ต้องรุกอย่างต่อเนื่องและสม่ำเสมอ อย่าเพิ่งถอดใจ แม้คู่แข่งจะเยอะแต่ความเสมอต้นเสมอปลายจะชนะใจเขาได้", "love_couple": "ร่วมมือกันฟันฝ่าอุปสรรคชีวิตคู่ เป็นกำลังใจให้กันและกันเสมอ", "advice": "ช้าแต่ชัวร์ ควบคุมสติและมุ่งตรงสู่เป้าหมาย อย่าให้ความเร็วของคนอื่นทำให้คุณกดดัน", "lucky_color": "ฟ้าพาสเทล & เขียวมินต์", "lucky_number": "7, 16"}, {"id": 8, "name_th": "Strength (คอร์กี้กอดดอกเดซี่)", "name_en": "Strength", "animal": "เจ้าคอร์กี้ใจดีกอดก้านดอกเดซี่สีขาว 🐶🌼🌿", "symbol": "🐶", "bg_gradient": "linear-gradient(135deg, #d1fae5, #fef08a, #bbf7d0)", "art_icon": "🐶🌼🌿", "keywords": "อ่อนโยนสยบแข็งกร้าว, พลังใจ, ความอดทน, เมตตาธรรม", "overall": "พลังความอ่อนโยนที่ชนะใจทุกคน ดั่งเจ้าคอร์กี้ตัวน้อยที่ใช้รอยยิ้มและความนุ่มฟูกอดดอกเดซี่ไว้ สยบทุกความตึงเครียดด้วยความเมตตา", "work_employed": "ต้องรับมือกับหัวหน้า ลูกค้า หรือเพื่อนร่วมงานที่อารมณ์ร้อน แต่ความนิ่งและวาทศิลป์อันนุ่มนวลของคุณจะสยบปัญหาได้หมดจด", "work_unemployed": "ความอดทนไม่ยอมแพ้จะผลิดอกออกผล มีโอกาสได้งานที่ท้าทายความสามารถด้านการประสานงาน จัดการคน หรือการบริการ", "finance": "บริหารเงินได้เก่งขึ้น มีวินัยในการควบคุมรายจ่าย สามารถปลดเปลื้องภาระหนี้สินได้อย่างน่าประทับใจ", "love_single": "เสน่ห์อยู่ที่ความใจเย็น เป็นผู้ฟังที่ดี มีคนเข้ามาอยากให้คุณเป็นที่พักพิงทางใจ", "love_crush": "ใช้ความอ่อนโยนและรอยยิ้มเข้าหา อย่าทำให้อึดอัด ค่อยๆ เข้าไปอยู่ในชีวิตประจำวันของเขาจะชนะใจได้ชัวร์", "love_couple": "ใช้ความเข้าใจและความประนีประนอม ความอ่อนโยนจะละลายความขัดแย้งทุกอย่าง", "advice": "ความอ่อนโยนคือพลังที่แท้จริง สติและความอดทนจะนำพาชัยชนะมาให้", "lucky_color": "เขียวมินต์ & เหลืองเดซี่", "lucky_number": "8, 11"}, {"id": 9, "name_th": "The Hermit (เม่นแคระถือตะเกียงในป่าหิมะ)", "name_en": "The Hermit", "animal": "เม่นแคระตัวน้อยพันผ้าพันคอถือตะเกียงในป่าหิมะ 🦔🏮❄️", "symbol": "🦔", "bg_gradient": "linear-gradient(135deg, #e9d5ff, #c7d2fe, #e0e7ff)", "art_icon": "🦔🏮❄️", "keywords": "ค้นหาตนเอง, แสงสว่างนำทาง, ความสงบ, สมาธิ", "overall": "ช่วงเวลาแห่งการพักผ่อน ทบทวนชีวิต และค้นหาความหมายที่แท้จริง ตะเกียงในมือเม่นแคระจะส่องสว่างนำทางคุณฝ่าลมหนาวไปสู่ความอบอุ่น", "work_employed": "เด่นมากสำหรับงานวิชาการ วิจัย วางแผนระยะยาว คอนเทนต์ หรืองานที่ต้องใช้สมาธิคนเดียว หลีกเลี่ยงความวุ่นวายในที่ทำงาน", "work_unemployed": "เป็นช่วงเวลาดีในการอัปสกิล อ่านหนังสือ หรือเตรียมตัวให้พร้อม งานที่ได้จะเป็นงานที่ใช้ความชำนาญเฉพาะทาง", "finance": "การเงินสมถะ ใช้จ่ายเท่าที่จำเป็น ไม่ควรใจร้อนลงทุนตามกระแส เน้นความมั่นคง", "love_single": "ยังหวงแหนชีวิตโสด ชอบความสบายใจในการอยู่คนเดียวมากกว่าความสัมพันธ์ที่วุ่นวาย", "love_crush": "เขาอาจเป็นคนเข้าถึงยาก โลกส่วนตัวสูง หรือยังไม่พร้อมมีใคร ให้พื้นที่เขาและเป็นเพื่อนที่เข้าใจจะดีที่สุด", "love_couple": "ควรเว้นสเปซให้กันและกันบ้าง การมีพื้นที่ส่วนตัวจะทำให้รักยืนยาวขึ้น", "advice": "มองเข้าไปในจิตใจตัวเอง คำตอบที่คุณตามหาอยู่ภายในใจคุณเอง", "lucky_color": "ม่วงลาเวนเดอร์ & ขาวหิมะ", "lucky_number": "9, 18"}, {"id": 10, "name_th": "Wheel of Fortune (กระรอกน้อยหมุนกงล้อโอ๊ก)", "name_en": "Wheel of Fortune", "animal": "กระรอกน้อยสะพายเป้หมุนกงล้อไม้ผลโอ๊ก 🐿️🎡🌰", "symbol": "🐿️", "bg_gradient": "linear-gradient(135deg, #fef08a, #fce7f3, #fed7aa)", "art_icon": "🐿️🎡🌰", "keywords": "โชคลาภหมุนมา, จังหวะทอง, จุดเปลี่ยนดวงชะตา, ความอุดมสมบูรณ์", "overall": "กงล้อแห่งโชคชะตากำลังหมุนพาผลโอ๊กทองคำและสิ่งดีๆ มาเสิร์ฟถึงที่ ปัญหาที่เคยติดขัดกำลังจะหมดไปและถูกแทนที่ด้วยความเฮง", "work_employed": "จังหวะชีวิตกำลังเปลี่ยนไปในทางที่ดี มีเกณฑ์ได้ปรับตำแหน่ง เปลี่ยนงานใหม่ที่รายได้ดีกว่าเดิม หรือมีโปรเจกต์ใหญ่ที่สร้างชื่อเสียง", "work_unemployed": "ข่าวดีกำลังมาถึง! กำลังจะมีสายเรียกสัมภาษณ์งานหรือการตอบรับเข้าทำงานแบบสายฟ้าแลบ ฟ้าเปิดทางให้คุณแล้ว", "finance": "โชคลาภก้อนโตหมุนเข้ามา มีเกณฑ์ได้ลาภลอย ปลดล็อกหนี้สิน การเงินหมุนเวียนคล่องตัวแบบก้าวกระโดด", "love_single": "พรหมลิขิตจะพัดพาคนที่ใช่เข้ามาแบบบังเอิญ เจอในจังหวะที่ไม่คาดคิด", "love_crush": "จังหวะฟ้าเปิด! จะมีเหตุการณ์บังเอิญที่ทำให้ได้ใกล้ชิดหรือได้คุยกันมากขึ้น รีบคว้าโอกาสทองนี้ไว้เลย", "love_couple": "ความสัมพันธ์ยกระดับไปในทางที่ดี ปัญหาที่ค้างคาใจจะคลี่คลายอย่างน่าอัศจรรย์", "advice": "เมื่อจังหวะทองมาถึง จงกล้าที่จะกระโดดคว้าโอกาสไว้ทันที", "lucky_color": "เหลืองทอง & ส้มพีช", "lucky_number": "10, 21"}, {"id": 11, "name_th": "Justice (ชิบะอินุตาชั่งแห่งความจริง)", "name_en": "Justice", "animal": "ชิบะอินุสวมผ้าคลุมแดงถือตาชั่งทองคำ 🐕⚖️🌸", "symbol": "🐕", "bg_gradient": "linear-gradient(135deg, #e0f2fe, #fce7f3, #f1f5f9)", "art_icon": "🐕⚖️🌸", "keywords": "ความยุติธรรม, ความถูกต้อง, สัญญาเอกสาร, ผลลัพธ์เที่ยงตรง", "overall": "ช่วงเวลาแห่งความจริงและความเป็นธรรม สิ่งที่คุณเคยทำด้วยความซื่อสัตย์จะส่งผลตอบแทนอันคุ้มค่าและเที่ยงตรงดั่งตาชั่งทองคำ", "work_employed": "การเจรจาต่อรองสัญญา ข้อตกลงทางธุรกิจ หรือการประเมินผลงานจะเป็นไปอย่างยุติธรรมและราบรื่นหากรอบคอบในข้อกฎหมาย", "work_unemployed": "มีโอกาสได้งานที่เกี่ยวข้องกับกฎหมาย เอกสาร การตรวจสอบ หรือองค์กรที่มีมาตรฐานชัดเจน เตรียมเอกสารสมัครงานให้เป๊ะ", "finance": "ได้รับเงินตกเบิก เงินคืนภาษี หรือผลตอบแทนที่สมน้ำสมเนื้อกับความเหน็ดเหนื่อย", "love_single": "ใช้เหตุผลนำทาง มองหาความสัมพันธ์ที่ชัดเจน ตรงไปตรงมา และให้เกียรติซึ่งกันและกัน", "love_crush": "เขาเป็นคนดูความจริงใจและความชัดเจน ไม่ชอบความคลุมเครือ แสดงออกให้ตรงไปตรงมาจะทำให้เขาประทับใจ", "love_couple": "พูดคุยและตกลงกติกาชีวิตคู่ด้วยความเข้าอกเข้าใจและเป็นธรรมทั้งสองฝ่าย", "advice": "ทำในสิ่งที่ถูกต้องเสมอ ชั่งน้ำหนักอย่างเป็นกลางก่อนตัดสินใจเรื่องสำคัญ", "lucky_color": "ฟ้าพาสเทล & ขาวมุก", "lucky_number": "11, 22"}, {"id": 12, "name_th": "The Hanged Man (สลอธน้อยห้อยหัวมีรัศมี)", "name_en": "The Hanged Man", "animal": "สลอธน้อยห้อยหัวยิ้มหวานมีรัศมีเทวดาบนกิ่งไม้ 🦥💡🌿", "symbol": "🦥", "bg_gradient": "linear-gradient(135deg, #f3e8ff, #dcfce7, #e0f2fe)", "art_icon": "🦥💡🌿", "keywords": "มุมมองใหม่, ชะลอเพื่อเติบโต, ปล่อยวาง, สติปัญญา", "overall": "การหยุดนิ่งเพื่อปรับมุมมองดั่งสลอธน้อยห้อยหัวยิ้มรับแสงแดด บางสถานการณ์ต้องใช้ความอดทนรอคอย แล้วจะพบคำตอบอันลึกซึ้ง", "work_employed": "งานอาจชะลอตัวชั่วคราวเพื่อรอการอนุมัติ อย่าเพิ่งอึดอัด ใช้เวลานี้ตรวจสอบความเรียบร้อย การยอมปรับแผนจะช่วยให้งานรอด", "work_unemployed": "อาจต้องรอคอยผลการสัมภาษณ์สักระยะ อย่าเพิ่งท้อแท้ ลองปรับรูปแบบเรซูเม่ใหม่ให้โดดเด่น แล้วโอกาสจะเปิดกว้างขึ้น", "finance": "การเงินต้องใช้จ่ายอย่างรัดกุม การเสียสละเงินบางส่วนเพื่อการเรียนรู้หรือลงทุนระยะยาวจะส่งผลดีในอนาคต", "love_single": "ยังไม่ใช่จังหวะเร่งรีบ ให้เวลาตัวเองได้ทบทวนและตกตะกอนหัวใจ", "love_crush": "อาจต้องอดทนรอจังหวะอีกสักนิด ช่วงนี้ทำได้แค่ส่งความห่วงใยอยู่ห่างๆ อย่าเพิ่งกดดันให้เขาเลือกหรือตอบ", "love_couple": "บางเรื่องต้องยอมถอยคนละก้าว การยอมเสียสละทิฐิจะช่วยรักษาความสัมพันธ์ไว้ได้", "advice": "การหยุดนิ่งเพื่อสังเกตไม่ใช่ความพ่ายแพ้ แต่เป็นการตั้งหลักอย่างชาญฉลาด", "lucky_color": "เขียวมินต์ & ม่วงพาสเทล", "lucky_number": "12, 3"}, {"id": 13, "name_th": "Death (ผีเสื้อราตรีขาวบนดอกกุหลาบ)", "name_en": "Death", "animal": "ผีเสื้อราตรีสีขาวบริสุทธิ์เกาะบนกุหลาบขาว 🦋🌹🌅", "symbol": "🦋", "bg_gradient": "linear-gradient(135deg, #f5d0fe, #fce7f3, #e9d5ff)", "art_icon": "🦋🌹🌅", "keywords": "การเกิดใหม่, ผลัดใบ, ปล่อยวางอดีต, รุ่งอรุณใหม่", "overall": "การสิ้นสุดของสิ่งเดิมเพื่อการเกิดใหม่ที่บริสุทธิ์งดงาม ดั่งผีเสื้อขาวที่เกาะบนดอกกุหลาบยามรุ่งอรุณ สิ่งที่ไม่ใช่อีกต่อไปจะสลายไปเพื่อให้สิ่งที่ดีกว่าเข้ามา", "work_employed": "การปิดโปรเจกต์เดิม การปรับเปลี่ยนโครงสร้าง หรือการตัดสินใจลาออกจากงานที่หมดไฟเพื่อไปสู่งานใหม่ที่ตอบโจทย์ชีวิตมากกว่า", "work_unemployed": "หลุดพ้นจากช่วงเวลาว่างงานอันน่าอึดอัด กำลังจะได้เริ่มต้นงานใหม่ที่เป็นจุดเปลี่ยนสำคัญในชีวิตแบบหน้ามือเป็นหลังมือ", "finance": "เคลียร์หนี้สินเก่า จัดระเบียบการเงินใหม่ ปลดภาระค่าใช้จ่ายที่ไม่จำเป็นออกไปเพื่อเริ่มต้นความมั่งคั่งใหม่", "love_single": "ตัดใจจากคนเก่าในอดีตได้สำเร็จ หัวใจพร้อมโบยบินเปิดรับความรักครั้งใหม่ที่สดใส", "love_crush": "ถึงเวลาเลือกระหว่าง 'สารภาพรักให้รู้แล้วรู้รอด' หรือ 'ตัดใจเพื่อเปิดรับคนใหม่ที่ดีกว่า' จบความอึดอัดในใจซะ", "love_couple": "ทิ้งพฤติกรรมเดิมๆ ที่เป็นพิษต่อกัน แล้วเริ่มต้นปรับนิสัยเพื่อสร้างความสัมพันธ์ใหม่ที่ดีกว่าเดิม", "advice": "อย่ากลัวการจากลา เพราะไม่มีเช้าวันใหม่หากราตรีไม่ผ่านพ้น", "lucky_color": "ขาวบริสุทธิ์ & ชมพูอ่อน", "lucky_number": "13, 4"}, {"id": 14, "name_th": "Temperance (ลูกเป็ดน้อยเทน้ำผสมผสาน)", "name_en": "Temperance", "animal": "ลูกเป็ดน้อยยืนบนโขดหินเทน้ำทิพย์ผสมผสาน 🐥🌊🪷", "symbol": "🐥", "bg_gradient": "linear-gradient(135deg, #bae6fd, #d1fae5, #e0f2fe)", "art_icon": "🐥🌊🪷", "keywords": "ความสมดุล, ปรับตัวกลมกลืน, การเยียวยา, สายน้ำหล่อเลี้ยง", "overall": "ความสมดุลและความกลมกลืนในชีวิต สุขภาพกายและใจได้รับการฟื้นฟู ดั่งสายน้ำทิพย์ที่ลูกเป็ดน้อยเทผสมผสานให้ชีวิตกลับมาชุ่มชื่นอีกครั้ง", "work_employed": "การประสานงานติดต่อระหว่างฝ่ายราบรื่น สามารถเป็นตัวกลางไกล่เกลี่ยปัญหาและปรับตัวเข้ากับสภาพแวดล้อมใหม่ได้อย่างยอดเยี่ยม", "work_unemployed": "มีเกณฑ์ได้งานที่ต้องใช้ความสามารถรอบด้าน หรือมีงานฟรีแลนซ์/งานสัญญาจ้างระยะสั้นเข้ามาช่วยเสริมรายได้ระหว่างรองานประจำ", "finance": "การเงินหมุนเวียนสมดุล รายรับรายจ่ายลงตัว มีเงินเหลือเก็บออมอย่างต่อเนื่อง", "love_single": "มีความสุขกับความสัมพันธ์ที่ค่อยเป็นค่อยไป ศึกษานิสัยใจคออย่างไม่รีบร้อน", "love_crush": "ความสัมพันธ์ค่อยๆ เป็น ค่อยๆ ไป ปรับตัวเข้าหากันทีละนิด ทักไปคุยเรื่อยๆ สบายๆ ไม่ต้องเร่งรัดจะดีที่สุด", "love_couple": "ช่วยเหลือและประคับประคองชีวิตคู่ได้อย่างกลมกลืน ถ้อยทีถ้อยอาศัยกันดีมาก", "advice": "เดินทางสายกลาง ปรับตัวให้ยืดหยุ่นดั่งสายน้ำที่ไหลผ่านทุกอุปสรรค", "lucky_color": "ฟ้าใส & เขียวมินต์", "lucky_number": "14, 5"}, {"id": 15, "name_th": "The Devil (แรคคูนน้อยบนกองเหรียญทอง)", "name_en": "The Devil", "animal": "แรคคูนน้อยมีเขาถือตรีศูลนั่งบนกองเหรียญทอง 🦝😈🪙", "symbol": "🦝", "bg_gradient": "linear-gradient(135deg, #fbcfe8, #fed7aa, #e9d5ff)", "art_icon": "🦝😈🪙", "keywords": "กิเลสเย้ายวน, ความทะเยอทะยาน, เสน่ห์อันตราย, รู้ทันใจตนเอง", "overall": "พลังเสน่ห์และความต้องการที่ล้นเหลือ แต่ให้ระวังเรื่องการตกเป็นทาสของกิเลส หรือความอยากได้อยากมีจนลืมสิ่งที่สำคัญในชีวิต", "work_employed": "มีความทะเยอทะยานสูงและมุ่งมั่นจะกอบโกยผลงาน แต่อย่าหักโหมจนเสียสุขภาพ ระวังการเมืองและผลประโยชน์ทับซ้อนในที่ทำงาน", "work_unemployed": "ระวังงานที่ดูได้เงินง่ายผิดปกติหรือมีเงื่อนไขสัญญาที่ไม่เป็นธรรม ตรวจสอบรายละเอียดบริษัทให้รอบคอบก่อนตกลงเซ็นสัญญา", "finance": "ระวังการช้อปปิ้งตามอารมณ์ หรือการลงทุนที่มีความเสี่ยงสูง อย่าไว้ใจใครเรื่องการเงินง่ายๆ", "love_single": "เสน่ห์แรงมาก มีคนเข้ามาพัวพันหลายคน ระวังความสัมพันธ์ที่ฉาบฉวยหรือรักซ้อน", "love_crush": "เขารู้สึกดึงดูดในเสน่ห์ของคุณมาก แต่อาจเป็นความหลงใหลชั่วคราว เช็กให้ดีว่าเขามีใครคุยซ้อนอยู่ไหม", "love_couple": "ระวังความหึงหวง อารมณ์ฉุนเฉียว หรือความต้องการครอบงำคนรักมากเกินไป", "advice": "รู้ทันกิเลสในใจ โซ่แห่งความอยากสามารถปลดออกได้ด้วยสติของคุณเอง", "lucky_color": "ม่วงเข้ม & ส้มทอง", "lucky_number": "15, 6"}, {"id": 16, "name_th": "The Tower (โคอาล่าน้อยบนต้นไม้สายฟ้า)", "name_en": "The Tower", "animal": "โคอาล่าน้อยเกาะกิ่งไม้ตอนสายฟ้าฟาด 🐨⚡🌩️", "symbol": "🐨", "bg_gradient": "linear-gradient(135deg, #fed7aa, #fbcfe8, #ddd6fe)", "art_icon": "🐨⚡🌩️", "keywords": "การเปลี่ยนแปลงฉับพลัน, สายฟ้าตื่นรู้, ก้าวข้ามพายุ, ฟ้าหลังฝน", "overall": "การเปลี่ยนแปลงที่เกิดขึ้นอย่างกะทันหันเหมือนสายฟ้าฟาดเพื่อทลายสิ่งลวงตา แม้จะตกใจในตอนแรกแต่จะช่วยให้คุณหลุดพ้นจากปัญหาเดิมๆ อย่างรวดเร็ว", "work_employed": "อาจมีการปรับเปลี่ยนโครงสร้างกะทันหัน หรือมีงานด่วนเข้ามาทดสอบสติ แต่จะช่วยให้สะสางปัญหาเดิมและมองเห็นทางออกที่เร็วกว่าเดิม", "work_unemployed": "อาจมีข่าวเรียกสัมภาษณ์ด่วน หรือมีโอกาสงานที่ไม่เคยคาดคิดมาก่อนติดต่อเข้ามาแบบกะทันหัน เตรียมตัวให้พร้อมตลอดเวลา", "finance": "ควรมีเงินสำรองฉุกเฉินไว้ ระวังรายจ่ายซ่อมแซมยานพาหนะ โทรศัพท์ หรืออุปกรณ์ทำงานที่ชำรุด", "love_single": "ฟ้าผ่าเปิดตาเปิดใจ ได้พบคนที่ทำให้ความคิดและทัศนคติเรื่องความรักเปลี่ยนไปโดยสิ้นเชิง", "love_crush": "อาจมีเรื่องเซอร์ไพรส์กะทันหัน เช่น รู้ความลับของเขา หรือจู่ๆ เขาก็ทักข้อความมาแบบไม่คาดฝัน ตั้งสติให้ดี", "love_couple": "หากมีเรื่องขัดแย้งสะสม ให้เปิดอกคุยความจริงกันตรงๆ การเคลียร์ใจจะช่วยให้ฟ้าหลังฝนสดใส", "advice": "ตั้งสติให้มั่นคง ยอมรับความจริงอย่างกล้าหาญ ฟ้าหลังฝนย่อมสดใสเสมอ", "lucky_color": "ส้มพีชพาสเทล & ม่วงอ่อน", "lucky_number": "16, 7"}, {"id": 17, "name_th": "The Star (เฟนเนกฟ็อกซ์มองดาวตก)", "name_en": "The Star", "animal": "เฟนเนกฟ็อกซ์ตัวน้อยนั่งมองดาวตกริมสระน้ำ 🦊⭐✨", "symbol": "🦊", "bg_gradient": "linear-gradient(135deg, #c7d2fe, #e9d5ff, #bae6fd)", "art_icon": "🦊⭐✨", "keywords": "ความหวัง, แสงสว่างนำทาง, ความฝันเป็นจริง, หัวใจอบอุ่น", "overall": "ช่วงเวลาแห่งความสุขใจ ความหวัง และพลังบวกอันบริสุทธิ์ ดั่งดาวตกส่องประกายสะท้อนผิวน้ำ จักรวาลกำลังจัดสรรสิ่งดีๆ ให้ความฝันของคุณเป็นจริง", "work_employed": "ผลงานสร้างชื่อเสียง ได้รับคำชมเชยและแรงสนับสนุนอย่างอบอุ่น มีแรงบันดาลใจในการทำงานล้นหลาม สภาพแวดล้อมในที่ทำงานน่าอยู่", "work_unemployed": "ความหวังเป็นจริงแล้ว! กำลังจะได้งานที่ตรงใจ บรรยากาศเป็นกันเอง และตอบโจทย์ชีวิตที่เคยวาดฝันไว้", "finance": "การเงินเริ่มฟื้นตัวอย่างสดใส มีโชคลาภจากความดีงามและมีผู้ใหญ่คอยเกื้อหนุนช่วยเหลือ", "love_single": "มีเกณฑ์พบคนที่ทำให้ใจฟู มีความอ่อนโยน เข้ามาเยียวยาหัวใจได้อย่างงดงาม", "love_crush": "มีความหวังเต็มเปี่ยม! เขาเริ่มมองคุณเป็นพลังบวกและความสดใสในใจ มีเกณฑ์ได้เลื่อนสถานะเป็นคนคุยคนพิเศษ", "love_couple": "ความรักเต็มไปด้วยความเข้าใจ ความหวัง และความสุขสงบในจิตใจร่วมกัน", "advice": "มองไปยังดวงดาวด้วยความศรัทธา ความคิดบวกของคุณจะดึงดูดปาฏิหาริย์เข้ามา", "lucky_color": "ฟ้าพาสเทล & ม่วงประกายดาว", "lucky_number": "17, 8"}, {"id": 18, "name_th": "The Moon (ลูกหมาฮัสกี้หอนรับจันทร์)", "name_en": "The Moon", "animal": "ลูกหมาฮัสกี้ขนปุยนั่งหอนรับพระจันทร์เต็มดวง 🐺🌕🌌", "symbol": "🐺", "bg_gradient": "linear-gradient(135deg, #ddd6fe, #e0e7ff, #f5d0fe)", "art_icon": "🐺🌕🌌", "keywords": "จินตนาการ, ความรู้สึกลึกซึ้ง, เซ้นส์สัมผัส, ความคิดมาก", "overall": "พลังงานจินตนาการและอารมณ์ความรู้สึกที่ลึกซึ้งยามราตรี ระวังความคิดมากเกินจริงหรือความวิตกกังวลในสิ่งที่ยังมาไม่ถึง ให้ดึงสติอยู่กับปัจจุบัน", "work_employed": "เด่นมากสำหรับงานสร้างสรรค์ ศิลปะ การออกแบบ หรือวงการบันเทิง แต่อย่าเพิ่งหวั่นไหวกับข่าวลือหรือความไม่แน่นอนในออฟฟิศ", "work_unemployed": "อาจรู้สึกเคว้งคว้างและกังวลใจ อย่าเพิ่งกดดันตัวเองจนเกินไป ให้อดทนรอจังหวะที่เหมาะสม อีกไม่นานเมฆหมอกจะจางหาย", "finance": "ตรวจสอบเอกสารสัญญาการเงินให้รอบคอบ อย่าเพิ่งตัดสินใจลงทุนด้วยความไม่แน่ใจหรือตามคำชวนของคนอื่น", "love_single": "อารมณ์อ่อนไหว ระวังคนเข้ามาพูดจาหวานล้อมแต่ยังไม่ชัดเจนในเจตนา", "love_crush": "ระวังคิดไปเองหรือมโนไปไกล อย่าเพิ่งตีความการกระทำของเขาเกินจริง ดูการกระทำที่ชัดเจนมากกว่าคำพูดหวานๆ", "love_couple": "อย่าปล่อยให้ความระแวงทำร้ายความสัมพันธ์ มีอะไรให้เปิดใจคุยกันด้วยเหตุผล", "advice": "แยกแยะระหว่างความจริงกับภาพลวงตา ดึงสติอยู่กับปัจจุบันและรักตัวเองให้มาก", "lucky_color": "ม่วงอ่อน & ฟ้าเงิน", "lucky_number": "18, 9"}, {"id": 19, "name_th": "The Sun (ลูกหมาโกลเด้นในทุ่งทานตะวัน)", "name_en": "The Sun", "animal": "ลูกหมาโกลเด้นวิ่งเล่นเริงร่าในทุ่งทานตะวัน 🐶☀️🌻", "symbol": "🐶", "bg_gradient": "linear-gradient(135deg, #fef08a, #fed7aa, #fda4af)", "art_icon": "🐶☀️🌻", "keywords": "ความสุขสูงสุด, พลังชีวิต, ชัยชนะ, ความสำเร็จแจ่มจรัส", "overall": "ไพ่ที่ดีที่สุดในสำรับ! แสงแดดอบอุ่นส่องประกาย รอยยิ้มสดใสและความสำเร็จรุ่งโรจน์รอคุณอยู่ ดั่งลูกหมาโกลเด้นวิ่งเล่นในทุ่งทานตะวันบานสะพรั่ง", "work_employed": "ประสบความสำเร็จอย่างงดงาม ได้รับการโปรโมทผลงาน ผู้ใหญ่ชื่นชม โปรเจกต์ผ่านฉลุย บรรยากาศการทำงานเต็มไปด้วยพลังบวก", "work_unemployed": "ยินดีด้วยค่ะ! โอกาสได้งานใหม่สูงมาก ได้งานที่ดี มีความก้าวหน้า มีผู้คนต้อนรับอย่างอบอุ่นและให้ผลตอบแทนดีเยี่ยม", "finance": "การเงินมั่งคั่ง มีกำไรจากการค้าขาย ได้รับโชคลาภเงินก้อน มีสภาพคล่องทางการเงินสูงมาก", "love_single": "มีคนดี นิสัยอบอุ่น สดใส เข้ามามอบความรักที่ชัดเจนและเปิดเผยให้", "love_crush": "ปังมากกก! เขารู้สึกสดใสและมีความสุขทุกครั้งที่ได้คุยกับคุณ โอกาสสารภาพรักแล้วสมหวังสูงถึง 99%!", "love_couple": "ความรักเบิกบาน หวานชื่น ได้รับการยอมรับจากครอบครัวและคนรอบข้างอย่างเต็มที่", "advice": "ส่งต่อรอยยิ้มและความอบอุ่นให้โลกรอบตัว ความสุขของคุณจะส่องสว่างอย่างไม่มีที่สิ้นสุด", "lucky_color": "เหลืองทอง & ส้มสดใส", "lucky_number": "19, 1"}, {"id": 20, "name_th": "Judgement (นกสีฟ้าเป่าแตรทองคำ)", "name_en": "Judgement", "animal": "นกสีฟ้าสวมผ้าคลุมเป่าแตรทองคำบนกิ่งซากุระ 🐦🎺🌸", "symbol": "🐦", "bg_gradient": "linear-gradient(135deg, #e9d5ff, #fef9c3, #fbcfe8)", "art_icon": "🐦🎺🌸", "keywords": "ตื่นรู้, โอกาสครั้งที่สอง, เสียงเรียกจากใจ, การเกิดใหม่", "overall": "เสียงแตรทองคำดังขึ้นเตือนว่าถึงเวลาเริ่มต้นชีวิตใหม่ในเวอร์ชันที่ดีกว่าเดิม การได้รับข่าวดีและการปลดปล่อยสู่ความสุขแท้จริง", "work_employed": "ได้รับการประเมินผลงานที่ดีเยี่ยม มีเกณฑ์ได้เลื่อนตำแหน่ง หรือได้รับโอกาสครั้งสำคัญในการโชว์ศักยภาพและทำได้สำเร็จงดงาม", "work_unemployed": "จะได้รับข่าวดีเรื่องงานที่เคยไปสัมภาษณ์ไว้ หรือมีบริษัทเก่า/คนรู้จักติดต่อเสนองานใหม่ที่น่าสนใจเข้ามา", "finance": "ปัญหาการเงินที่เคยติดขัดจะได้รับการปลดล็อก ได้รับเงินตกเบิกหรือเงินชดเชยที่ยุติธรรม", "love_single": "คนที่ใช่ในเวลาที่ถูกต้องกำลังจะปรากฏตัว หรือคนคุยเก่าวนกลับมาในเวอร์ชันที่ดีขึ้น", "love_crush": "ถึงเวลาที่จักรวาลจะให้คำตอบ ความรู้สึกที่เก็บไว้ถึงเวลาต้องเผยออกไป หรือเขาจะเป็นฝ่ายเอ่ยปากเองเร็วๆ นี้", "love_couple": "ให้อภัยซึ่งกันและกัน ความสัมพันธ์ก้าวข้ามปัญหาเดิมและมั่นคงขึ้นกว่าเดิม", "advice": "ให้อภัยอดีต ฟังเสียงเรียกที่แท้จริงของจิตวิญญาณ แล้วก้าวไปข้างหน้าอย่างภาคภูมิใจ", "lucky_color": "ฟ้าพาสเทล & ม่วงอ่อน", "lucky_number": "20, 2"}, {"id": 21, "name_th": "The World (นากทะเลในพวงมาลัยดอกไม้)", "name_en": "The World", "animal": "นากทะเลน้อยลอยคอในพวงมาลัยดอกไม้นานาพรรณ 🦦👑🌸", "symbol": "🦦", "bg_gradient": "linear-gradient(135deg, #fbcfe8 0%, #fef08a 25%, #bae6fd 50%, #e9d5ff 75%, #bbf7d0 100%)", "art_icon": "🦦👑🌸", "keywords": "สมบูรณ์แบบ, เดินทางรอบโลก, อิสรภาพ, บรรลุเป้าหมาย", "overall": "ความสุขสมบูรณ์แบบในทุกมิติของชีวิต ดั่งนากทะเลน้อยลอยคออย่างสบายใจในพวงมาลัยดอกไม้แห่งความสำเร็จรอบโลก", "work_employed": "โครงการใหญ่ปิดจบลุล่วงตามเป้าหมาย ประสบความสำเร็จในระดับสากล มีเกณฑ์ได้ทำงานกับต่างชาติหรือได้เดินทางไปทำงานต่างประเทศ", "work_unemployed": "ได้งานที่ตรงกับความใฝ่ฝันอย่างสมบูรณ์แบบ ได้เริ่มต้นชีวิตการทำงานในที่ที่ทำให้คุณมีความสุขและภาคภูมิใจ", "finance": "การเงินสมบูรณ์พูนสุข มั่งคั่ง มีความมั่นคงสูง ไร้ความกังวลเรื่องเงินทอง", "love_single": "พบคนที่พร้อมร่วมเดินทางชีวิตไปด้วยกันอย่างสมบูรณ์แบบและลงตัวทุกอย่าง", "love_crush": "ความรู้สึกตรงกันอย่างสมบูรณ์แบบ ทั้งสองฝ่ายต่างรู้สึกดีต่อกัน มีเกณฑ์ข้ามขั้นจากคนแอบรักไปสู่คนรู้ใจ", "love_couple": "ความรักลงตัว อบอุ่น มีความสุขร่วมกันอย่างแท้จริง มีความสุขกับความมั่นคงของชีวิตคู่", "advice": "ร่วมยินดีกับทุกก้าวที่คุณฟันฝ่ามา จักรวาลทั้งใบพร้อมโอบกอดคุณด้วยความรัก", "lucky_color": "สายรุ้งพาสเทล (ชมพู-เหลือง-ฟ้า-ม่วง-เขียว)", "lucky_number": "21, 3"}];
 
     const AppState = {
       currentMode: 'daily',
@@ -1558,7 +1562,7 @@
           <div class="card-inner" id="cardInner_${i}">
             <div class="card-back">
               <div class="card-back-frame">
-                <div class="card-back-cat">🐱</div>
+                <div class="card-back-cat">🐱🌸</div>
                 <div class="card-back-text">MEOW TAROT</div>
                 <div style="font-size: 12px; opacity: 0.85; color: #f472b6;">แตะเพื่อเปิด 🐾</div>
               </div>
@@ -1624,10 +1628,14 @@
       const cardInner = document.getElementById(`cardInner_${index}`);
 
       cardFront.innerHTML = `
-        <div class="card-front-content" style="background: ${card.bg_gradient};">
-          <span class="card-front-title-en">${card.name_en}</span>
-          <div class="card-front-art">${card.art_icon}</div>
-          <div class="card-front-title-th">${card.name_th}</div>
+        <div class="card-front-content" style="background: ${card.bg_gradient}; padding: 0;">
+          <img src="images/card_${card.id}.jpg" class="card-real-img" alt="${card.name_en}" 
+               onerror="handleCardImgError(this, ${card.id})">
+          <div class="card-fallback-art" style="display: none; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: space-between; padding: 10px 6px;">
+            <span class="card-front-title-en">${card.name_en}</span>
+            <div class="card-front-art">${card.art_icon}</div>
+            <div class="card-front-title-th">${card.name_th}</div>
+          </div>
         </div>
       `;
 
@@ -1640,6 +1648,19 @@
           AudioFX.playSuccess();
           renderInterpretation();
         }, 600);
+      }
+    }
+
+    function handleCardImgError(img, cardId) {
+      if (img.src.endsWith('.jpg')) {
+        img.src = `images/card_${cardId}.jpeg`;
+      } else if (img.src.endsWith('.jpeg')) {
+        img.src = `images/card_${cardId}.png`;
+      } else {
+        img.style.display = 'none';
+        if (img.nextElementSibling) {
+          img.nextElementSibling.style.display = 'flex';
+        }
       }
     }
 
@@ -1853,9 +1874,12 @@
 
         cardBox.innerHTML = `
           <div class="result-header">
-            <div class="result-name">
-              <span>${card.symbol}</span>
-              <span>${slotTitle}: ${card.name_th}</span>
+            <div class="result-name" style="display: flex; align-items: center; gap: 12px;">
+              <img src="images/card_${card.id}.jpg" style="width: 44px; height: 62px; object-fit: cover; border-radius: 6px; border: 1.5px solid #f472b6; box-shadow: 0 2px 8px rgba(244, 114, 182, 0.2);" onerror="this.style.display='none';">
+              <div>
+                <span style="font-size: 14px; color: #db2777; display: block;">${slotTitle}</span>
+                <span style="font-size: 20px;">${card.symbol} ${card.name_th}</span>
+              </div>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
               <span class="result-tag">สีมงคล: ${card.lucky_color}</span>
@@ -2118,7 +2142,7 @@
       toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
     }
 
-    function initSpaceBackground() {
+    function initPetals() {
       const container = document.getElementById('bgSpace');
       for (let i = 0; i < 45; i++) {
         const star = document.createElement('div');
@@ -2144,7 +2168,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      initSpaceBackground();
+      initPetals();
       loadData();
       resetSpread();
     });
