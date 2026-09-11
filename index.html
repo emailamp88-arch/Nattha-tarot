@@ -1629,6 +1629,11 @@
         return;
       }
 
+      // Ensure card elements are created in DOM
+      if (!document.getElementById('cardInner_0')) {
+        resetSpread();
+      }
+
       if (isFree) {
         AppState.lastFreeDrawDate = getTodayStr();
         showToast('ใช้สิทธิ์เปิดไพ่ฟรีประจำวันแล้ว เมี้ยว! 🐾');
@@ -1641,20 +1646,27 @@
 
       const shuffled = [...tarotDeck].sort(() => Math.random() - 0.5);
       AppState.selectedCards = shuffled.slice(0, AppState.cardsCount);
+      AppState.revealedCount = 0;
 
       AppState.selectedCards.forEach((card, idx) => {
         setTimeout(() => {
           revealCard(idx, card);
-        }, idx * 300);
+        }, idx * 350);
       });
 
-      document.getElementById('btnDraw').style.display = 'none';
-      document.getElementById('btnReset').style.display = 'inline-flex';
+      const btnD = document.getElementById('btnDraw');
+      if (btnD) btnD.style.display = 'none';
+      const btnR = document.getElementById('btnReset');
+      if (btnR) btnR.style.display = 'inline-flex';
     }
 
     function revealCard(index, card) {
       const cardFront = document.getElementById(`cardFront_${index}`);
       const cardInner = document.getElementById(`cardInner_${index}`);
+      if (!cardFront || !cardInner) {
+        console.error('Card element not found for index', index);
+        return;
+      }
 
       cardFront.innerHTML = `
         <div class="card-front-content" style="background: ${card.bg_gradient}; padding: 0;">
@@ -2171,7 +2183,7 @@
       toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
     }
 
-    function initPetals() {
+    function initSpaceBackground() {
       const container = document.getElementById('bgSpace');
       for (let i = 0; i < 45; i++) {
         const star = document.createElement('div');
@@ -2197,9 +2209,9 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      initSpaceBackground();
-      loadData();
-      resetSpread();
+      try { initSpaceBackground(); } catch(e) { console.error(e); }
+      try { loadData(); } catch(e) { console.error(e); }
+      try { resetSpread(); } catch(e) { console.error(e); }
     });
   </script>
 </body>
